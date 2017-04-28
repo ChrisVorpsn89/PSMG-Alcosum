@@ -1,0 +1,9 @@
+body {
+    background-color: darkgrey;
+    font-family: sans-serif;
+}
+
+#myContainer p {
+    background-color: aliceblue;
+    margin: 2px;
+}
