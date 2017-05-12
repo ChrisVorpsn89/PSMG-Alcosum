@@ -9,6 +9,7 @@
         }
     </style>
     <script src="https://openlayers.org/en/v4.1.1/build/ol.js" type="text/javascript"></script>
+    <script src="resources/lib/d3/d3.js"></script>
     <title>OpenLayers example</title>
 </head>
 <body>
@@ -19,7 +20,8 @@
         target: 'map',
         layers: [
             new ol.layer.Tile({
-                source: new ol.source.OSM()
+                source: new ol.source.Stamen({
+                    layer: 'toner'})
             })
         ],
         view: new ol.View({
@@ -27,6 +29,16 @@
             zoom: 4
         })
     });
+
+
+    /**
+     * Load the topojson data and create an ol.layer.Image for that data.
+     */
+    d3.json('data/json_2000_2016_simplified.json', function(error, data) {
+        var features = topojson.feature(data, us.objects.counties);
+    console.log(features);
+    });
+
 </script>
 </body>
 </html>
