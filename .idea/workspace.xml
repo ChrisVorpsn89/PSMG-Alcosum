@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33d21125-273a-4578-99bc-06f21cbb2e62" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/geojsoncountriesandcodes" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testMap.html" afterPath="$PROJECT_DIR$/testMap.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,36 +20,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="json_1960_1979_complete.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/json_1960_1979_complete.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="113" column="1" lean-forward="false" selection-start-line="113" selection-start-column="1" selection-end-line="113" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="json_1960_1979_simplified.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/json_1960_1979_simplified.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="39" column="45" lean-forward="false" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="json_1980_1999_simplified.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/json_1980_1999_simplified.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="testHTML.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testHTML.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -75,8 +43,8 @@
       <file leaf-file-name="geojsoncountriesandcodes" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data/geojsoncountriesandcodes">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="181" column="2" lean-forward="false" selection-start-line="181" selection-start-column="2" selection-end-line="181" selection-end-column="2" />
+            <state relative-caret-position="97">
+              <caret line="142" column="180" lean-forward="true" selection-start-line="142" selection-start-column="180" selection-end-line="142" selection-end-column="180" />
               <folding />
             </state>
           </provider>
@@ -325,12 +293,12 @@
       <workItem from="1493972700767" duration="1582000" />
       <workItem from="1494577241988" duration="3369000" />
       <workItem from="1495012762758" duration="631000" />
-      <workItem from="1495180766925" duration="2880000" />
+      <workItem from="1495180766925" duration="3262000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9013000" />
+    <option name="totallyTimeSpent" value="9395000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1924" height="1048" extended-state="0" />
@@ -602,8 +570,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/geojsoncountriesandcodes">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="181" column="2" lean-forward="false" selection-start-line="181" selection-start-column="2" selection-end-line="181" selection-end-column="2" />
+        <state relative-caret-position="97">
+          <caret line="142" column="180" lean-forward="true" selection-start-line="142" selection-start-column="180" selection-end-line="142" selection-end-column="180" />
           <folding />
         </state>
       </provider>
