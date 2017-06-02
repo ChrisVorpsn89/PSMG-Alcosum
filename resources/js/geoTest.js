@@ -6,7 +6,8 @@ var cityArray = [];
 
 
 for(var i = 0; i < jsonObject.features.length; i++){
-  console.log(jsonObject.features[i].geometry.coordinates[0][0])
+  //console.log(jsonObject.features[i].geometry.coordinates[0][0]);
+    if(jsonObject.features[i].geometry.coordinates[0][0].length == 2){
   var city = new ol.Feature({
       geometry: new ol.geom.Point(ol.proj.fromLonLat(jsonObject.features[i].geometry.coordinates[0][0]))
   });
@@ -17,16 +18,19 @@ for(var i = 0; i < jsonObject.features.length; i++){
           src: 'https://openlayers.org/en/v4.1.1/examples/data/dot.png'
       }))
   }));
-  var countrySource = new ol.source.Vector({
-      projection : 'EPSG:3857',
-      url: 'data/countries.geo.json',
-      format: new ol.format.GeoJSON(),
-      features: [city]
-
-  });
+    cityArray.push(city);}
 }
 
 
+var countrySource = new ol.source.Vector({
+    projection : 'EPSG:3857',
+    url: 'data/countries.geo.json',
+    format: new ol.format.GeoJSON(),
+    features: cityArray
+
+});
+
+console.log(countrySource);
 
 var rome = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.fromLonLat([15.520376,38.231155]))
