@@ -1,3 +1,10 @@
+var xhReq = new XMLHttpRequest();
+xhReq.open("GET", "data/countries.geo.json", false);
+xhReq.send(null);
+var jsonObject = JSON.parse(xhReq.responseText);
+
+console.log(jsonObject.features);
+
 var rome = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.fromLonLat([15.520376,38.231155]))
 });
@@ -48,7 +55,7 @@ var countryStyle = new ol.style.Style({
   }),
   stroke: new ol.style.Stroke({
     color: [177, 163, 148, 0.5],
-    width: 2
+    width: 2.5
   })
 });
 var countryLayer = new ol.layer.Vector({
