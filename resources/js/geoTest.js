@@ -73,11 +73,14 @@ var terrainLabelLayer = new ol.layer.Tile({
 
 var center = ol.proj.transform([0, 0], 'EPSG:4326', 'EPSG:3857');
 var view = new ol.View ({
-  center: center,
-  zoom: 1,
+  center: ol.proj.transform([-25, 33.82], 'EPSG:4326', 'EPSG:3857'),
+  zoom: 3,
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 var map = new ol.Map({
  target: 'map',
   layers: [countryLayer,terrainLabelLayer],
