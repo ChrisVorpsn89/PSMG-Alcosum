@@ -2,8 +2,31 @@ var xhReq = new XMLHttpRequest();
 xhReq.open("GET", "data/countries.geo.json", false);
 xhReq.send(null);
 var jsonObject = JSON.parse(xhReq.responseText);
+var cityArray = [];
 
-console.log(jsonObject.features);
+
+for(var i = 0; i < jsonObject.features.length; i++){
+  console.log(jsonObject.features[i].geometry.coordinates[0][0])
+  var city = new ol.Feature({
+      geometry: new ol.geom.Point(ol.proj.fromLonLat(jsonObject.features[i].geometry.coordinates[0][0]))
+  });
+  city.setStyle(new ol.style.Style({
+      image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+          color: '#8959A8',
+          crossOrigin: 'anonymous',
+          src: 'https://openlayers.org/en/v4.1.1/examples/data/dot.png'
+      }))
+  }));
+  var countrySource = new ol.source.Vector({
+      projection : 'EPSG:3857',
+      url: 'data/countries.geo.json',
+      format: new ol.format.GeoJSON(),
+      features: [city]
+
+  });
+}
+
+
 
 var rome = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.fromLonLat([15.520376,38.231155]))
@@ -41,14 +64,6 @@ madrid.setStyle(new ol.style.Style({
     }))
 }));
 
-
-var countrySource = new ol.source.Vector({
-    projection : 'EPSG:3857',
-    url: 'data/countries.geo.json',
-    format: new ol.format.GeoJSON(),
-    features: [rome, london, madrid]
-
-});
 var countryStyle = new ol.style.Style({
   fill: new ol.style.Fill({
     color: [203, 194, 185, 1]
