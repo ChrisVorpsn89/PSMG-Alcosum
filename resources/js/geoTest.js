@@ -56,14 +56,15 @@ var countryLayer = new ol.layer.Vector({
     style: countryStyle
 });
 
-// Code Toner Layer
 
+//Toner Layer for styling
 var tonerLayer = new ol.layer.Tile({
     source: new ol.source.Stamen({
         layer: 'toner'
     })
 });
 
+//Layer for capital names, etc.
 var terrainLabelLayer = new ol.layer.Tile({
     source: new ol.source.Stamen({
         layer: 'terrain-labels'
@@ -77,12 +78,10 @@ var view = new ol.View ({
   zoom: 3,
 });
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
 var map = new ol.Map({
  target: 'map',
+    //Layers added to Array
   layers: [countryLayer,terrainLabelLayer],
   view: view
 });
