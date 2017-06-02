@@ -14,6 +14,7 @@ for(var i = 0; i < jsonObject.features.length; i++){
   city.setStyle(new ol.style.Style({
       image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
           color: '#8959A8',
+          scale: 1.7,
           crossOrigin: 'anonymous',
           src: 'https://openlayers.org/en/v4.1.1/examples/data/dot.png'
       }))
