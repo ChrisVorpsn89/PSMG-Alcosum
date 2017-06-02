@@ -1,9 +1,9 @@
 var rome = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.fromLonLat([12.5, 41.9]))
+    geometry: new ol.geom.Point(ol.proj.fromLonLat([15.520376,38.231155]))
 });
 
 var london = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.fromLonLat([-0.12755, 51.507222]))
+    geometry: new ol.geom.Point(ol.proj.fromLonLat([-5.661949,54.554603]))
 });
 
 var madrid = new ol.Feature({
@@ -56,13 +56,30 @@ var countryLayer = new ol.layer.Vector({
     style: countryStyle
 });
 
+// Code Toner Layer
+
+var tonerLayer = new ol.layer.Tile({
+    source: new ol.source.Stamen({
+        layer: 'toner'
+    })
+});
+
+var terrainLabelLayer = new ol.layer.Tile({
+    source: new ol.source.Stamen({
+        layer: 'terrain-labels'
+    })
+});
+
+
 var center = ol.proj.transform([0, 0], 'EPSG:4326', 'EPSG:3857');
 var view = new ol.View ({
   center: center,
   zoom: 1,
 });
+
+
 var map = new ol.Map({
  target: 'map',
-  layers: [countryLayer],
+  layers: [countryLayer,terrainLabelLayer],
   view: view
 });
