@@ -2,6 +2,13 @@ var xhReq = new XMLHttpRequest();
 xhReq.open("GET", "data/countries.geo.json", false);
 xhReq.send(null);
 var jsonObject = JSON.parse(xhReq.responseText);
+
+xhReq.open("GET", "data/json_2000_2016_simplified.json", false);
+xhReq.send(null);
+var jsonObject2 = JSON.parse(xhReq.responseText);
+
+console.log(jsonObject,"1");
+console.log(jsonObject2,"2");
 var cityArray = [];
 
 
