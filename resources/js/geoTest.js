@@ -10,14 +10,6 @@ var jsonObject2 = JSON.parse(xhReq.responseText);
 var cityArray = [];
 
 
-//for(var i = 0; i < jsonObject.features.length; i++){
-    for (var j = 0; j < jsonObject2.fact.length; j++){
-
-        console.log(jsonObject2.fact[j].dim.Country)
-        
-       }
-    
-
 
 
 
