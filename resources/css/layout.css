@@ -1,6 +1,15 @@
-body {
-    background-color: darkgrey;
-    font-family: sans-serif;
+h2{
+  background-color: #eee;
+  color:#ffa500;
+  font-weight: 400;
+  font-family: fantasy;
+  text-align: center;
+  border-radius: .25em;
+  border: 1px solid #ffa500;
+}
+
+body{
+    background-color: #111;
 }
 
 #myContainer p {
@@ -9,6 +18,7 @@ body {
 }
 
 .map {
-    height: 400px;
+    height: 500px;
     width: 100%;
+    background-color: #444;
 }
