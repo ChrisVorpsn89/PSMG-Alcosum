@@ -7,20 +7,16 @@ xhReq.open("GET", "data/json_2000_2016_simplified.json", false);
 xhReq.send(null);
 var jsonObject2 = JSON.parse(xhReq.responseText);
 
-console.log(jsonObject,"1");
-console.log(jsonObject2,"2");
 var cityArray = [];
 
 
-for(var i = 0; i < jsonObject.features.length; i++){
-    for (var j = 0; j < jsonObject2.fact.length; i++){
-        
-        console.log(jsonObject.features[i].properties.name)
+//for(var i = 0; i < jsonObject.features.length; i++){
+    for (var j = 0; j < jsonObject2.fact.length; j++){
+
         console.log(jsonObject2.fact[j].dim.Country)
         
-        
        }
-       }
+    
 
 
 
