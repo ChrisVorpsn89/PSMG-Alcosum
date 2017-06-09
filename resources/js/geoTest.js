@@ -13,6 +13,21 @@ var cityArray = [];
 
 
 for(var i = 0; i < jsonObject.features.length; i++){
+    for (var j = 0; j < jsonObject2.fact.length; i++){
+        
+        console.log(jsonObject.features[i].properties.name)
+        console.log(jsonObject2.fact[j].dim.Country)
+        
+        
+       }
+       }
+
+
+
+
+
+
+for(var i = 0; i < jsonObject.features.length; i++){
   //console.log(jsonObject.features[i].geometry.coordinates[0][0]);
     if(jsonObject.features[i].geometry.coordinates[0][0].length == 2){
   var city = new ol.Feature({
