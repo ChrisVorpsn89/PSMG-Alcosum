@@ -3,16 +3,19 @@ xhReq.open("GET", "data/countries.geo.json", false);
 xhReq.send(null);
 var jsonObject = JSON.parse(xhReq.responseText);
 
-xhReq.open("GET", "data/json_2000_2016_simplified.json", false);
+xhReq.open("GET", "data/convert_2000_2016.json", false);
 xhReq.send(null);
 var jsonObject2 = JSON.parse(xhReq.responseText);
 
+for(var j = 0; j < jsonObject2.length; j++){
+  if(jsonObject2[j].Country == "Democratic People's Republic of Korea"){
+  console.log(jsonObject2[j].Country);
+  console.log(jsonObject2[j].BeverageType);
+  console.log(jsonObject2[j].Year2007);
+};
+}
+
 var cityArray = [];
-
-
-
-
-
 
 
 for(var i = 0; i < jsonObject.features.length; i++){
@@ -40,8 +43,6 @@ var countrySource = new ol.source.Vector({
     features: cityArray
 
 });
-
-console.log(countrySource);
 
 var rome = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.fromLonLat([15.520376,38.231155]))
