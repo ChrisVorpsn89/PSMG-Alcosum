@@ -3,17 +3,35 @@ xhReq.open("GET", "data/countries.geo.json", false);
 xhReq.send(null);
 var jsonObject = JSON.parse(xhReq.responseText);
 
-xhReq.open("GET", "data/convert_2000_2016.json", false);
+xhReq.open("GET", "data/converted_2000_2016.json", false);
 xhReq.send(null);
-var jsonObject2 = JSON.parse(xhReq.responseText);
+var reportOne = JSON.parse(xhReq.responseText);
 
-for(var j = 0; j < jsonObject2.length; j++){
-  if(jsonObject2[j].Country == "Democratic People's Republic of Korea"){
-  console.log(jsonObject2[j].Country);
-  console.log(jsonObject2[j].BeverageType);
-  console.log(jsonObject2[j].Year2007);
-};
-}
+/** Gibt Statistik zum Bier aus dem Jahr 2006 aus für jedes Land
+for(var j = 0; j < reportOne.length; j++){
+  if(reportOne[j].BeverageTypes == " Beer"){
+  var timeLine = "2006"
+  var reportYear = "Year" + timeLine;
+
+  console.log(reportOne[j].Country);
+  console.log(reportOne[j].BeverageTypes);
+  console.log(reportOne[j][reportYear]);
+  };
+}**/
+
+//Gibt alle Statistiken aus und nennt das Land dabei nur einmal
+for(var j = 0; j < reportOne.length; j++){
+  if(j % 5 == 0){
+    console.log(reportOne[j].Country);
+  }
+
+  var timeLine = "2000"
+  var reportYear = "Year" + timeLine;
+
+  console.log(reportOne[j].BeverageTypes);
+  console.log(reportOne[j][reportYear]);
+  };
+
 
 var cityArray = [];
 
