@@ -20,21 +20,36 @@ for(var j = 0; j < reportOne.length; j++){
 }**/
 
 //Gibt alle Statistiken aus und nennt das Land dabei nur einmal
-for(var j = 0; j < reportOne.length; j++){
-  if(j % 5 == 0){
-    console.log(reportOne[j].Country);
-  }
-
-  var timeLine = "2000"
+for(var j = 0; j < jsonObject.features.length; j++){
+  console.log(jsonObject.features[j].properties.name);
+  var timeLine = "2006"
   var reportYear = "Year" + timeLine;
+  for(var k = 0; k < reportOne.length; k++){
+    if(reportOne[k].Country == jsonObject.features[j].properties.name){
+      if(reportOne[k].BeverageTypes == " Beer"){
+        console.log(reportOne[k].BeverageTypes);
+        console.log(reportOne[k][reportYear]);
+        };
 
-  console.log(reportOne[j].BeverageTypes);
-  console.log(reportOne[j][reportYear]);
+      if(reportOne[k].BeverageTypes == " Wine"){
+        console.log(reportOne[k].BeverageTypes);
+        console.log(reportOne[k][reportYear]);
+        };
+
+        if(reportOne[k].BeverageTypes == " Spirits"){
+          console.log(reportOne[k].BeverageTypes);
+          console.log(reportOne[k][reportYear]);
+        };
+
+        if(reportOne[k].BeverageTypes == " All types"){
+          console.log(reportOne[k].BeverageTypes);
+          console.log(reportOne[k][reportYear]);
+        };
+    };
   };
-
+};
 
 var cityArray = [];
-
 
 for(var i = 0; i < jsonObject.features.length; i++){
   //console.log(jsonObject.features[i].geometry.coordinates[0][0]);

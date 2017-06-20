@@ -1200,7 +1200,7 @@
    "Year1980": ""
  },
  {
-   "Country": "Bahamas",
+   "Country": "The Bahamas",
    "BeverageTypes": " All types",
    "Year1999": "8.65",
    "Year1998": "9.78",
@@ -1224,7 +1224,7 @@
    "Year1980": "15.09"
  },
  {
-   "Country": "Bahamas",
+   "Country": "The Bahamas",
    "BeverageTypes": " Beer",
    "Year1999": "0.88",
    "Year1998": "0.85",
@@ -1248,7 +1248,7 @@
    "Year1980": "3.69"
  },
  {
-   "Country": "Bahamas",
+   "Country": "The Bahamas",
    "BeverageTypes": " Wine",
    "Year1999": "1.14",
    "Year1998": "0.93",
@@ -1272,7 +1272,7 @@
    "Year1980": "2.15"
  },
  {
-   "Country": "Bahamas",
+   "Country": "The Bahamas",
    "BeverageTypes": " Spirits",
    "Year1999": "6.63",
    "Year1998": "8.00",
@@ -1296,7 +1296,7 @@
    "Year1980": "9.22"
  },
  {
-   "Country": "Bahamas",
+   "Country": "The Bahamas",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "0.00",
    "Year1998": "0.00",
@@ -2280,7 +2280,7 @@
    "Year1980": "No data"
  },
  {
-   "Country": "Bolivia (Plurinational State of)",
+   "Country": "Bolivia",
    "BeverageTypes": " All types",
    "Year1999": "3.68",
    "Year1998": "3.17",
@@ -2304,7 +2304,7 @@
    "Year1980": "4.66"
  },
  {
-   "Country": "Bolivia (Plurinational State of)",
+   "Country": "Bolivia",
    "BeverageTypes": " Beer",
    "Year1999": "2.20",
    "Year1998": "1.68",
@@ -2328,7 +2328,7 @@
    "Year1980": "1.64"
  },
  {
-   "Country": "Bolivia (Plurinational State of)",
+   "Country": "Bolivia",
    "BeverageTypes": " Wine",
    "Year1999": "0.06",
    "Year1998": "0.06",
@@ -2352,7 +2352,7 @@
    "Year1980": "0.09"
  },
  {
-   "Country": "Bolivia (Plurinational State of)",
+   "Country": "Bolivia",
    "BeverageTypes": " Spirits",
    "Year1999": "1.40",
    "Year1998": "1.43",
@@ -2376,7 +2376,7 @@
    "Year1980": "2.93"
  },
  {
-   "Country": "Bolivia (Plurinational State of)",
+   "Country": "Bolivia",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "0.01",
    "Year1998": "0.00",
@@ -2760,7 +2760,7 @@
    "Year1980": "0.00"
  },
  {
-   "Country": "Brunei Darussalam",
+   "Country": "Brunei",
    "BeverageTypes": " All types",
    "Year1999": "0.51",
    "Year1998": "0.15",
@@ -2784,7 +2784,7 @@
    "Year1980": "2.43"
  },
  {
-   "Country": "Brunei Darussalam",
+   "Country": "Brunei",
    "BeverageTypes": " Beer",
    "Year1999": "0.18",
    "Year1998": "0.12",
@@ -2808,7 +2808,7 @@
    "Year1980": "1.70"
  },
  {
-   "Country": "Brunei Darussalam",
+   "Country": "Brunei",
    "BeverageTypes": " Wine",
    "Year1999": "0.04",
    "Year1998": "0.02",
@@ -2832,7 +2832,7 @@
    "Year1980": "0.13"
  },
  {
-   "Country": "Brunei Darussalam",
+   "Country": "Brunei",
    "BeverageTypes": " Spirits",
    "Year1999": "0.27",
    "Year1998": "0.01",
@@ -2856,7 +2856,7 @@
    "Year1980": "0.57"
  },
  {
-   "Country": "Brunei Darussalam",
+   "Country": "Brunei",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "0.01",
    "Year1998": "0.40",
@@ -3240,7 +3240,7 @@
    "Year1980": "5.16"
  },
  {
-   "Country": "Côte d'Ivoire",
+   "Country": "Ivory Coast",
    "BeverageTypes": " All types",
    "Year1999": "4.54",
    "Year1998": "4.42",
@@ -3264,7 +3264,7 @@
    "Year1980": "4.89"
  },
  {
-   "Country": "Côte d'Ivoire",
+   "Country": "Ivory Coast",
    "BeverageTypes": " Beer",
    "Year1999": "1.06",
    "Year1998": "1.11",
@@ -3288,7 +3288,7 @@
    "Year1980": "0.55"
  },
  {
-   "Country": "Côte d'Ivoire",
+   "Country": "Ivory Coast",
    "BeverageTypes": " Wine",
    "Year1999": "0.29",
    "Year1998": "0.32",
@@ -3312,7 +3312,7 @@
    "Year1980": "1.99"
  },
  {
-   "Country": "Côte d'Ivoire",
+   "Country": "Ivory Coast",
    "BeverageTypes": " Spirits",
    "Year1999": "0.05",
    "Year1998": "0.05",
@@ -3336,7 +3336,7 @@
    "Year1980": "0.81"
  },
  {
-   "Country": "Côte d'Ivoire",
+   "Country": "Ivory Coast",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "3.14",
    "Year1998": "2.94",
@@ -4560,7 +4560,7 @@
    "Year1980": "No data"
  },
  {
-   "Country": "Congo",
+   "Country": "Republic of the Congo",
    "BeverageTypes": " All types",
    "Year1999": "2.07",
    "Year1998": "1.88",
@@ -4584,7 +4584,7 @@
    "Year1980": "3.84"
  },
  {
-   "Country": "Congo",
+   "Country": "Republic of the Congo",
    "BeverageTypes": " Beer",
    "Year1999": "1.38",
    "Year1998": "1.42",
@@ -4608,7 +4608,7 @@
    "Year1980": "2.09"
  },
  {
-   "Country": "Congo",
+   "Country": "Republic of the Congo",
    "BeverageTypes": " Wine",
    "Year1999": "0.18",
    "Year1998": "0.28",
@@ -4632,7 +4632,7 @@
    "Year1980": "0.01"
  },
  {
-   "Country": "Congo",
+   "Country": "Republic of the Congo",
    "BeverageTypes": " Spirits",
    "Year1999": "0.52",
    "Year1998": "0.18",
@@ -4656,7 +4656,7 @@
    "Year1980": "0.20"
  },
  {
-   "Country": "Congo",
+   "Country": "Republic of the Congo",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "0.00",
    "Year1998": "0.00",
@@ -5280,7 +5280,7 @@
    "Year1980": "0.00"
  },
  {
-   "Country": "Czechia",
+   "Country": "Czech Republic",
    "BeverageTypes": " All types",
    "Year1999": "14.39",
    "Year1998": "14.26",
@@ -5304,7 +5304,7 @@
    "Year1980": "13.99"
  },
  {
-   "Country": "Czechia",
+   "Country": "Czech Republic",
    "BeverageTypes": " Beer",
    "Year1999": "7.78",
    "Year1998": "7.78",
@@ -5328,7 +5328,7 @@
    "Year1980": "7.16"
  },
  {
-   "Country": "Czechia",
+   "Country": "Czech Republic",
    "BeverageTypes": " Wine",
    "Year1999": "2.16",
    "Year1998": "2.13",
@@ -5352,7 +5352,7 @@
    "Year1980": "2.23"
  },
  {
-   "Country": "Czechia",
+   "Country": "Czech Republic",
    "BeverageTypes": " Spirits",
    "Year1999": "4.45",
    "Year1998": "4.35",
@@ -5376,7 +5376,7 @@
    "Year1980": "4.60"
  },
  {
-   "Country": "Czechia",
+   "Country": "Czech Republic",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "No data",
    "Year1998": "No data",
@@ -5400,7 +5400,7 @@
    "Year1980": "No data"
  },
  {
-   "Country": "Democratic People's Republic of Korea",
+   "Country": "South Korea",
    "BeverageTypes": " All types",
    "Year1999": "5.93",
    "Year1998": "5.99",
@@ -5424,7 +5424,7 @@
    "Year1980": "2.64"
  },
  {
-   "Country": "Democratic People's Republic of Korea",
+   "Country": "South Korea",
    "BeverageTypes": " Beer",
    "Year1999": "0.18",
    "Year1998": "0.26",
@@ -5448,7 +5448,7 @@
    "Year1980": "0.48"
  },
  {
-   "Country": "Democratic People's Republic of Korea",
+   "Country": "South Korea",
    "BeverageTypes": " Wine",
    "Year1999": "0.00",
    "Year1998": "0.00",
@@ -5472,7 +5472,7 @@
    "Year1980": "0.00"
  },
  {
-   "Country": "Democratic People's Republic of Korea",
+   "Country": "South Korea",
    "BeverageTypes": " Spirits",
    "Year1999": "5.75",
    "Year1998": "5.73",
@@ -5496,7 +5496,7 @@
    "Year1980": "2.15"
  },
  {
-   "Country": "Democratic People's Republic of Korea",
+   "Country": "South Korea",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "No data",
    "Year1998": "No data",
@@ -8280,7 +8280,7 @@
    "Year1980": "No data"
  },
  {
-   "Country": "Guinea-Bissau",
+   "Country": "Guinea Bissau",
    "BeverageTypes": " All types",
    "Year1999": "2.17",
    "Year1998": "2.05",
@@ -8304,7 +8304,7 @@
    "Year1980": "2.53"
  },
  {
-   "Country": "Guinea-Bissau",
+   "Country": "Guinea Bissau",
    "BeverageTypes": " Beer",
    "Year1999": "0.21",
    "Year1998": "0.29",
@@ -8328,7 +8328,7 @@
    "Year1980": "0.39"
  },
  {
-   "Country": "Guinea-Bissau",
+   "Country": "Guinea Bissau",
    "BeverageTypes": " Wine",
    "Year1999": "0.40",
    "Year1998": "0.20",
@@ -8352,7 +8352,7 @@
    "Year1980": "0.10"
  },
  {
-   "Country": "Guinea-Bissau",
+   "Country": "Guinea Bissau",
    "BeverageTypes": " Spirits",
    "Year1999": "0.60",
    "Year1998": "0.66",
@@ -8376,7 +8376,7 @@
    "Year1980": "0.87"
  },
  {
-   "Country": "Guinea-Bissau",
+   "Country": "Guinea Bissau",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "0.95",
    "Year1998": "0.91",
@@ -9240,7 +9240,7 @@
    "Year1980": "No data"
  },
  {
-   "Country": "Iran (Islamic Republic of)",
+   "Country": "Iran",
    "BeverageTypes": " All types",
    "Year1999": "0.00",
    "Year1998": "0.00",
@@ -9264,7 +9264,7 @@
    "Year1980": "0.00"
  },
  {
-   "Country": "Iran (Islamic Republic of)",
+   "Country": "Iran",
    "BeverageTypes": " Beer",
    "Year1999": "0.00",
    "Year1998": "0.00",
@@ -9288,7 +9288,7 @@
    "Year1980": "0.00"
  },
  {
-   "Country": "Iran (Islamic Republic of)",
+   "Country": "Iran",
    "BeverageTypes": " Wine",
    "Year1999": "0.00",
    "Year1998": "0.00",
@@ -9312,7 +9312,7 @@
    "Year1980": "0.00"
  },
  {
-   "Country": "Iran (Islamic Republic of)",
+   "Country": "Iran",
    "BeverageTypes": " Spirits",
    "Year1999": "0.00",
    "Year1998": "0.00",
@@ -9336,7 +9336,7 @@
    "Year1980": "0.00"
  },
  {
-   "Country": "Iran (Islamic Republic of)",
+   "Country": "Iran",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "0.00",
    "Year1998": "0.00",
@@ -16056,7 +16056,7 @@
    "Year1980": "0.00"
  },
  {
-   "Country": "Republic of Korea",
+   "Country": "North Korea",
    "BeverageTypes": " All types",
    "Year1999": "7.78",
    "Year1998": "7.36",
@@ -16080,7 +16080,7 @@
    "Year1980": "14.77"
  },
  {
-   "Country": "Republic of Korea",
+   "Country": "North Korea",
    "BeverageTypes": " Beer",
    "Year1999": "1.98",
    "Year1998": "1.89",
@@ -16104,7 +16104,7 @@
    "Year1980": "1.04"
  },
  {
-   "Country": "Republic of Korea",
+   "Country": "North Korea",
    "BeverageTypes": " Wine",
    "Year1999": "0.02",
    "Year1998": "0.01",
@@ -16128,7 +16128,7 @@
    "Year1980": "0.00"
  },
  {
-   "Country": "Republic of Korea",
+   "Country": "North Korea",
    "BeverageTypes": " Spirits",
    "Year1999": "2.73",
    "Year1998": "2.62",
@@ -16152,7 +16152,7 @@
    "Year1980": "1.67"
  },
  {
-   "Country": "Republic of Korea",
+   "Country": "North Korea",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "3.06",
    "Year1998": "2.84",
@@ -16176,127 +16176,7 @@
    "Year1980": "12.06"
  },
  {
-   "Country": "Republic of Moldova",
-   "BeverageTypes": " All types",
-   "Year1999": "",
-   "Year1998": "",
-   "Year1997": "",
-   "Year1996": "",
-   "Year1995": "",
-   "Year1994": "",
-   "Year1993": "",
-   "Year1992": "",
-   "Year1991": "No data",
-   "Year1990": "",
-   "Year1989": "",
-   "Year1988": "",
-   "Year1987": "",
-   "Year1986": "",
-   "Year1985": "",
-   "Year1984": "",
-   "Year1983": "",
-   "Year1982": "",
-   "Year1981": "",
-   "Year1980": ""
- },
- {
-   "Country": "Republic of Moldova",
-   "BeverageTypes": " Beer",
-   "Year1999": "",
-   "Year1998": "",
-   "Year1997": "",
-   "Year1996": "",
-   "Year1995": "",
-   "Year1994": "",
-   "Year1993": "",
-   "Year1992": "",
-   "Year1991": "No data",
-   "Year1990": "No data",
-   "Year1989": "",
-   "Year1988": "",
-   "Year1987": "",
-   "Year1986": "",
-   "Year1985": "",
-   "Year1984": "",
-   "Year1983": "",
-   "Year1982": "",
-   "Year1981": "",
-   "Year1980": ""
- },
- {
-   "Country": "Republic of Moldova",
-   "BeverageTypes": " Wine",
-   "Year1999": "",
-   "Year1998": "",
-   "Year1997": "",
-   "Year1996": "",
-   "Year1995": "",
-   "Year1994": "",
-   "Year1993": "",
-   "Year1992": "",
-   "Year1991": "No data",
-   "Year1990": "No data",
-   "Year1989": "",
-   "Year1988": "",
-   "Year1987": "",
-   "Year1986": "",
-   "Year1985": "",
-   "Year1984": "",
-   "Year1983": "",
-   "Year1982": "",
-   "Year1981": "",
-   "Year1980": ""
- },
- {
-   "Country": "Republic of Moldova",
-   "BeverageTypes": " Spirits",
-   "Year1999": "",
-   "Year1998": "",
-   "Year1997": "",
-   "Year1996": "",
-   "Year1995": "",
-   "Year1994": "",
-   "Year1993": "",
-   "Year1992": "",
-   "Year1991": "No data",
-   "Year1990": "No data",
-   "Year1989": "",
-   "Year1988": "",
-   "Year1987": "",
-   "Year1986": "",
-   "Year1985": "",
-   "Year1984": "",
-   "Year1983": "",
-   "Year1982": "",
-   "Year1981": "",
-   "Year1980": ""
- },
- {
-   "Country": "Republic of Moldova",
-   "BeverageTypes": " Other alcoholic beverages",
-   "Year1999": "",
-   "Year1998": "",
-   "Year1997": "",
-   "Year1996": "",
-   "Year1995": "",
-   "Year1994": "",
-   "Year1993": "",
-   "Year1992": "",
-   "Year1991": "No data",
-   "Year1990": "No data",
-   "Year1989": "",
-   "Year1988": "",
-   "Year1987": "",
-   "Year1986": "",
-   "Year1985": "",
-   "Year1984": "",
-   "Year1983": "",
-   "Year1982": "",
-   "Year1981": "",
-   "Year1980": ""
- },
- {
-   "Country": "Republic of Moldova",
+   "Country": "Moldova",
    "BeverageTypes": " All types",
    "Year1999": "14.37",
    "Year1998": "16.87",
@@ -16320,7 +16200,7 @@
    "Year1980": ""
  },
  {
-   "Country": "Republic of Moldova",
+   "Country": "Moldova",
    "BeverageTypes": " Beer",
    "Year1999": "0.31",
    "Year1998": "0.44",
@@ -16344,7 +16224,7 @@
    "Year1980": ""
  },
  {
-   "Country": "Republic of Moldova",
+   "Country": "Moldova",
    "BeverageTypes": " Wine",
    "Year1999": "2.41",
    "Year1998": "1.99",
@@ -16368,7 +16248,7 @@
    "Year1980": ""
  },
  {
-   "Country": "Republic of Moldova",
+   "Country": "Moldova",
    "BeverageTypes": " Spirits",
    "Year1999": "11.64",
    "Year1998": "14.44",
@@ -16392,7 +16272,7 @@
    "Year1980": ""
  },
  {
-   "Country": "Republic of Moldova",
+   "Country": "Moldova",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "0.01",
    "Year1998": "0.00",
@@ -16536,7 +16416,7 @@
    "Year1980": "No data"
  },
  {
-   "Country": "Russian Federation",
+   "Country": "Russia",
    "BeverageTypes": " All types",
    "Year1999": "10.70",
    "Year1998": "9.87",
@@ -16560,7 +16440,7 @@
    "Year1980": "7.91"
  },
  {
-   "Country": "Russian Federation",
+   "Country": "Russia",
    "BeverageTypes": " Beer",
    "Year1999": "1.74",
    "Year1998": "1.61",
@@ -16584,7 +16464,7 @@
    "Year1980": "1.47"
  },
  {
-   "Country": "Russian Federation",
+   "Country": "Russia",
    "BeverageTypes": " Wine",
    "Year1999": "0.97",
    "Year1998": "0.82",
@@ -16608,7 +16488,7 @@
    "Year1980": "2.02"
  },
  {
-   "Country": "Russian Federation",
+   "Country": "Russia",
    "BeverageTypes": " Spirits",
    "Year1999": "7.99",
    "Year1998": "7.44",
@@ -16632,7 +16512,7 @@
    "Year1980": "4.21"
  },
  {
-   "Country": "Russian Federation",
+   "Country": "Russia",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "0.00",
    "Year1998": "0.00",
@@ -19560,7 +19440,7 @@
    "Year1980": "0.31"
  },
  {
-   "Country": "Syrian Arab Republic",
+   "Country": "Syria",
    "BeverageTypes": " All types",
    "Year1999": "0.64",
    "Year1998": "0.84",
@@ -19584,7 +19464,7 @@
    "Year1980": "0.93"
  },
  {
-   "Country": "Syrian Arab Republic",
+   "Country": "Syria",
    "BeverageTypes": " Beer",
    "Year1999": "0.07",
    "Year1998": "0.05",
@@ -19608,7 +19488,7 @@
    "Year1980": "0.07"
  },
  {
-   "Country": "Syrian Arab Republic",
+   "Country": "Syria",
    "BeverageTypes": " Wine",
    "Year1999": "0.36",
    "Year1998": "0.79",
@@ -19632,7 +19512,7 @@
    "Year1980": "0.76"
  },
  {
-   "Country": "Syrian Arab Republic",
+   "Country": "Syria",
    "BeverageTypes": " Spirits",
    "Year1999": "0.09",
    "Year1998": "0.09",
@@ -19656,7 +19536,7 @@
    "Year1980": "0.09"
  },
  {
-   "Country": "Syrian Arab Republic",
+   "Country": "Syria",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "0.00",
    "Year1998": "0.00",
@@ -19920,7 +19800,7 @@
    "Year1980": "0.00"
  },
  {
-   "Country": "The former Yugoslav republic of Macedonia",
+   "Country": "Macedonia",
    "BeverageTypes": " All types",
    "Year1999": "5.03",
    "Year1998": "6.24",
@@ -19944,7 +19824,7 @@
    "Year1980": ""
  },
  {
-   "Country": "The former Yugoslav republic of Macedonia",
+   "Country": "Macedonia",
    "BeverageTypes": " Beer",
    "Year1999": "1.92",
    "Year1998": "2.01",
@@ -19968,7 +19848,7 @@
    "Year1980": ""
  },
  {
-   "Country": "The former Yugoslav republic of Macedonia",
+   "Country": "Macedonia",
    "BeverageTypes": " Wine",
    "Year1999": "0.96",
    "Year1998": "1.07",
@@ -19992,7 +19872,7 @@
    "Year1980": ""
  },
  {
-   "Country": "The former Yugoslav republic of Macedonia",
+   "Country": "Macedonia",
    "BeverageTypes": " Spirits",
    "Year1999": "2.15",
    "Year1998": "3.15",
@@ -20016,7 +19896,7 @@
    "Year1980": ""
  },
  {
-   "Country": "The former Yugoslav republic of Macedonia",
+   "Country": "Macedonia",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "0.00",
    "Year1998": "0.00",
@@ -20040,7 +19920,7 @@
    "Year1980": ""
  },
  {
-   "Country": "Timor-Leste",
+   "Country": "East Timor",
    "BeverageTypes": " All types",
    "Year1999": "0.50",
    "Year1998": "0.49",
@@ -20064,7 +19944,7 @@
    "Year1980": ""
  },
  {
-   "Country": "Timor-Leste",
+   "Country": "East Timor",
    "BeverageTypes": " Beer",
    "Year1999": "0.42",
    "Year1998": "0.40",
@@ -20088,7 +19968,7 @@
    "Year1980": ""
  },
  {
-   "Country": "Timor-Leste",
+   "Country": "East Timor",
    "BeverageTypes": " Wine",
    "Year1999": "0.03",
    "Year1998": "0.04",
@@ -20112,7 +19992,7 @@
    "Year1980": ""
  },
  {
-   "Country": "Timor-Leste",
+   "Country": "East Timor",
    "BeverageTypes": " Spirits",
    "Year1999": "0.05",
    "Year1998": "0.05",
@@ -20136,7 +20016,7 @@
    "Year1980": ""
  },
  {
-   "Country": "Timor-Leste",
+   "Country": "East Timor",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "0.00",
    "Year1998": "0.00",
@@ -21360,7 +21240,7 @@
    "Year1980": "0.00"
  },
  {
-   "Country": "United Kingdom of Great Britain and Northern Ireland",
+   "Country": "United Kingdom",
    "BeverageTypes": " All types",
    "Year1999": "10.16",
    "Year1998": "10.14",
@@ -21384,7 +21264,7 @@
    "Year1980": "10.71"
  },
  {
-   "Country": "United Kingdom of Great Britain and Northern Ireland",
+   "Country": "United Kingdom",
    "BeverageTypes": " Beer",
    "Year1999": "5.25",
    "Year1998": "5.37",
@@ -21408,7 +21288,7 @@
    "Year1980": "7.48"
  },
  {
-   "Country": "United Kingdom of Great Britain and Northern Ireland",
+   "Country": "United Kingdom",
    "BeverageTypes": " Wine",
    "Year1999": "2.48",
    "Year1998": "2.40",
@@ -21432,7 +21312,7 @@
    "Year1980": "0.99"
  },
  {
-   "Country": "United Kingdom of Great Britain and Northern Ireland",
+   "Country": "United Kingdom",
    "BeverageTypes": " Spirits",
    "Year1999": "1.81",
    "Year1998": "1.75",
@@ -21456,7 +21336,7 @@
    "Year1980": "2.24"
  },
  {
-   "Country": "United Kingdom of Great Britain and Northern Ireland",
+   "Country": "United Kingdom",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "0.62",
    "Year1998": "0.62",
@@ -22080,7 +21960,7 @@
    "Year1980": "No data"
  },
  {
-   "Country": "Venezuela (Bolivarian Republic of)",
+   "Country": "Venezuela",
    "BeverageTypes": " All types",
    "Year1999": "7.30",
    "Year1998": "7.77",
@@ -22104,7 +21984,7 @@
    "Year1980": "10.20"
  },
  {
-   "Country": "Venezuela (Bolivarian Republic of)",
+   "Country": "Venezuela",
    "BeverageTypes": " Beer",
    "Year1999": "5.63",
    "Year1998": "5.94",
@@ -22128,7 +22008,7 @@
    "Year1980": "5.57"
  },
  {
-   "Country": "Venezuela (Bolivarian Republic of)",
+   "Country": "Venezuela",
    "BeverageTypes": " Wine",
    "Year1999": "0.02",
    "Year1998": "0.02",
@@ -22152,7 +22032,7 @@
    "Year1980": "0.33"
  },
  {
-   "Country": "Venezuela (Bolivarian Republic of)",
+   "Country": "Venezuela",
    "BeverageTypes": " Spirits",
    "Year1999": "1.65",
    "Year1998": "1.81",
@@ -22176,7 +22056,7 @@
    "Year1980": "4.30"
  },
  {
-   "Country": "Venezuela (Bolivarian Republic of)",
+   "Country": "Venezuela",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "No data",
    "Year1998": "No data",
@@ -22200,7 +22080,7 @@
    "Year1980": "No data"
  },
  {
-   "Country": "Viet Nam",
+   "Country": "Vietnam",
    "BeverageTypes": " All types",
    "Year1999": "0.60",
    "Year1998": "0.61",
@@ -22224,7 +22104,7 @@
    "Year1980": "0.17"
  },
  {
-   "Country": "Viet Nam",
+   "Country": "Vietnam",
    "BeverageTypes": " Beer",
    "Year1999": "0.60",
    "Year1998": "0.64",
@@ -22248,7 +22128,7 @@
    "Year1980": "0.09"
  },
  {
-   "Country": "Viet Nam",
+   "Country": "Vietnam",
    "BeverageTypes": " Wine",
    "Year1999": "0.00",
    "Year1998": "0.00",
@@ -22272,7 +22152,7 @@
    "Year1980": "0.00"
  },
  {
-   "Country": "Viet Nam",
+   "Country": "Vietnam",
    "BeverageTypes": " Spirits",
    "Year1999": "0.01",
    "Year1998": "0.02",
@@ -22296,7 +22176,7 @@
    "Year1980": "0.08"
  },
  {
-   "Country": "Viet Nam",
+   "Country": "Vietnam",
    "BeverageTypes": " Other alcoholic beverages",
    "Year1999": "No data",
    "Year1998": "No data",
