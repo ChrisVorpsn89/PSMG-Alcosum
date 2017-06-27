@@ -18,17 +18,62 @@ for(var j = 0; j < reportOne.length; j++){
   console.log(reportOne[j][reportYear]);
   };
 }**/
-
 //Gibt alle Statistiken aus und nennt das Land dabei nur einmal
-for(var j = 0; j < jsonObject.features.length; j++){
-  console.log(jsonObject.features[j].properties.name);
+
+
+/*
+for(var i = 0; i < jsonObject.features.length; i++){
+  //console.log(jsonObject.features[i].geometry.coordinates[0][0]);
+    if(jsonObject.features[i].geometry.coordinates[0][0].length == 2){
+  var city = new ol.Feature({
+      geometry: new ol.geom.Point(ol.proj.fromLonLat(jsonObject.features[i].geometry.coordinates[0][0]))
+  });
+  city.setStyle(new ol.style.Style({
+      image: new ol.style.Icon(/** @type {olx.style.IconOptions}  ({
+          color: '#8959A8',
+          scale: 1.7,
+          crossOrigin: 'anonymous',
+          src: 'https://openlayers.org/en/v4.1.1/examples/data/dot.png'
+      }))
+  }));
+    cityArray.push(city);}
+}
+*/
+
+var countrySource = new ol.source.Vector({
+    projection : 'EPSG:3857',
+    url: 'data/countries.geo.json',
+    format: new ol.format.GeoJSON()
+
+});
+
+
+var defaultStyle = new ol.style.Style({
+  fill: new ol.style.Fill({
+    color: [250,0,250,1]
+  }),
+  stroke: new ol.style.Stroke({
+    color: [220,220,220,1],
+    width: 1
+  })
+});
+
+var styleCache =  {};
+
+function styleFunction(tempFeature, resolution) {
+    
   var timeLine = "2010"
   var reportYear = "Year" + timeLine;
   for(var k = 0; k < reportOne.length; k++){
-    if(reportOne[k].Country == jsonObject.features[j].properties.name){
+    if(reportOne[k].Country == tempFeature.O.name){
       if(reportOne[k].BeverageTypes == " Beer"){
         console.log(reportOne[k].BeverageTypes);
         console.log(reportOne[k][reportYear]);
+       
+        tempFeature.set("beer", reportOne[k][reportYear]);  
+
+       
+        console.log("HURE");
         };
 
       if(reportOne[k].BeverageTypes == " Wine"){
@@ -47,93 +92,43 @@ for(var j = 0; j < jsonObject.features.length; j++){
         };
     };
   };
-};
 
-var cityArray = [];
+      var a = parseFloat(tempFeature.O.beer); 
+      var color;     
+       if(a < 1){
+             color = '#00FF00';
+          }    
+        if(a > 2){
+             color = '#FF0000';
+          }    
+          if(a > 1 && a < 2){
+             color= '#FFFF00';  
+          }                                   
+            
+        console.log(tempFeature);
+        style = new ol.style.Style({
+          fill: new ol.style.Fill({
+          
+           
+            color: color
+            
+            
+         
+          }),
+          stroke: defaultStyle.stroke
+        });
+    return style;
+      }
+      
+    
 
-for(var i = 0; i < jsonObject.features.length; i++){
-  //console.log(jsonObject.features[i].geometry.coordinates[0][0]);
-    if(jsonObject.features[i].geometry.coordinates[0][0].length == 2){
-  var city = new ol.Feature({
-      geometry: new ol.geom.Point(ol.proj.fromLonLat(jsonObject.features[i].geometry.coordinates[0][0]))
-  });
-  city.setStyle(new ol.style.Style({
-      image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-          color: '#8959A8',
-          scale: 1.7,
-          crossOrigin: 'anonymous',
-          src: 'https://openlayers.org/en/v4.1.1/examples/data/dot.png'
-      }))
-  }));
-    cityArray.push(city);}
-}
 
-
-var countrySource = new ol.source.Vector({
-    projection : 'EPSG:3857',
-    url: 'data/countries.geo.json',
-    format: new ol.format.GeoJSON(),
-    features: cityArray
-
-});
-
-var rome = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.fromLonLat([15.520376,38.231155]))
-});
-
-var london = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.fromLonLat([-5.661949,54.554603]))
-});
-
-var madrid = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.fromLonLat([-3.683333, 40.4]))
-});
-
-rome.setStyle(new ol.style.Style({
-    image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-        color: '#8959A8',
-        crossOrigin: 'anonymous',
-        src: 'https://openlayers.org/en/v4.1.1/examples/data/dot.png'
-    }))
-}));
-
-london.setStyle(new ol.style.Style({
-    image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-        color: '#4271AE',
-        crossOrigin: 'anonymous',
-        src: 'https://openlayers.org/en/v4.1.1/examples/data/dot.png'
-    }))
-}));
-
-madrid.setStyle(new ol.style.Style({
-    image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-        color: [113, 140, 0],
-        crossOrigin: 'anonymous',
-        src: 'https://openlayers.org/en/v4.1.1/examples/data/dot.png'
-    }))
-}));
-
-var countryStyle = new ol.style.Style({
-  fill: new ol.style.Fill({
-    color: [203, 194, 185, 1]
-  }),
-  stroke: new ol.style.Stroke({
-    color: [177, 163, 148, 0.5],
-    width: 2.5
-  })
-});
 var countryLayer = new ol.layer.Vector({
   source: countrySource,
-    style: countryStyle
+    style: styleFunction
 });
 
 
-//Toner Layer for styling
-var tonerLayer = new ol.layer.Tile({
-    source: new ol.source.Stamen({
-        layer: 'toner'
-    })
-});
 
 //Layer for capital names, etc.
 var terrainLabelLayer = new ol.layer.Tile({
