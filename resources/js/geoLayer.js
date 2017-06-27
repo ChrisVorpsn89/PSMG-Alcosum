@@ -51,12 +51,16 @@ for(var j = 0; j < jsonObject.features.length; j++){
 
 var cityArray = [];
 
+
 for(var i = 0; i < jsonObject.features.length; i++){
   //console.log(jsonObject.features[i].geometry.coordinates[0][0]);
     if(jsonObject.features[i].geometry.coordinates[0][0].length == 2){
   var city = new ol.Feature({
-      geometry: new ol.geom.Point(ol.proj.fromLonLat(jsonObject.features[i].geometry.coordinates[0][0]))
+      //feature name added
+      name: jsonObject.features[i].properties.name
+      //geometry: new ol.geom.Point(ol.proj.fromLonLat(jsonObject.features[i].geometry.coordinates[0][0]))
   });
+
   city.setStyle(new ol.style.Style({
       image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
           color: '#8959A8',
@@ -77,41 +81,6 @@ var countrySource = new ol.source.Vector({
 
 });
 
-var rome = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.fromLonLat([15.520376,38.231155]))
-});
-
-var london = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.fromLonLat([-5.661949,54.554603]))
-});
-
-var madrid = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.fromLonLat([-3.683333, 40.4]))
-});
-
-rome.setStyle(new ol.style.Style({
-    image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-        color: '#8959A8',
-        crossOrigin: 'anonymous',
-        src: 'https://openlayers.org/en/v4.1.1/examples/data/dot.png'
-    }))
-}));
-
-london.setStyle(new ol.style.Style({
-    image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-        color: '#4271AE',
-        crossOrigin: 'anonymous',
-        src: 'https://openlayers.org/en/v4.1.1/examples/data/dot.png'
-    }))
-}));
-
-madrid.setStyle(new ol.style.Style({
-    image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-        color: [113, 140, 0],
-        crossOrigin: 'anonymous',
-        src: 'https://openlayers.org/en/v4.1.1/examples/data/dot.png'
-    }))
-}));
 
 var countryStyle = new ol.style.Style({
   fill: new ol.style.Fill({
@@ -156,3 +125,37 @@ var map = new ol.Map({
   layers: [countryLayer,terrainLabelLayer],
   view: view
 });
+
+
+
+var tooltip = document.getElementById('tooltip');
+
+var overlay = new ol.Overlay({
+    element: tooltip,
+    offset: [10, 0],
+    positioning: 'bottom-left'
+});
+
+//map.addOverlay(overlay);
+
+overlay.setMap(map);
+
+function displayTooltip(evt) {
+    var pixel = evt.pixel;
+    var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
+        //console.log("feature",feature.O.name);
+        return feature;
+
+    });
+    tooltip.style.display = feature ? '' : 'none';
+    if (feature) {
+        overlay.setPosition(evt.coordinate);
+        tooltip.innerHTML = "<h4>"+feature.O.name+"</h4><table>"+
+            "<tr><td>Beer</td><td>"+ 1+"</td></tr>"+
+            "<tr><td>Wine</td><td>"+2+"</td></tr>"+
+            "<tr><td>Spirits</td><td>"+3+"</td></tr>"+
+            "</table>";
+    }
+};
+
+map.on('pointermove', displayTooltip);
