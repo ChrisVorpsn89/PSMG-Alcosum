@@ -1,15 +1,20 @@
 h2{
+  width: 150px;
   background-color: #eee;
-  color:#ffa500;
-  font-weight: 400;
-  font-family: fantasy;
-  text-align: center;
   border-radius: .25em;
   border: 1px solid #ffa500;
 }
 
+#title{
+  color:#ffa500;
+  font-weight: 400;
+  font-family: fantasy;
+  text-align: left;
+  margin-left: 30px;
+}
+
 body{
-    background-color: #111;
+    background-color: #bbb;
 }
 
 #myContainer p {

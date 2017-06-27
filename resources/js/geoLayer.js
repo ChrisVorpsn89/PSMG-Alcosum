@@ -22,7 +22,7 @@ for(var j = 0; j < reportOne.length; j++){
 //Gibt alle Statistiken aus und nennt das Land dabei nur einmal
 for(var j = 0; j < jsonObject.features.length; j++){
   console.log(jsonObject.features[j].properties.name);
-  var timeLine = "2006"
+  var timeLine = "2010"
   var reportYear = "Year" + timeLine;
   for(var k = 0; k < reportOne.length; k++){
     if(reportOne[k].Country == jsonObject.features[j].properties.name){
