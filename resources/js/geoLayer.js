@@ -64,10 +64,12 @@ function styleFunction(tempFeature, resolution) {
         console.log(reportOne[k].BeverageTypes);
         console.log(reportOne[k][reportYear]);
 
+
         tempFeature.set("beer", reportOne[k][reportYear]);
 
 
         console.log("HURE");
+
         };
 
       if(reportOne[k].BeverageTypes == " Wine"){
