@@ -3,20 +3,48 @@
 <head>
     <link rel="stylesheet" href="https://openlayers.org/en/v4.1.1/css/ol.css" type="text/css">
     <link rel="stylesheet" href="resources/css/layout.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/css/bootstrap-slider.min.css" type="text/css">
     <script type="text/javascript" src="https://openlayers.org/en/v4.1.1/build/ol.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
     <script type="text/javascript" src="resources/lib/d3/d3.js"></script>
-    <title>OpenLayers example</title>
+    <title>Alcosum</title>
 </head>
 <body>
-<h2><span id="title">Alcosum</span></h2>
+
+<div class="head">
+<span id="title">Alcosum</span>
+
+<div class="slider">
+<span class="range"> 1966 </span>
+<input id="timeslider" type="text" data-slider-min="1966" data-slider-max="2016" data-slider-step="1" data-slider-value="2016"/>
+<span> 2016 </span>
+<span id="timeCurrentSliderValLabel">Current Year: <span id="timeSliderVal">2016</span></span>
+</div>
+
+<form action="#">
+  <p>
+    <input type="checkbox" id="beerBox" checked="checked"/>
+    <label for="beerBox">Beer</label>
+  </p>
+  <p>
+    <input type="checkbox" id="wineBox" checked="checked"/>
+    <label for="wineBox">Wine</label>
+  </p>
+  <p>
+    <input type="checkbox" id="spiritsBox" checked="checked"/>
+    <label for="spiritsBox">Spirits</label>
+  </p>
+</form>
+</div>
 <div id="map" class="map"></div>
 
-<div class="timeline">
-  <input type="range" max="2016" min="2000" change="1">
-</div>
+<div id="tooltip" class="tooltip"></div>
+
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="resources/lib/d3/d3.min.js"></script>
 <script type="text/javascript" src="resources/js/geoLayer.js"></script>
 <script type="text/javascript" src="resources/js/importData.js"></script>
 <script type="text/javascript" src="resources/js/timeSlider.js"></script>
