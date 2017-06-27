@@ -43,9 +43,6 @@ var countrySource = new ol.source.Vector({
 
 
 var defaultStyle = new ol.style.Style({
-
-
-var countryStyle = new ol.style.Style({
   fill: new ol.style.Fill({
     color: [250,0,250,1]
   }),
