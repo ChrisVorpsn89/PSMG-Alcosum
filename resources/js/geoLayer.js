@@ -55,7 +55,7 @@ var defaultStyle = new ol.style.Style({
 var styleCache =  {};
 
 function styleFunction(tempFeature, resolution) {
-    
+
   var timeLine = "2010"
   var reportYear = "Year" + timeLine;
   for(var k = 0; k < reportOne.length; k++){
@@ -63,10 +63,10 @@ function styleFunction(tempFeature, resolution) {
       if(reportOne[k].BeverageTypes == " Beer"){
         console.log(reportOne[k].BeverageTypes);
         console.log(reportOne[k][reportYear]);
-       
-        tempFeature.set("beer", reportOne[k][reportYear]);  
 
-       
+        tempFeature.set("beer", reportOne[k][reportYear]);
+
+
         console.log("HURE");
         };
 
@@ -87,34 +87,40 @@ function styleFunction(tempFeature, resolution) {
     };
   };
 
-      var a = parseFloat(tempFeature.O.beer); 
-      var color;     
-       if(a < 1){
-             color = '#00FF00';
-          }    
-        if(a > 2){
-             color = '#FF0000';
-          }    
-          if(a > 1 && a < 2){
-             color= '#FFFF00';  
-          }                                   
-            
+      var beer = parseFloat(tempFeature.O.beer);
+      var color;
+      if(!beer){
+            color = '#DCdCdC';
+         }
+      if(beer === 0.00){
+            color = '#FFF5EE ';
+          }
+      if(beer > 0 && beer < 1){
+           color = '#FFE4C4';
+          }
+      if(beer > 1 && beer < 2){
+          color= '#FFA07A';
+          }
+      if(beer > 2){
+          color = '#B22222';
+          }
+
         console.log(tempFeature);
         style = new ol.style.Style({
           fill: new ol.style.Fill({
-          
-           
+
+
             color: color
-            
-            
-         
+
+
+
           }),
           stroke: defaultStyle.stroke
         });
     return style;
       }
-      
-    
+
+
 
 
 var countryLayer = new ol.layer.Vector({
@@ -171,9 +177,9 @@ function displayTooltip(evt) {
     if (feature) {
         overlay.setPosition(evt.coordinate);
         tooltip.innerHTML = "<h4>"+feature.O.name+"</h4><table>"+
-            "<tr><td>Beer</td><td>"+ 1+"</td></tr>"+
-            "<tr><td>Wine</td><td>"+2+"</td></tr>"+
-            "<tr><td>Spirits</td><td>"+3+"</td></tr>"+
+            "<tr><td>Beer</td><td>"+ 1.11 +"</td></tr>"+
+            "<tr><td>Wine</td><td>"+ 2.22 +"</td></tr>"+
+            "<tr><td>Spirits</td><td>"+ 3.33 +"</td></tr>"+
             "</table>";
     }
 };
