@@ -4,16 +4,17 @@ body{
   background-color: #bbb;
 }
 
+.head{
+  background-color: #eee;
+  border-radius: .25em;
+  border: 2px solid #ffa500;
+}
+
 #title{
   height: 50px;
   width: 150px;
-  background-color: #eee;
-  border-radius: .15em;
-  border: 1px solid #ffa500;
   color:#ffa500;
   font-size: 300%;
-  font-family: fantasy;
-  text-align: left;
   margin-left: 5px;
 }
 
@@ -85,6 +86,14 @@ body{
   display: none;
 }
 
+.slider .slider-track-high{
+  background: #888;
+}
+
+.slider .slider-selection {
+   background: #555;
+}
+
 #timeslider{
   width:600px;
 }
@@ -111,14 +120,6 @@ form p{
   font-size: 140%;
   float:left;
   padding-right: 10px;
-}
-
-#beerBox{
-  float:left;
-}
-
-#wineBox{
-  float:left;
 }
 
 /* Base for label styling */
