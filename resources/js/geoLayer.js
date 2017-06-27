@@ -66,8 +66,6 @@ function styleFunction(tempFeature, resolution) {
        
         tempFeature.set("beer", reportOne[k][reportYear]);  
 
-       
-        console.log("HURE");
         };
 
       if(reportOne[k].BeverageTypes == " Wine"){
