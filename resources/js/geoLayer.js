@@ -107,10 +107,10 @@ function styleFunction(tempFeature, resolution) {
       if(beer === 0.00){
             color = '#FFF5EE ';
           }
-      if(beer > 0 && beer < 1){
+      if(beer > 0 && beer <= 1){
            color = '#FFE4C4';
           }
-      if(beer > 1 && beer < 2){
+      if(beer > 1 && beer <= 2){
           color= '#FFA07A';
           }
       if(beer > 2){
