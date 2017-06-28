@@ -78,28 +78,16 @@ function styleFunction(tempFeature, resolution) {
       if(reportOne[k].BeverageTypes == " Wine"){
         console.log(reportOne[k].BeverageTypes);
         console.log(reportOne[k][reportYear]);
-
-        //Wine added
-          tempFeature.set("wine", reportOne[k][reportYear]);
-          console.log("HUSO");
         };
 
         if(reportOne[k].BeverageTypes == " Spirits"){
           console.log(reportOne[k].BeverageTypes);
           console.log(reportOne[k][reportYear]);
-
-          //Sprit added
-            tempFeature.set("spirit", reportOne[k][reportYear]);
-
         };
 
         if(reportOne[k].BeverageTypes == " All types"){
           console.log(reportOne[k].BeverageTypes);
           console.log(reportOne[k][reportYear]);
-
-          //Total added
-            tempFeature.set("total", reportOne[k][reportYear]);
-
         };
     };
   };
@@ -177,7 +165,7 @@ overlay.setMap(map);
 function displayTooltip(evt) {
     var pixel = evt.pixel;
     var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
-        console.log("feature",feature);
+        //console.log("feature",feature.O.name);
         return feature;
 
     });
@@ -185,10 +173,9 @@ function displayTooltip(evt) {
     if (feature) {
         overlay.setPosition(evt.coordinate);
         tooltip.innerHTML = "<h4>"+feature.O.name+"</h4><table>"+
-            "<tr><td>Beer: </td><td>"+ feature.O.beer +"</td> Litres per Person</tr>"+
-            "<tr><td>Wine: </td><td>"+ feature.O.wine +"</td></tr>"+
-            "<tr><td>Spirits: </td><td>"+ feature.O.spirit +"</td></tr>"+
-            "<tr><td>Total: </td><td>"+ feature.O.total +"</td></tr>"+
+            "<tr><td>Beer</td><td>"+ 1.11 +"</td></tr>"+
+            "<tr><td>Wine</td><td>"+ 2.22 +"</td></tr>"+
+            "<tr><td>Spirits</td><td>"+ 3.33 +"</td></tr>"+
             "</table>";
     }
 };
