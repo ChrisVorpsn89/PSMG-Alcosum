@@ -57,7 +57,6 @@ var styleCache =  {};
 
 function getYear(sliderValue){
   timeLine = String(sliderValue);
-  console.log(timeLine);
   styleFunction(tempFeature, resolution);
   };
 
@@ -81,7 +80,6 @@ function styleFunction(tempFeature, resolution) {
 
         //Wine added
           tempFeature.set("wine", reportOne[k][reportYear]);
-          console.log("HUSO");
         };
 
         if(reportOne[k].BeverageTypes == " Spirits"){
@@ -185,7 +183,7 @@ function displayTooltip(evt) {
     if (feature) {
         overlay.setPosition(evt.coordinate);
         tooltip.innerHTML = "<h4>"+feature.O.name+"</h4><table>"+
-            "<tr><td>Beer: </td><td>"+ feature.O.beer +"</td> Litres per Person</tr>"+
+            "<tr><td>Beer: </td><td>"+ feature.O.beer +"</td>Litres per Person</tr>"+
             "<tr><td>Wine: </td><td>"+ feature.O.wine +"</td></tr>"+
             "<tr><td>Spirits: </td><td>"+ feature.O.spirit +"</td></tr>"+
             "<tr><td>Total: </td><td>"+ feature.O.total +"</td></tr>"+
