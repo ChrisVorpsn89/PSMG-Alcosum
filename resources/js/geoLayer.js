@@ -9,9 +9,6 @@ var reportOne = JSON.parse(xhReq.responseText);
 
 var timeLine = "";
 /*
-
-
-
 for(var i = 0; i < jsonObject.features.length; i++){
   //console.log(jsonObject.features[i].geometry.coordinates[0][0]);
     if(jsonObject.features[i].geometry.coordinates[0][0].length == 2){
@@ -57,42 +54,34 @@ var styleCache =  {};
 
 function getYear(sliderValue){
   timeLine = String(sliderValue);
-  styleFunction(tempFeature, resolution);
+  //styleFunction(tempFeature, resolution);
+  countrySource.refresh({force:true});
   };
 
 function styleFunction(tempFeature, resolution) {
   var reportYear = "Year" + timeLine;
-  console.log(timeLine);
-  console.log(reportYear);
+
   for(var k = 0; k < reportOne.length; k++){
     if(reportOne[k].Country == tempFeature.O.name){
       if(reportOne[k].BeverageTypes == " Beer"){
-        console.log(reportOne[k].BeverageTypes);
-        console.log(reportOne[k][reportYear]);
 
         tempFeature.set("beer", reportOne[k][reportYear]);
 
         };
 
       if(reportOne[k].BeverageTypes == " Wine"){
-        console.log(reportOne[k].BeverageTypes);
-        console.log(reportOne[k][reportYear]);
 
         //Wine added
           tempFeature.set("wine", reportOne[k][reportYear]);
         };
 
         if(reportOne[k].BeverageTypes == " Spirits"){
-          console.log(reportOne[k].BeverageTypes);
-          console.log(reportOne[k][reportYear]);
 
             tempFeature.set("spirit", reportOne[k][reportYear]);
 
         };
 
         if(reportOne[k].BeverageTypes == " All types"){
-          console.log(reportOne[k].BeverageTypes);
-          console.log(reportOne[k][reportYear]);
 
             tempFeature.set("total", reportOne[k][reportYear]);
         };
@@ -107,10 +96,10 @@ function styleFunction(tempFeature, resolution) {
       if(beer === 0.00){
             color = '#FFF5EE ';
           }
-      if(beer > 0 && beer < 1){
+      if(beer > 0 && beer <= 1){
            color = '#FFE4C4';
           }
-      if(beer > 1 && beer < 2){
+      if(beer >= 1 && beer <= 2){
           color= '#FFA07A';
           }
       if(beer > 2){
