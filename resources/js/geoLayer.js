@@ -85,19 +85,11 @@ function styleFunction(tempFeature, resolution) {
         if(reportOne[k].BeverageTypes == " Spirits"){
           console.log(reportOne[k].BeverageTypes);
           console.log(reportOne[k][reportYear]);
-
-          //Sprit added
-            tempFeature.set("spirit", reportOne[k][reportYear]);
-
         };
 
         if(reportOne[k].BeverageTypes == " All types"){
           console.log(reportOne[k].BeverageTypes);
           console.log(reportOne[k][reportYear]);
-
-          //Total added
-            tempFeature.set("total", reportOne[k][reportYear]);
-
         };
     };
   };
@@ -175,7 +167,7 @@ overlay.setMap(map);
 function displayTooltip(evt) {
     var pixel = evt.pixel;
     var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
-        console.log("feature",feature);
+        //console.log("feature",feature.O.name);
         return feature;
 
     });
