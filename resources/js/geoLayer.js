@@ -120,7 +120,7 @@ function styleFunction(tempFeature, resolution) {
           stroke: defaultStyle.stroke
         });
     return style;
-      }
+}
 
 
 
