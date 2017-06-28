@@ -7,7 +7,7 @@ xhReq.open("GET", "data/converted_2000_2016.json", false);
 xhReq.send(null);
 var reportOne = JSON.parse(xhReq.responseText);
 
-
+var timeLine = "";
 /*
 
 
@@ -54,21 +54,24 @@ var defaultStyle = new ol.style.Style({
 
 var styleCache =  {};
 
-function styleFunction(tempFeature, resolution) {
 
-  var timeLine = "2010"
+function getYear(sliderValue){
+  timeLine = String(sliderValue);
+  console.log(timeLine);
+  styleFunction(tempFeature, resolution);
+  };
+
+function styleFunction(tempFeature, resolution) {
   var reportYear = "Year" + timeLine;
+  console.log(timeLine);
+  console.log(reportYear);
   for(var k = 0; k < reportOne.length; k++){
     if(reportOne[k].Country == tempFeature.O.name){
       if(reportOne[k].BeverageTypes == " Beer"){
         console.log(reportOne[k].BeverageTypes);
         console.log(reportOne[k][reportYear]);
 
-
         tempFeature.set("beer", reportOne[k][reportYear]);
-
-
-        console.log("HURE");
 
         };
 
@@ -107,14 +110,10 @@ function styleFunction(tempFeature, resolution) {
           color = '#B22222';
           }
 
-        console.log(tempFeature);
         style = new ol.style.Style({
           fill: new ol.style.Fill({
 
-
             color: color
-
-
 
           }),
           stroke: defaultStyle.stroke
@@ -122,15 +121,10 @@ function styleFunction(tempFeature, resolution) {
     return style;
 }
 
-
-
-
 var countryLayer = new ol.layer.Vector({
   source: countrySource,
     style: styleFunction
 });
-
-
 
 //Layer for capital names, etc.
 var terrainLabelLayer = new ol.layer.Tile({
