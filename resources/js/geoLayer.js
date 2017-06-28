@@ -85,11 +85,16 @@ function styleFunction(tempFeature, resolution) {
         if(reportOne[k].BeverageTypes == " Spirits"){
           console.log(reportOne[k].BeverageTypes);
           console.log(reportOne[k][reportYear]);
+
+            tempFeature.set("spirit", reportOne[k][reportYear]);
+
         };
 
         if(reportOne[k].BeverageTypes == " All types"){
           console.log(reportOne[k].BeverageTypes);
           console.log(reportOne[k][reportYear]);
+
+            tempFeature.set("total", reportOne[k][reportYear]);
         };
     };
   };
