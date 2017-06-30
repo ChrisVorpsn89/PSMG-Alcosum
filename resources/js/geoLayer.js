@@ -2,12 +2,24 @@ var xhReq = new XMLHttpRequest();
 xhReq.open("GET", "data/countries.geo.json", false);
 xhReq.send(null);
 var jsonObject = JSON.parse(xhReq.responseText);
+var timeLine = "",
+url,
+reportOne;
 
-xhReq.open("GET", "data/converted_2000_2016.json", false);
-xhReq.send(null);
-var reportOne = JSON.parse(xhReq.responseText);
+function getJsonData(sliderValue){
+  if(sliderValue > 1999){
+    url = "data/converted_2000_2016.json";
+    } else if(sliderValue > 1979){
+    url ="data/converted_1999_1980.json";
+  } else if(sliderValue > 1965){
+    url ="data/converted_1979_1966.json";
+  };
 
-var timeLine = "";
+  xhReq.open("GET", url, false);
+  xhReq.send(null);
+  reportOne = JSON.parse(xhReq.responseText);
+};
+
 /*
 for(var i = 0; i < jsonObject.features.length; i++){
   //console.log(jsonObject.features[i].geometry.coordinates[0][0]);
@@ -34,8 +46,6 @@ var countrySource = new ol.source.Vector({
     projection : 'EPSG:3857',
     url: 'data/countries.geo.json',
     format: new ol.format.GeoJSON()
-
-
 });
 
 
@@ -53,10 +63,10 @@ var styleCache =  {};
 
 
 function getYear(sliderValue){
+  getJsonData(sliderValue);
   timeLine = String(sliderValue);
-  //styleFunction(tempFeature, resolution);
   countrySource.refresh({force:true});
-  };
+};
 
 function styleFunction(tempFeature, resolution) {
   var reportYear = "Year" + timeLine;
@@ -65,25 +75,24 @@ function styleFunction(tempFeature, resolution) {
     if(reportOne[k].Country == tempFeature.O.name){
       if(reportOne[k].BeverageTypes == " Beer"){
 
+        //Beer added
         tempFeature.set("beer", reportOne[k][reportYear]);
-
         };
 
       if(reportOne[k].BeverageTypes == " Wine"){
 
         //Wine added
-          tempFeature.set("wine", reportOne[k][reportYear]);
+        tempFeature.set("wine", reportOne[k][reportYear]);
         };
 
         if(reportOne[k].BeverageTypes == " Spirits"){
-
-            tempFeature.set("spirit", reportOne[k][reportYear]);
-
+        //Spirits added
+        tempFeature.set("spirit", reportOne[k][reportYear]);
         };
 
         if(reportOne[k].BeverageTypes == " All types"){
-
-            tempFeature.set("total", reportOne[k][reportYear]);
+        //Total added
+        tempFeature.set("total", reportOne[k][reportYear]);
         };
     };
   };
@@ -108,14 +117,12 @@ function styleFunction(tempFeature, resolution) {
 
         style = new ol.style.Style({
           fill: new ol.style.Fill({
-
             color: color
-
           }),
           stroke: defaultStyle.stroke
         });
     return style;
-}
+};
 
 var countryLayer = new ol.layer.Vector({
   source: countrySource,
