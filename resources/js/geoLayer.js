@@ -61,8 +61,11 @@ var defaultStyle = new ol.style.Style({
   })
 });
 
+//Select Beverage Type 
+var selctedBeverage = document.getElementById("selectedBeverage");
 var styleCache =  {};
-
+var selectedType = selectedBeverage.options[selectedBeverage.selectedIndex].value;
+console.log(selectedType);
 
 function getYear(sliderValue){
   getJsonData(sliderValue);
