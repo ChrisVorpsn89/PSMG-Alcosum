@@ -102,6 +102,7 @@ function findHighestBeer(){
     }
 }
 
+//sdasd
 function setUpValues(tempFeature, resolution){
 var reportYear = "Year" + timeLine;
   for(var k = 0; k < reportOne.length; k++){
