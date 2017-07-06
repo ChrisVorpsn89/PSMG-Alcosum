@@ -73,7 +73,6 @@ function getYear(sliderValue){
 var highestBeer = 0;
 
  
-var countryCount = 0;
 function findHighestBeer(){
     var reportYear = "Year" + timeLine;
     for( var j = 0; j < jsonObject.features.length;j++){
@@ -82,9 +81,7 @@ function findHighestBeer(){
           if(reportOne[k].BeverageTypes == " Beer"){
 
             //Beer added
-            countryCount++;  
             var beer = parseFloat(reportOne[k][reportYear]);
-               console.log(highestBeer);  
               if(beer > highestBeer){
                 highestBeer = beer;
                
@@ -116,12 +113,6 @@ var reportYear = "Year" + timeLine;
 
         //Beer added
         tempFeature.set("beer", reportOne[k][reportYear]);
-        countryCount++;  
-        var beer = parseFloat(tempFeature.O.beer);
-
-          if(beer > highestBeer){
-            highestBeer = beer;
-          }
         };
 
       if(reportOne[k].BeverageTypes == " Wine"){
@@ -146,11 +137,11 @@ var reportYear = "Year" + timeLine;
 function styleFunction(tempFeature, resolution) {
   
   setUpValues(tempFeature,resolution);
-
+   findHighestBeer();
 //Color Function
     var beer = parseFloat(tempFeature.O.beer);
-    console.log(highestBeer);
     var scalelevel = 8;
+    console.log(highestBeer);
     var summand = highestBeer/8;
     var color;
 // switch bedingung??
