@@ -3,6 +3,7 @@ xhReq.open("GET", "data/countries.geo.json", false);
 xhReq.send(null);
 var jsonObject = JSON.parse(xhReq.responseText);
 var timeLine = "",
+selectedType = " All types",
 url,
 reportOne;
 
@@ -61,11 +62,16 @@ var defaultStyle = new ol.style.Style({
   })
 });
 
-//Select Beverage Type 
-var selctedBeverage = document.getElementById("selectedBeverage");
+//Select Beverage Type
+var selectedBeverage = document.getElementById("selectedBeverage");
 var styleCache =  {};
-var selectedType = selectedBeverage.options[selectedBeverage.selectedIndex].value;
-console.log(selectedType);
+
+selectedBeverage.addEventListener("change", function(){
+  selectedType = selectedBeverage.options[selectedBeverage.selectedIndex].value;
+  console.log(selectedType);
+  countrySource.refresh({force:true});
+})
+
 
 function getYear(sliderValue){
   getJsonData(sliderValue);
@@ -75,36 +81,22 @@ function getYear(sliderValue){
 
 var highestBeer = 0;
 
- 
+
 var countryCount = 0;
 function findHighestBeer(){
     var reportYear = "Year" + timeLine;
     for( var j = 0; j < jsonObject.features.length;j++){
       for(var k = 0; k < reportOne.length; k++){
         if(reportOne[k].Country == jsonObject.features[j].properties.name){
-          if(reportOne[k].BeverageTypes == " Beer"){
+          if(reportOne[k].BeverageTypes == selectedType){
 
             //Beer added
-            countryCount++;  
+            countryCount++;
             var beer = parseFloat(reportOne[k][reportYear]);
-               console.log(highestBeer);  
               if(beer > highestBeer){
                 highestBeer = beer;
-               
+
               }
-            };
-
-          if(reportOne[k].BeverageTypes == " Wine"){
-
-            //Wine added
-            };
-
-            if(reportOne[k].BeverageTypes == " Spirits"){
-            //Spirits added
-            };
-
-            if(reportOne[k].BeverageTypes == " All types"){
-            //Total added
             };
         };
       };
@@ -115,11 +107,11 @@ function setUpValues(tempFeature, resolution){
 var reportYear = "Year" + timeLine;
   for(var k = 0; k < reportOne.length; k++){
     if(reportOne[k].Country == tempFeature.O.name){
-      if(reportOne[k].BeverageTypes == " Beer"){
+      if(reportOne[k].BeverageTypes == selectedType){
 
         //Beer added
         tempFeature.set("beer", reportOne[k][reportYear]);
-        countryCount++;  
+        countryCount++;
         var beer = parseFloat(tempFeature.O.beer);
 
           if(beer > highestBeer){
@@ -145,21 +137,20 @@ var reportYear = "Year" + timeLine;
     };
   };
 
-}      
+}
 function styleFunction(tempFeature, resolution) {
-  
+
   setUpValues(tempFeature,resolution);
 
 //Color Function
     var beer = parseFloat(tempFeature.O.beer);
-    console.log(highestBeer);
     var scalelevel = 8;
     var summand = highestBeer/8;
     var color;
 // switch bedingung??
-    
-    
-    
+
+
+
     if (beer < summand ){
         color = '#fff5f0';
     }
@@ -169,7 +160,7 @@ function styleFunction(tempFeature, resolution) {
     if (beer > summand &&  beer < 2*summand){
         color = '#fee0d2'
     }
-    
+
     if (beer > 2*summand && beer < 3*summand){
         color = '#fcbba1';
     }
@@ -188,10 +179,10 @@ function styleFunction(tempFeature, resolution) {
      if (beer > 7*summand && beer < 8*summand){
         color = '#99000d'
     }
-    
+
         style = new ol.style.Style({
           fill: new ol.style.Fill({
-            color: color  
+            color: color
           }),
           stroke: defaultStyle.stroke
         });
