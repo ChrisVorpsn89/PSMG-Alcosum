@@ -13,14 +13,14 @@
 <body>
 
 <div class="head">
-<span id="title">Alcosum</span>
-
-<div class="slider">
-<span class="range"> 1966 </span>
-<input id="timeslider" type="text" data-slider-min="1966" data-slider-max="2015" data-slider-step="1" data-slider-value="2000"/>
-<span> 2015 </span>
-<span id="timeCurrentSliderValLabel">Current Year: <span id="timeSliderVal">2000</span></span>
-</div>
+  <span id="title">Alcosum</span>
+  <span class="slider-start"> 1966 </span>
+  <div class="slider">
+    <input id="timeslider" type="text" data-slider-min="1966" data-slider-max="2015" data-slider-step="1" data-slider-value="2000"/>
+  </div>
+  <span class="slider-end"> 2015 </span>
+  <span id="timeCurrentSliderValLabel">Current Year: <span id="timeSliderVal">2000</span></span>
+  <span id="averageConsumeLabel">Average Consume: <span id="averageConsumeVal">0.00</span></span>
 
 <form action="#">
   <p>
@@ -37,6 +37,7 @@
   </p>
 </form>
 </div>
+
 <div id="map" class="map"></div>
 
 <div id="tooltip" class="tooltip"></div>

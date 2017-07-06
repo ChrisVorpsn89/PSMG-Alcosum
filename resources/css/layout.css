@@ -5,17 +5,16 @@ body{
 }
 
 .head{
+  height: 30px;
   background-color: #eee;
   border-radius: .25em;
   border: 2px solid #ffa500;
 }
 
 #title{
-  height: 50px;
-  width: 150px;
   color:#ffa500;
-  font-size: 300%;
-  margin-left: 5px;
+  font-size: 120%;
+  margin-left: 1%;
 }
 
 #myContainer p {
@@ -25,7 +24,7 @@ body{
 
 .map {
     margin-top: 10px;
-    height: 620px;
+    height: 670px;
     width: 100%;
     background-color: #444;
 }
@@ -69,16 +68,20 @@ body{
     text-align:center;
 }
 
-.range{
-  margin-left: 30px;
+.slider-start{
+  margin-left:2%;
+}
+
+.slider-end{
+  margin-right:2%;
 }
 
 .slider{
-  margin: 7px;
+  width: 30%;
 }
 
 .slider.slider-horizontal{
-  width: 550px !important;
+  width: 100% !important;
 }
 
 .slider .tooltip.top {
@@ -93,32 +96,33 @@ body{
    background: #555;
 }
 
-#timeslider{
-  width:600px;
+#averageConsumeLabel{
+  margin-left: 1%;
 }
 
-#timeCurrentSliderValLabel{
-  font-size: 200%;
-  margin-left:20px;
+#averageConsumeVal{
+  color: #09ad7e;
+  border: 2px solid #ccc;
+  background: #fff;
+  border-radius: 2px;
 }
 
 #timeSliderVal{
   color: #09ad7e;
   border: 2px solid #ccc;
   background: #fff;
-  border-radius: 4px;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+  border-radius: 2px;
 }
 
 form{
   float:right;
-  margin-right: 20px;
+  height: 100%;
+  margin-right: 3%;
 }
 
 form p{
-  font-size: 140%;
   float:left;
-  padding-right: 10px;
+  margin: 0;
 }
 
 /* Base for label styling */
@@ -130,7 +134,7 @@ form p{
 [type="checkbox"]:not(:checked) + label,
 [type="checkbox"]:checked + label {
   position: relative;
-  padding-left: 1.95em;
+  padding-left: 1.75em;
   cursor: pointer;
 }
 
@@ -140,7 +144,7 @@ form p{
   content: '';
   position: absolute;
   left: 0; top: 0;
-  width: 1.25em; height: 1.25em;
+  width: 1em; height: 1em;
   border: 2px solid #ccc;
   background: #fff;
   border-radius: 4px;
@@ -152,8 +156,8 @@ form p{
   content: '✔';
   position: absolute;
   top: .1em; left: .3em;
-  font-size: 1.3em;
-  line-height: 0.8;
+  font-size: 100%;
+  line-height: 1;
   color: #09ad7e;
   transition: all .2s;
 }
@@ -169,7 +173,7 @@ form p{
 /* accessibility */
 [type="checkbox"]:checked:focus + label:before,
 [type="checkbox"]:not(:checked):focus + label:before {
-  border: 2px dotted blue;
+  border: 1px dotted blue;
 }
 
 /* hover style just for information */
