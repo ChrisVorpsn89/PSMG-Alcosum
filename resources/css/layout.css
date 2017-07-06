@@ -186,3 +186,14 @@ form p{
 label:hover:before {
   border: 2px solid #4778d9!important;
 }
+
+#selectType{
+margin-left: 1%;
+}
+
+.selectBox {
+width: 10%;
+height: 80%;
+color: #000;
+border-radius: 2px;
+}
