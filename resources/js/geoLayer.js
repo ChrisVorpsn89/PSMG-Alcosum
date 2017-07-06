@@ -6,6 +6,8 @@ var timeLine = "",
 selectedType = " All types",
 url,
 selectedBeverage = document.getElementById("selectedBeverage"),
+averageConsumeVal = document.getElementById("averageConsumeVal"),
+countryNumber = document.getElementById("countryNumber"),
 styleCache =  {},
 reportOne;
 
@@ -74,18 +76,28 @@ function getYear(sliderValue){
   countrySource.refresh({force:true});
 };
 
-var countryCount = 0;
 var countryhighestvalue;
 var highestValue = 0;
+var averageConsume;
+var countCountry;
+var countConsume;
 
 function findHighestValue(){
+    countCountry = 0;
+    countConsume = 0;
     highestValue = 0;
+    count = 0;
     var reportYear = "Year" + timeLine;
     for( var j = 0; j < jsonObject.features.length;j++){
       for(var k = 0; k < reportOne.length; k++){
         if(reportOne[k].Country == jsonObject.features[j].properties.name){
           if(reportOne[k].BeverageTypes == selectedType){
             var value = parseFloat(reportOne[k][reportYear]);
+            if(value >= 0){
+            countConsume += value;
+            countCountry += 1;
+            };
+
               if(value > highestValue){
                 highestValue = value;
                 countryhighestvalue =  reportOne[k].Country;
@@ -94,14 +106,21 @@ function findHighestValue(){
         };
       };
     };
+
     console.log(selectedType);
     console.log(highestValue);
     console.log(countryhighestvalue);
+    console.log(count);
+    console.log(averageConsume)
+    //console.log(averageConsume.toString());
+    averageConsume = countConsume/countCountry;
+    countryNumber.innerHTML = countCountry.toString();
+    averageConsumeVal.innerHTML = averageConsume.toFixed(2);
 };
-
 
 function setUpValues(tempFeature, resolution){
 var reportYear = "Year" + timeLine;
+
   for(var k = 0; k < reportOne.length; k++){
     if(reportOne[k].Country == tempFeature.O.name){
       if(reportOne[k].BeverageTypes == selectedType){
