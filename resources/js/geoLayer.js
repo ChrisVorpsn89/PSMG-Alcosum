@@ -18,6 +18,8 @@ function getJsonData(sliderValue){
   xhReq.open("GET", url, false);
   xhReq.send(null);
   reportOne = JSON.parse(xhReq.responseText);
+  findHighestBeer();
+
 };
 
 /*
@@ -68,15 +70,58 @@ function getYear(sliderValue){
   countrySource.refresh({force:true});
 };
 
-function styleFunction(tempFeature, resolution) {
-  var reportYear = "Year" + timeLine;
+var highestBeer = 0;
 
+ 
+var countryCount = 0;
+function findHighestBeer(){
+    var reportYear = "Year" + timeLine;
+    for( var j = 0; j < jsonObject.features.length;j++){
+      for(var k = 0; k < reportOne.length; k++){
+        if(reportOne[k].Country == jsonObject.features[j].properties.name){
+          if(reportOne[k].BeverageTypes == " Beer"){
+
+            //Beer added
+            countryCount++;  
+            var beer = parseFloat(reportOne[k][reportYear]);
+               console.log(highestBeer);  
+              if(beer > highestBeer){
+                highestBeer = beer;
+               
+              }
+            };
+
+          if(reportOne[k].BeverageTypes == " Wine"){
+
+            //Wine added
+            };
+
+            if(reportOne[k].BeverageTypes == " Spirits"){
+            //Spirits added
+            };
+
+            if(reportOne[k].BeverageTypes == " All types"){
+            //Total added
+            };
+        };
+      };
+    }
+}
+
+function setUpValues(tempFeature, resolution){
+var reportYear = "Year" + timeLine;
   for(var k = 0; k < reportOne.length; k++){
     if(reportOne[k].Country == tempFeature.O.name){
       if(reportOne[k].BeverageTypes == " Beer"){
 
         //Beer added
         tempFeature.set("beer", reportOne[k][reportYear]);
+        countryCount++;  
+        var beer = parseFloat(tempFeature.O.beer);
+
+          if(beer > highestBeer){
+            highestBeer = beer;
+          }
         };
 
       if(reportOne[k].BeverageTypes == " Wine"){
@@ -97,27 +142,53 @@ function styleFunction(tempFeature, resolution) {
     };
   };
 
-      var beer = parseFloat(tempFeature.O.beer);
-      var color;
-      if(!beer){
-            color = '#DCdCdC';
-         }
-      if(beer === 0.00){
-            color = '#FFF5EE ';
-          }
-      if(beer > 0 && beer <= 1){
-           color = '#FFE4C4';
-          }
-      if(beer >= 1 && beer <= 2){
-          color= '#FFA07A';
-          }
-      if(beer > 2){
-          color = '#B22222';
-          }
+}      
+function styleFunction(tempFeature, resolution) {
+  
+  setUpValues(tempFeature,resolution);
 
+//Color Function
+    var beer = parseFloat(tempFeature.O.beer);
+    console.log(highestBeer);
+    var scalelevel = 8;
+    var summand = highestBeer/8;
+    var color;
+// switch bedingung??
+    
+    
+    
+    if (beer < summand ){
+        color = '#fff5f0';
+    }
+    if (beer == 0 ){
+        color = '#737373';
+    }
+    if (beer > summand &&  beer < 2*summand){
+        color = '#fee0d2'
+    }
+    
+    if (beer > 2*summand && beer < 3*summand){
+        color = '#fcbba1';
+    }
+    if (beer > 3*summand && beer < 4*summand){
+        color = '#fc9272'
+    }
+    if (beer > 4*summand && beer < 5*summand){
+        color = '#fb6a4a'
+    }
+     if (beer > 5*summand && beer < 6*summand){
+        color = '#ef3b2c'
+    }
+     if (beer > 6*summand && beer < 7*summand){
+        color = '#cb181d'
+    }
+     if (beer > 7*summand && beer < 8*summand){
+        color = '#99000d'
+    }
+    
         style = new ol.style.Style({
           fill: new ol.style.Fill({
-            color: color
+            color: color  
           }),
           stroke: defaultStyle.stroke
         });
