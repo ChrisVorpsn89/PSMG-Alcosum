@@ -3,6 +3,7 @@ xhReq.open("GET", "data/countries.geo.json", false);
 xhReq.send(null);
 var jsonObject = JSON.parse(xhReq.responseText);
 var timeLine = "",
+selectedType = " All types",
 url,
 reportOne;
 
@@ -61,7 +62,15 @@ var defaultStyle = new ol.style.Style({
   })
 });
 
+//Select Beverage Type
+var selectedBeverage = document.getElementById("selectedBeverage");
 var styleCache =  {};
+
+selectedBeverage.addEventListener("change", function(){
+  selectedType = selectedBeverage.options[selectedBeverage.selectedIndex].value;
+  console.log(selectedType);
+  countrySource.refresh({force:true});
+})
 
 
 function getYear(sliderValue){
@@ -70,35 +79,23 @@ function getYear(sliderValue){
   countrySource.refresh({force:true});
 };
 
-var highestBeer = 0;
+var highestValue = 0;
 
- 
+
+
+var countryCount = 0;
 function findHighestBeer(){
     var reportYear = "Year" + timeLine;
     for( var j = 0; j < jsonObject.features.length;j++){
       for(var k = 0; k < reportOne.length; k++){
         if(reportOne[k].Country == jsonObject.features[j].properties.name){
-          if(reportOne[k].BeverageTypes == " Beer"){
+          if(reportOne[k].BeverageTypes == selectedType){
+            countryCount++;
+            var value = parseFloat(reportOne[k][reportYear]);
+              if(value > highestValue){
+                highestValue = value;
 
-            //Beer added
-            var beer = parseFloat(reportOne[k][reportYear]);
-              if(beer > highestBeer){
-                highestBeer = beer;
-               
               }
-            };
-
-          if(reportOne[k].BeverageTypes == " Wine"){
-
-            //Wine added
-            };
-
-            if(reportOne[k].BeverageTypes == " Spirits"){
-            //Spirits added
-            };
-
-            if(reportOne[k].BeverageTypes == " All types"){
-            //Total added
             };
         };
       };
@@ -109,10 +106,12 @@ function setUpValues(tempFeature, resolution){
 var reportYear = "Year" + timeLine;
   for(var k = 0; k < reportOne.length; k++){
     if(reportOne[k].Country == tempFeature.O.name){
-      if(reportOne[k].BeverageTypes == " Beer"){
+      if(reportOne[k].BeverageTypes == selectedType){
 
         //Beer added
         tempFeature.set("beer", reportOne[k][reportYear]);
+
+
         };
 
       if(reportOne[k].BeverageTypes == " Wine"){
@@ -133,21 +132,21 @@ var reportYear = "Year" + timeLine;
     };
   };
 
-}      
+}
 function styleFunction(tempFeature, resolution) {
-  
+
   setUpValues(tempFeature,resolution);
    findHighestBeer();
 //Color Function
     var beer = parseFloat(tempFeature.O.beer);
     var scalelevel = 8;
-    console.log(highestBeer);
-    var summand = highestBeer/8;
+    console.log(highestValue);
+    var summand = highestValue/8;
     var color;
 // switch bedingung??
-    
-    
-    
+
+
+
     if (beer < summand ){
         color = '#fff5f0';
     }
@@ -157,7 +156,7 @@ function styleFunction(tempFeature, resolution) {
     if (beer > summand &&  beer < 2*summand){
         color = '#fee0d2'
     }
-    
+
     if (beer > 2*summand && beer < 3*summand){
         color = '#fcbba1';
     }
@@ -176,10 +175,10 @@ function styleFunction(tempFeature, resolution) {
      if (beer > 7*summand && beer < 8*summand){
         color = '#99000d'
     }
-    
+
         style = new ol.style.Style({
           fill: new ol.style.Fill({
-            color: color  
+            color: color
           }),
           stroke: defaultStyle.stroke
         });
@@ -238,7 +237,7 @@ function displayTooltip(evt) {
     if (feature) {
         overlay.setPosition(evt.coordinate);
         tooltip.innerHTML = "<h4>"+feature.O.name+"</h4><table>"+
-            "<tr><td>Beer: </td><td>"+ featur
+            "<tr><td>Beer: </td><td>"+ feature
         
         e.O.beer +"</td>Litres per Person</tr>"+
             "<tr><td>Wine: </td><td>"+ feature.O.wine +"</td></tr>"+
