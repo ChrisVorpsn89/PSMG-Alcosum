@@ -107,12 +107,6 @@ function findHighestValue(){
       };
     };
 
-    console.log(selectedType);
-    console.log(highestValue);
-    console.log(countryhighestvalue);
-    console.log(count);
-    console.log(averageConsume)
-    //console.log(averageConsume.toString());
     averageConsume = countConsume/countCountry;
     countryNumber.innerHTML = countCountry.toString();
     averageConsumeVal.innerHTML = averageConsume.toFixed(2);
