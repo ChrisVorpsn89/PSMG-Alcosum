@@ -113,6 +113,18 @@ body{
   border-radius: 2px;
 }
 
+#countryLabel{
+  margin-left: 1%;
+}
+
+#countryNumber{
+  width: 5%;
+  color: #09ad7e;
+  border: 2px solid #ccc;
+  background: #fff;
+  border-radius: 2px;
+}
+
 #timeSliderVal{
   color: #09ad7e;
   border: 2px solid #ccc;
