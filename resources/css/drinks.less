@@ -1,0 +1,198 @@
+@wine-main: #751D19;
+@wine-second: #874640;
+@wine-third: #AA6F65;
+
+@whisky-main: #BF7335;
+@whisky-second: #DB9E36;
+@whisky-third: #FFD24E;
+
+@beer-main: #BF7335;
+@beer-second: #DB9E36;
+@beer-third: #FFD24E;
+
+@alcopop-main: #34839E;
+@alcopop-second: #4095B0;
+@alcopop-third: #77BEC9;
+
+body {
+  background: #333;
+}
+.drinks-container {
+  margin: 50px auto;
+  height: 1000px;
+  width: 220px;
+}
+
+.drink {
+  height:260px;
+  width: 250px;
+  background: transparent;
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+}
+
+.name {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+}
+.name p {
+  display: inline;
+  padding: 3px 8px;
+  margin: 20px 1px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-family: 'gill sans';
+  background: #fff;
+  cursor: pointer;
+}
+
+.name p.current {
+  background: #004687;
+  color: #eee;
+}
+
+svg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 60px;
+}
+
+.wine {
+  order:2;
+}
+
+.wine svg {
+  height: 150px;
+}
+
+.beer {
+  order: 1;
+}
+
+.beer svg {
+  height: 150px;
+}
+
+.whisky {
+  order: 3;
+}
+
+.whisky svg {
+  height: 80px;
+}
+
+.alcopop {
+  order: 4;
+}
+
+.alcopop svg {
+  height: 180px;
+}
+
+.wine .glass-fill {
+  //clip-path: url(#wine-clippath)
+}
+
+.wine svg rect:nth-of-type(1) {
+  fill: @wine-second;
+}
+.wine svg rect:nth-of-type(2) {
+  fill: @wine-third;
+}
+.wine svg rect:nth-of-type(3) {
+  fill: @wine-second;
+}
+.wine svg rect:nth-of-type(4) {
+  fill: @wine-main;
+}
+
+.beer g {
+  //clip-path: url('#beer-clippath')
+}
+
+.beer svg rect:nth-of-type(1) {
+  fill: @beer-second;
+}
+.beer svg rect:nth-of-type(2) {
+  fill: @beer-third;
+}
+.beer svg rect:nth-of-type(3) {
+  fill: @beer-second;
+}
+.beer svg rect:nth-of-type(4) {
+  fill: @beer-main;
+}
+
+.beer svg rect:nth-of-type(5) {
+  fill: #fff;
+  opacity: 0.6;
+}
+
+.whisky .glass-fill {
+  //clip-path: url('#whisky-clippath')
+}
+
+.whisky svg rect:nth-of-type(1) {
+  fill: @whisky-second;
+}
+.whisky svg rect:nth-of-type(2) {
+  fill: @whisky-third;
+}
+.whisky svg rect:nth-of-type(3) {
+  fill: @whisky-second;
+}
+.whisky svg rect:nth-of-type(4) {
+  fill: @whisky-main;
+}
+
+.alcopop .glass-fill {
+  //clip-path: url('#alcopop-clippath')
+}
+
+.alcopop svg rect:nth-of-type(1) {
+  fill: @alcopop-second;
+}
+.alcopop svg rect:nth-of-type(2) {
+  fill: @alcopop-third;
+}
+.alcopop svg rect:nth-of-type(3) {
+  fill: @alcopop-second;
+}
+.alcopop svg rect:nth-of-type(4) {
+  fill: @alcopop-main;
+}
+
+@media screen and (max-width: 1100px) {
+  .drinks-container {
+    width: 500px;
+  }
+  .drink:nth-of-type(3) {
+    clear: both;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .drinks-container {
+    width: 80%;
+    margin-bottom: 50px;
+  }
+  .drink {
+    clear: both;
+    width: 100%;
+    position: static;
+    height: auto;
+  }
+
+  svg {
+    height: auto;
+    width: 100%;
+    position: static;
+    margin-top: 50px;
+  }
+}
