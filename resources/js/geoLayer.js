@@ -280,7 +280,7 @@ map.on('pointermove', function(evt) {
     });
     var rect = $('.name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
 //var size = $(this).data('size');
-    var size = feature.O.beer/6;
+    var size = (feature.O[" Beer"])/6;
     $(this).addClass('current');
     $(this).siblings().removeClass('current');
     changeSize(size, rect);
