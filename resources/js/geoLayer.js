@@ -155,10 +155,11 @@ setUpValues(tempFeature,resolution);
     var scalelevel = 8;
     var summand = highestValue/8;
     var color;
+    var stroke = defaultStyle.stroke;
 
     // switch bedingung??
     if(!value){
-        color = '#bbb'
+        color = '#bbb';
     }
     if (value < summand ){
         color = '#FFFFF0';
@@ -167,34 +168,35 @@ setUpValues(tempFeature,resolution);
         color = '#90EE90';
     }
     if (value > summand &&  value < 2*summand){
-        color = '#fee0d2'
+        color = '#fee0d2';
     }
     if (value > 2*summand && value < 3*summand){
         color = '#fcbba1';
     }
     if (value > 3*summand && value < 4*summand){
-        color = '#fc9272'
+        color = '#fc9272';
     }
     if (value > 4*summand && value < 5*summand){
-        color = '#fb6a4a'
+        color = '#fb6a4a';
     }
      if (value > 5*summand && value < 6*summand){
-        color = '#ef3b2c'
+        color = '#ef3b2c';
     }
      if (value > 6*summand && value < 7*summand){
-        color = '#cb181d'
+        color = '#cb181d';
     }
-     if (value > 7*summand && value < 8*summand){
+     if (value > 7*summand){
         color = '#99000d'
     }
     if(value == highestValue){
-        color = '#ffa500'
+        //color = '#ffa500';
+        stroke =1000;
     }
         style = new ol.style.Style({
           fill: new ol.style.Fill({
             color: color
           }),
-          stroke: defaultStyle.stroke
+          stroke: stroke
         });
     return style;
 };
