@@ -224,7 +224,7 @@ var view = new ol.View ({
 var map = new ol.Map({
  target: 'map',
     //Layers added to Array
-  layers: [countryLayer],
+  layers: [countryLayer,terrainLabelLayer],
   view: view
 });
 
