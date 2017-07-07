@@ -259,3 +259,29 @@ function displayTooltip(evt) {
 };
 
 map.on('pointermove', displayTooltip);
+
+map.on('click', function(evt) {
+    if(map.getView().getZoom()<=3){
+        map.getView().setCenter(evt.coordinate);
+        map.getView().setZoom(map.getView().getZoom()+2);}
+    else{
+        map.getView().setCenter(evt.coordinate);
+    }
+});
+
+map.on('pointermove', function(evt) {
+    var pixel = evt.pixel;
+    var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
+        //console.log("feature",feature.O.name);
+        return feature;
+
+    });
+    var rect = $('.name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
+//var size = $(this).data('size');
+    var size = feature.O.beer/6;
+    $(this).addClass('current');
+    $(this).siblings().removeClass('current');
+    changeSize(size, rect);
+    console.log(size,rect);
+
+});
