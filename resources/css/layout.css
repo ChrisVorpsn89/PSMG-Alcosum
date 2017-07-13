@@ -239,12 +239,10 @@ border-radius: 2px;
 .flag {
     height: 90%;
     width: 90%;
-    background-size: contain;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center
+    align-items: flex-start;
+    justify-content: center;
     overflow: hidden;
-    word-wrap: break-word;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
