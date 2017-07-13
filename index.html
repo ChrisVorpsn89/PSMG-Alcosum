@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <script type="text/javascript" src="https://openlayers.org/en/v4.1.1/build/ol.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
-    <script type="text/javascript" src="resources/lib/d3/d3.js"></script>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
     <title>Alcosum</title>
 </head>
 <body>
@@ -32,7 +34,7 @@
         <option value=" Spirits">Spirits</option>
       </select>
 </div>
-
+    
 <section class="container">
 
     <div class="drinks-container">
@@ -110,6 +112,8 @@
     </div>
 
     <div id="map" class="map"></div>
+    <div id="graph" class="aGraph" style="position:absolute;top:0px;left:0; float:left;"></div>
+
 
 </section>
 

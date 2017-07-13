@@ -212,3 +212,18 @@ height: 80%;
 color: #000;
 border-radius: 2px;
 }
+
+body {
+  font: 10px verdana;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #333;
+}
+
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+}

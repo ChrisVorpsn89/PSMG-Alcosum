@@ -280,10 +280,82 @@ map.on('pointermove', function(evt) {
     });
     var rect = $('.name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
 //var size = $(this).data('size');
-    var size = feature.O.beer/6;
+    var size = (feature.O[" Beer"])/6;
     $(this).addClass('current');
     $(this).siblings().removeClass('current');
     changeSize(size, rect);
-    console.log(size,rect);
+
 
 });
+
+//graphline 
+d3.csv("data/average.csv",function(error,data){
+    data.forEach(function(d){
+        console.log(d);
+                 
+                 });
+var h = 300;
+var margin_x = 32;
+var margin_y = 20;
+    var svg = d3.select("body")
+    .append("svg:svg")
+    .attr("width", w)
+    .attr("height", h);
+    var labels = svg.append("g")
+       .attr("class","labels")
+ 
+    labels.append("text")
+       .attr("transform", "translate(0," + h + ")")
+       .attr("x", (w-margin_x))
+       .attr("dx", "-1.0em")
+       .attr("dy", "2.0em")
+       .text("[Months]");
+    labels.append("text")
+       .attr("transform", "rotate(-90)")
+       .attr("y", -40)
+       .attr("dy", ".71em")
+       .style("text-anchor", "end")
+       .text("Attendees");
+    
+    var title = svg.append("g")
+       .attr("class","title");
+ 
+    title.append("text")
+       .attr("x", (w / 2))
+       .attr("y", -30 )
+       .attr("text-anchor", "middle")
+       .style("font-size", "22px")
+       .text("A D3 line chart from CSV file");
+     svg.append("path")
+       .datum(data)
+       .attr("class", "line")
+       .attr("d", line);
+    var w = 400;
+
+  
+var g = svg.append("svg:g")
+    .attr("transform", "translate(0," + h + ")");
+ 
+var line = d3.svg.line()
+    .x(function(d,i) { console.log(i); })
+    .y(function(d) { return console.log(d); });
+ 
+// draw the y axis
+g.append("svg:line")
+    .attr("x1", 0)
+    .attr("y1", 0)
+    .attr("x2", w)
+    .attr("y2", 0);
+  
+// draw the x axis
+g.append("svg:line")
+    .attr("x1", 0)
+    .attr("y1", 0)
+    .attr("x2", 0)
+    .attr("y2", -d3.max(data)-10);
+ 
+
+ 
+
+});
+
