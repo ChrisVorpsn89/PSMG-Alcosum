@@ -228,3 +228,10 @@ body {
     stroke: steelblue;
     stroke-width: 1.5px;
 }
+.grid .tick {
+    stroke: lightgrey;
+    opacity: 0.7;
+}
+.grid path {
+    stroke-width: 0;
+}

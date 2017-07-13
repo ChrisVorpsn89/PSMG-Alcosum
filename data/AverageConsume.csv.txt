@@ -1,4 +1,4 @@
-year,consume
+﻿Year,ConsumeAllTypes
 1966,4.41
 1967,4.43
 1968,4.50

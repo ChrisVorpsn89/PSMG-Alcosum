@@ -289,73 +289,72 @@ map.on('pointermove', function(evt) {
 });
 
 //graphline 
-d3.csv("data/average.csv",function(error,data){
-    data.forEach(function(d){
-        console.log(d);
-                 
-                 });
-var h = 300;
-var margin_x = 32;
-var margin_y = 20;
-    var svg = d3.select("body")
-    .append("svg:svg")
-    .attr("width", w)
-    .attr("height", h);
-    var labels = svg.append("g")
-       .attr("class","labels")
- 
-    labels.append("text")
-       .attr("transform", "translate(0," + h + ")")
-       .attr("x", (w-margin_x))
-       .attr("dx", "-1.0em")
-       .attr("dy", "2.0em")
-       .text("[Months]");
-    labels.append("text")
-       .attr("transform", "rotate(-90)")
-       .attr("y", -40)
-       .attr("dy", ".71em")
-       .style("text-anchor", "end")
-       .text("Attendees");
-    
-    var title = svg.append("g")
-       .attr("class","title");
- 
-    title.append("text")
-       .attr("x", (w / 2))
-       .attr("y", -30 )
-       .attr("text-anchor", "middle")
-       .style("font-size", "22px")
-       .text("A D3 line chart from CSV file");
-     svg.append("path")
-       .datum(data)
-       .attr("class", "line")
-       .attr("d", line);
-    var w = 400;
 
-  
-var g = svg.append("svg:g")
-    .attr("transform", "translate(0," + h + ")");
- 
-var line = d3.svg.line()
-    .x(function(d,i) { console.log(i); })
-    .y(function(d) { return console.log(d); });
- 
-// draw the y axis
-g.append("svg:line")
-    .attr("x1", 0)
-    .attr("y1", 0)
-    .attr("x2", w)
-    .attr("y2", 0);
-  
-// draw the x axis
-g.append("svg:line")
-    .attr("x1", 0)
-    .attr("y1", 0)
-    .attr("x2", 0)
-    .attr("y2", -d3.max(data)-10);
- 
+var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom,
+    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
- 
+var parseTime = d3.timeParse("%d-%b-%y");
 
+var x = d3.scaleTime()
+    .range([0, width]);
+
+var y = d3.scaleLinear()
+    .range([height, 0]);
+
+var line = d3.line()
+    .x(function(d) { console.log(d.year); return x(d.year); })
+    .y(function(d) { console.log(d.consume); return y(d.consume); });
+
+d3.csv("data/average.csv", function(d) {
+  d.year = +d.year;
+  d.consume = +d.consume;
+  return d;
+}, function(error, data) {
+  if (error) throw error;
+
+  x.domain(d3.extent(data, function(d) { console.log(d.year); return d.year; }));
+  y.domain(d3.extent(data, function(d) { return d.consume; }));
+
+  g.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x))
+      .select(".domain")
+        .tickFormat(d3.formatDefaultLocale(locale))
+
+  g.append("g")
+      .call(d3.axisLeft(y))
+    .append("text")
+      .attr("fill", "#0000")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("Consum in l ");
+
+  g.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-linejoin", "round")
+      .attr("stroke-linecap", "round")
+      .attr("stroke-width", 1.5)
+      .attr("d", line);
 });
 
+   
+    
+ 
+
+ 
+
+
+
+                 
+         
+
+  
+    
+    
