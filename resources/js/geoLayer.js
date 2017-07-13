@@ -251,12 +251,13 @@ function displayTooltip(evt) {
     tooltip.style.display = feature ? '' : 'none';
     if (feature) {
         overlay.setPosition(evt.coordinate);
-        tooltip.innerHTML = "<h4>"+feature.O.name+"</h4><table>"+
+        tooltip.innerHTML = "<h4>"+feature.O.name+"</h4>"
+            /*+ "<table>"+
             "<tr><td>Beer: </td><td>"+ feature.O[" Beer"] +"</td>Litres per Person</tr>"+
             "<tr><td>Wine: </td><td>"+ feature.O[" Wine"] +"</td></tr>"+
             "<tr><td>Spirits: </td><td>"+ feature.O[" Spirits"] +"</td></tr>"+
             "<tr><td>Total: </td><td>"+ feature.O[" All types"] +"</td></tr>"+
-            "</table>";
+            "</table>";*/
     };
 };
 
@@ -274,16 +275,77 @@ map.on('click', function(evt) {
 map.on('pointermove', function(evt) {
     var pixel = evt.pixel;
     var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
-        //console.log("feature",feature.O.name);
+        console.log("feature",feature);
+        if(feature.O[" Beer"] === undefined) {
+            feature.set(" Beer", "N.A.");
+            feature.set(" Wine", "N.A.");
+            feature.set(" Spirits", "N.A.");
+            feature.set(" All types", "N.A.");
+
+        }
         return feature;
 
     });
-    var rect = $('.name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
+
+
+    var rect = $('.beer .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
 //var size = $(this).data('size');
     var size = (feature.O[" Beer"])/6;
+    if (feature.O[" Beer"] == "N.A."){
+        size = 0;
+    }
     $(this).addClass('current');
     $(this).siblings().removeClass('current');
     changeSize(size, rect);
+
+    $('.beer .name .consume').text(feature.O[" Beer"] + " L");
+
+
+    var rect = $('.wine .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
+    var size = (feature.O[" Wine"])/6;
+    if (feature.O[" Wine"] == "N.A."){
+        size = 0;
+    }
+    $(this).addClass('current');
+    $(this).siblings().removeClass('current');
+    changeSize(size, rect);
+
+
+    console.log("geiz",$('.drink wine, #consume wine').text);
+    $('.wine .name .consume').text(feature.O[" Wine"] + " L");
+
+
+
+    var rect = $('.whisky .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
+    var size = (feature.O[" Spirits"])/6;
+    if (feature.O[" Spirits"] == "N.A."){
+        size = 0;
+    }
+    $(this).addClass('current');
+    $(this).siblings().removeClass('current');
+    changeSize(size, rect);
+
+    $('.whisky .name .consume').text(feature.O[" Spirits"] + " L");
+
+
+    var rect = $('.alcopop .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
+    var size = (feature.O[" All types"])/20;
+    if (feature.O[" All types"] == "N.A."){
+        size = 0;
+    }
+    $(this).addClass('current');
+    $(this).siblings().removeClass('current');
+    changeSize(size, rect);
+
+    $('.alcopop .name .consume').text(feature.O[" All types"] + " L");
+
+
+
+    $('.country p').text(feature.O.name);
+
+    //$(".flag").attr("src","https://lipis.github.io/flag-icon-css/flags/4x3/"+ feature.a.substring(0, 2).toLowerCase()  +".svg");
+    $(".flag").attr("src","https://lipis.github.io/flag-icon-css/flags/4x3/"+ inverseCountryCodes[feature.O.name.toString()].toLowerCase() +".svg");
+
 
 
 });
