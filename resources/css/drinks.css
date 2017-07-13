@@ -24,12 +24,9 @@ body {
   overflow: hidden;
   white-space: nowrap;
 }
-<<<<<<< HEAD
-.name p{
-=======
+
 .name p {
   margin-bottom: 30%;
->>>>>>> 193731d13dcc42198f40ca69c0a21d5380e2820d
   display: inline;
   padding: 3px 8px;
   text-align: center;
