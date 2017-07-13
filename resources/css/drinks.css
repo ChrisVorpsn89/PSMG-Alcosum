@@ -10,7 +10,7 @@ body {
 }
 .drink {
   height: 150px;
-  width: 110px;
+  width: 100%;
   background: transparent;
   box-sizing: border-box;
   position: relative;
@@ -24,10 +24,14 @@ body {
   overflow: hidden;
   white-space: nowrap;
 }
+<<<<<<< HEAD
 .name p{
+=======
+.name p {
+  margin-bottom: 30%;
+>>>>>>> 193731d13dcc42198f40ca69c0a21d5380e2820d
   display: inline;
   padding: 3px 8px;
-  margin: 5px 1px;
   text-align: center;
   text-transform: uppercase;
   font-size: 12px;
@@ -44,31 +48,30 @@ svg {
   left: 0;
   right: 0;
   margin: auto;
-  bottom: 60px;
 }
 .wine {
   order: 2;
 }
 .wine svg {
-  height: 70px;
+  height: 50%;
 }
 .beer {
   order: 1;
 }
 .beer svg {
-  height: 70px;
+  height: 50%;
 }
 .whisky {
   order: 3;
 }
 .whisky svg {
-  height: 35px;
+  height: 40%;
 }
 .alcopop {
   order: 4;
 }
 .alcopop svg {
-  height: 85px;
+  height: 60%;
 }
 .wine svg rect:nth-of-type(1) {
   fill: #874640;
@@ -124,7 +127,7 @@ svg {
 }
 @media screen and (max-width: 1100px) {
   .drinks-container {
-    width: 200px;
+    width: 12%;
   }
   .drink:nth-of-type(3) {
     clear: both;
