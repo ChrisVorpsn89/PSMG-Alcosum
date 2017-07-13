@@ -1,4 +1,6 @@
 body {
+  font-family: "Open sans", "Segoe UI", "Segoe WP", Helvetica, Arial, sans-serif;
+  color: #444;
   background: #333;
 }
 .drinks-container {
@@ -36,6 +38,7 @@ body {
 
 
 .name p, .country p {
+  font-weight: bold;
   margin-bottom: 30%;
   display: inline;
   padding: 3px 8px;
@@ -134,7 +137,7 @@ svg {
 }
 @media screen and (max-width: 1100px) {
   .drinks-container {
-    width: 12%;
+    width: 13%;
   }
   .drink:nth-of-type(3) {
     clear: both;
