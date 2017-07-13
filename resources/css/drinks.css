@@ -16,13 +16,15 @@ body {
   position: relative;
   float: left;
 }
-.name {
+.name{
   display: flex;
   justify-content: center;
   align-items: flex-end;
   height: 100%;
+  overflow: hidden;
+  white-space: nowrap;
 }
-.name p {
+.name p{
   display: inline;
   padding: 3px 8px;
   margin: 5px 1px;
