@@ -236,6 +236,10 @@ font-weight: bold;
 border-radius: 2px;
 }
 
+.flagbox {
+    height: 15%;
+}
+
 .flag {
     height: 90%;
     width: 90%;
