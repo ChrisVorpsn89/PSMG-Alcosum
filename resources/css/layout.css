@@ -5,15 +5,29 @@ body{
 }
 
 .head{
+  font-size: 100%;
   margin-top: 0.5%;
-  height: 30px;
+  height: 100%;
   background-color: #eee;
   border-radius: .25em;
   border: 2px solid #ffa500;
 }
 
+#infoIcon{
+  float:right;
+  margin-right: 1%;
+}
+
+#info-button{
+  margin-top: 0.5%;
+  cursor: pointer;
+  color: #000;
+  font-weight: bold;
+}
+
 #title{
-  color:#ffa500;
+  color: #000;
+  font-weight: bold;
   font-size: 120%;
   margin-left: 1%;
 }
@@ -71,15 +85,17 @@ body{
 }
 #tooltip tr td:nth-child(2){
     text-align:center;
-      font-weight: bold;
+    font-weight: bold;
 }
 
 .slider-start{
   margin-left:2%;
+  font-size: 80%;
 }
 
 .slider-end{
   margin-right:1%;
+  font-size: 80%;
 }
 
 .slider{
@@ -112,7 +128,8 @@ body{
 }
 
 #averageConsumeVal{
-  color: #09ad7e;
+  color: #000;
+  font-weight: bold;
   border: 2px solid #ccc;
   background: #fff;
   border-radius: 2px;
@@ -124,14 +141,16 @@ body{
 
 #countryNumber{
   width: 5%;
-  color: #09ad7e;
+  color: #000;
+  font-weight: bold;
   border: 2px solid #ccc;
   background: #fff;
   border-radius: 2px;
 }
 
 #timeSliderVal{
-  color: #09ad7e;
+  color: #000;
+  font-weight: bold;
   border: 2px solid #ccc;
   background: #fff;
   border-radius: 2px;
@@ -213,6 +232,7 @@ margin-left: 1%;
 width: 10%;
 height: 80%;
 color: #000;
+font-weight: bold;
 border-radius: 2px;
 }
 
