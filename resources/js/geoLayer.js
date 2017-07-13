@@ -339,4 +339,10 @@ map.on('pointermove', function(evt) {
     $('.alcopop .name .consume').text(feature.O[" All types"] + " L");
 
 
+
+    $('.country p').text(feature.O.name);
+
+
+    $(".flag").attr("src","https://lipis.github.io/flag-icon-css/flags/4x3/"+ feature.a.substring(0, 2).toLowerCase()  +".svg");
+
 });
