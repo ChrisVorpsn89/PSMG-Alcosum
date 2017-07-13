@@ -5,6 +5,7 @@ body{
 }
 
 .head{
+  margin-top: 0.5%;
   height: 30px;
   background-color: #eee;
   border-radius: .25em;
@@ -24,10 +25,10 @@ body{
 
 .map {
     margin-top: 10px;
-    height: 670px;
-    width: 93%;
+    height: 100%;
+    width: 86%;
     background-color: #444;
-    float:right;
+    float:left;
     overflow:hidden;
 }
 
