@@ -342,7 +342,7 @@ map.on('pointermove', function(evt) {
 
     $('.country p').text(feature.O.name);
 
-
-    $(".flag").attr("src","https://lipis.github.io/flag-icon-css/flags/4x3/"+ feature.a.substring(0, 2).toLowerCase()  +".svg");
+    //$(".flag").attr("src","https://lipis.github.io/flag-icon-css/flags/4x3/"+ feature.a.substring(0, 2).toLowerCase()  +".svg");
+    $(".flag").attr("src","https://lipis.github.io/flag-icon-css/flags/4x3/"+ inverseCountryCodes[feature.O.name.toString()].toLowerCase() +".svg");
 
 });
