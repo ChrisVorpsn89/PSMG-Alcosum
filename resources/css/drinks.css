@@ -9,7 +9,7 @@ body {
   overflow:hidden;
 }
 .drink {
-  height: 150px;
+  height: 20%;
   width: 100%;
   background: transparent;
   box-sizing: border-box;
@@ -25,7 +25,17 @@ body {
   white-space: nowrap;
 }
 
-.name p {
+.country{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 10%;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+
+.name p, .country p {
   margin-bottom: 30%;
   display: inline;
   padding: 3px 8px;
