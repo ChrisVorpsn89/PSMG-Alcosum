@@ -11,6 +11,7 @@ function moveFroth(el, pos) {
     console.log("froth");
 }*/
 
+/*
 $('.name p').on('click', function(){
     var rect = $(this).parent().siblings('svg').find('rect:not(rect:nth-child(5))');
     //var size = $(this).data('size');
@@ -19,7 +20,7 @@ $('.name p').on('click', function(){
     $(this).siblings().removeClass('current');
     changeSize(size, rect);
 });
-
+*/
 
 /*
 $('.beer .name p.half').on('click', function(){

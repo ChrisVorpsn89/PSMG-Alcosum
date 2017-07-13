@@ -3,7 +3,7 @@ body {
 }
 .drinks-container {
   margin-top: 11px;
-  height: 100%;
+  height: 670px;
   float: left;
   width:7%;
   overflow:hidden;
@@ -16,12 +16,15 @@ body {
   position: relative;
   float: left;
 }
-.name {
+.name{
   display: flex;
   justify-content: center;
   align-items: flex-end;
   height: 100%;
+  overflow: hidden;
+  white-space: nowrap;
 }
+
 .name p {
   margin-bottom: 30%;
   display: inline;
