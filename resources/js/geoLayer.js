@@ -310,6 +310,7 @@ map.on('pointermove', function(evt) {
     $(this).siblings().removeClass('current');
     changeSize(size, rect);
 
+
     console.log("geiz",$('.drink wine, #consume wine').text);
     $('.wine .name .consume').text(feature.O[" Wine"] + " L");
 
@@ -345,4 +346,77 @@ map.on('pointermove', function(evt) {
     //$(".flag").attr("src","https://lipis.github.io/flag-icon-css/flags/4x3/"+ feature.a.substring(0, 2).toLowerCase()  +".svg");
     $(".flag").attr("src","https://lipis.github.io/flag-icon-css/flags/4x3/"+ inverseCountryCodes[feature.O.name.toString()].toLowerCase() +".svg");
 
+
+
 });
+
+//graphline 
+
+var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom,
+    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var parseTime = d3.timeParse("%d-%b-%y");
+
+var x = d3.scaleTime()
+    .range([0, width]);
+
+var y = d3.scaleLinear()
+    .range([height, 0]);
+
+var line = d3.line()
+    .x(function(d) { console.log(d.year); return x(d.year); })
+    .y(function(d) { console.log(d.consume); return y(d.consume); });
+
+d3.csv("data/average.csv", function(d) {
+  d.year = +d.year;
+  d.consume = +d.consume;
+  return d;
+}, function(error, data) {
+  if (error) throw error;
+
+  x.domain(d3.extent(data, function(d) { console.log(d.year); return d.year; }));
+  y.domain(d3.extent(data, function(d) { return d.consume; }));
+
+  g.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x))
+      .select(".domain")
+        .tickFormat(d3.formatDefaultLocale(locale))
+
+  g.append("g")
+      .call(d3.axisLeft(y))
+    .append("text")
+      .attr("fill", "#0000")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("Consum in l ");
+
+  g.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-linejoin", "round")
+      .attr("stroke-linecap", "round")
+      .attr("stroke-width", 1.5)
+      .attr("d", line);
+});
+
+   
+    
+ 
+
+ 
+
+
+
+                 
+         
+
+  
+    
+    
