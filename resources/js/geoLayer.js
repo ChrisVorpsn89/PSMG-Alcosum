@@ -444,8 +444,6 @@ var data = [];
 
 function manipulateJson(reportOne, feature){
     specificCountryJson = reportOne.filter(function(el){
-        console.log( el.Country == feature.O.name && el.BeverageTypes == feature.O.BeverageTypes);
-        console.log(selectedType);
         return  el.Country == feature.O.name && el.BeverageTypes == selectedType;
         });
    
@@ -483,8 +481,7 @@ var x = d3.scale.ordinal().domain(data.map(function(d) { return d.year; })).rang
 
 var y = d3.scale.linear().domain([0, d3.max(data, function(d) { return d.consume; })])
     .range([height, 0]);
-console.log("ACHTUNG");    
-console.log(parseInt(y(data.consume)));
+
 var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom");
