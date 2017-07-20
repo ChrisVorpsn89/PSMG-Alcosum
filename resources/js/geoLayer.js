@@ -349,14 +349,6 @@ function displayTooltip(evt) {
 
 map.on('pointermove', displayTooltip);
 
-map.on('click', function(evt) {
-    if(map.getView().getZoom()<=3){
-        map.getView().setCenter(evt.coordinate);
-        map.getView().setZoom(map.getView().getZoom()+2);}
-    else{
-        map.getView().setCenter(evt.coordinate);
-    }
-});
 
 map.on('pointermove', function(evt) {
     var pixel = evt.pixel;
@@ -427,8 +419,12 @@ if(feature!== undefined) {
     $('.country p').text(feature.O.name);
 
     //$(".flag").attr("src","https://lipis.github.io/flag-icon-css/flags/4x3/"+ feature.a.substring(0, 2).toLowerCase()  +".svg");
-    $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + inverseCountryCodes[feature.O.name.toString()].toLowerCase() + ".svg");
-
+    if(feature.O.name!==undefined) {
+        $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + inverseCountryCodes[feature.O.name.toString()].toLowerCase() + ".svg");
+    }
+    else{
+console.log(feature);
+    }
 }
 
 });
@@ -452,6 +448,19 @@ var y = d3.scaleLinear()
 var line = d3.line()
     .x(function(d) { console.log(d.year); return x(d.year); })
     .y(function(d) { console.log(d.consume); return y(d.consume); });
+
+d3.json("data/converted_1979_1966.json", function(error,data) {
+    
+     data.forEach(function(d){
+         
+        if(d.Country == "Albania" && d.BeverageTypes == " Beer"){
+
+         console.log("test",d);
+        }
+
+        return d;
+     });
+
 
   x.domain(d3.extent(data, function(d) { return d.year; }));
   y.domain(d3.extent(data, function(d) { return d.consume; }));
@@ -492,3 +501,22 @@ d3.json("data/converted_1979_1966.json", function(d) {
   }
   return d;})
 });
+
+
+
+
+map.on('click', function(evt) {
+    var pixel = evt.pixel;
+
+    var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
+        //console.log("feature",feature);
+        if(feature!== undefined) {
+
+        }
+        return feature;
+
+    });
+
+    console.log(feature.O.name);
+});
+
