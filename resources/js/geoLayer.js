@@ -376,11 +376,11 @@ map.on('pointermove', function(evt) {
 
     });
 
-
+if(feature!== undefined) {
     var rect = $('.beer .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
 //var size = $(this).data('size');
-    var size = (feature.O[" Beer"])/6;
-    if (feature.O[" Beer"] == "N.A."){
+    var size = (feature.O[" Beer"]) / 6;
+    if (feature.O[" Beer"] == "N.A.") {
         size = 0;
     }
     $(this).addClass('current');
@@ -391,8 +391,8 @@ map.on('pointermove', function(evt) {
 
 
     var rect = $('.wine .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
-    var size = (feature.O[" Wine"])/6;
-    if (feature.O[" Wine"] == "N.A."){
+    var size = (feature.O[" Wine"]) / 6;
+    if (feature.O[" Wine"] == "N.A.") {
         size = 0;
     }
     $(this).addClass('current');
@@ -403,10 +403,9 @@ map.on('pointermove', function(evt) {
     $('.wine .name .consume').text(feature.O[" Wine"] + " L");
 
 
-
     var rect = $('.whisky .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
-    var size = (feature.O[" Spirits"])/6;
-    if (feature.O[" Spirits"] == "N.A."){
+    var size = (feature.O[" Spirits"]) / 6;
+    if (feature.O[" Spirits"] == "N.A.") {
         size = 0;
     }
     $(this).addClass('current');
@@ -417,8 +416,8 @@ map.on('pointermove', function(evt) {
 
 
     var rect = $('.alcopop .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
-    var size = (feature.O[" All types"])/20;
-    if (feature.O[" All types"] == "N.A."){
+    var size = (feature.O[" All types"]) / 20;
+    if (feature.O[" All types"] == "N.A.") {
         size = 0;
     }
     $(this).addClass('current');
@@ -428,13 +427,12 @@ map.on('pointermove', function(evt) {
     $('.alcopop .name .consume').text(feature.O[" All types"] + " L");
 
 
-
     $('.country p').text(feature.O.name);
 
     //$(".flag").attr("src","https://lipis.github.io/flag-icon-css/flags/4x3/"+ feature.a.substring(0, 2).toLowerCase()  +".svg");
-    $(".flag").attr("src","https://lipis.github.io/flag-icon-css/flags/4x3/"+ inverseCountryCodes[feature.O.name.toString()].toLowerCase() +".svg");
+    $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + inverseCountryCodes[feature.O.name.toString()].toLowerCase() + ".svg");
 
-
+}
 
 });
 
@@ -463,11 +461,7 @@ d3.json("data/converted_1979_1966.json", function(error,data) {
      data.forEach(function(d){
          
         if(d.Country == "Albania" && d.BeverageTypes == " Beer"){
-            for(int i = 1960; i<1969; i++){
-                d.year = d.Year    
-            }
-            
-        
+
          console.log(d);
         }
      });
