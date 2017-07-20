@@ -353,8 +353,7 @@ map.on('click', function(evt) {
     if(map.getView().getZoom()<=3){
         map.getView().setCenter(evt.coordinate);
         map.getView().setZoom(map.getView().getZoom()+2);
-        data = [];    
-        manipulateJson(reportOne);
+        
 }else{
         map.getView().setCenter(evt.coordinate);
     }
@@ -443,10 +442,11 @@ console.log(feature);
 // parseJSON in the right format 
 var data = [];
 
-function manipulateJson(reportOne){
+function manipulateJson(reportOne, feature){
     specificCountryJson = reportOne.filter(function(el){
-        console.log( el.Country == "Germany" && el.BeverageTypes == " Beer");
-        return el.Country == "Germany" && el.BeverageTypes == " Beer";
+        console.log( el.Country == feature.O.name && el.BeverageTypes == feature.O.BeverageTypes);
+        console.log(selectedType);
+        return  el.Country == feature.O.name && el.BeverageTypes == selectedType;
         });
    
     for (var i = 0; i< specificCountryJson.length; i++){
@@ -474,7 +474,7 @@ function manipulateJson(reportOne){
     console.log(d3.max(data, function(d) { return d.consume;} ));    
 
 var margin = {top: 40, right: 20, bottom: 30, left: 40},
-    width = 640 - margin.left - margin.right,
+    width = 680 - margin.left - margin.right,
     height = 480 - margin.top - margin.bottom;
 
 var formatPercent = d3.format(".0%");
@@ -493,26 +493,50 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
 
+
+
 var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<strong>Frequency:</strong> <span style='color:red'>" + d.consume + "</span>";
+    return "<strong>Consume in l :</strong> <span style='color:red'>" + d.consume + "</span>";
   })
 
 var svg = d3.select(".graph").append("svg")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
+    .attr("height", height + margin.top + margin.bottom) 
+    .attr("id","tempSVG")
+    .attr("name","tempSVG")
+    .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    
 
 svg.call(tip);
-
+    
+  svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top / 2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px")   
+        .text("Consume in Liter :" +selectedType + " " +feature.O.name);
 
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
+svg.append("text")
+        .attr("x", (width-30))             
+        .attr("y", 0 - (margin.top / 2))
+        .attr("id","exitText")
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px")   
+        .text("Back to Map");
+  document.getElementById("exitText").addEventListener('click', function(event){
+      d3.selectAll(".graph > *").remove();
+    
+  })
+  
+    
 
   svg.append("g")
       .attr("class", "y axis")
@@ -521,8 +545,8 @@ svg.call(tip);
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
       .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Consume");
+    
+   
 
   svg.selectAll(".bar")
       .data(data)
@@ -550,6 +574,8 @@ map.on('click', function(evt) {
 
     var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
         //console.log("feature",feature);
+    data = [];    
+    manipulateJson(reportOne, feature);    
 
         if(feature !== undefined) {
           return feature;

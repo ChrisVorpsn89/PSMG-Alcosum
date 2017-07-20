@@ -309,7 +309,7 @@ body {
 .axis path,
 .axis line {
   fill: none;
-  stroke: red;
+  stroke: black;
   shape-rendering: crispEdges;
 }
 
@@ -331,6 +331,9 @@ body {
 
 .x.axis path {
   display: none;
+}
+.graph #tempSVG {
+    background-color: white
 }
 
 .d3-tip {
