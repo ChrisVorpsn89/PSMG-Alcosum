@@ -24,6 +24,18 @@ function getJsonData(sliderValue){
   reportOne = JSON.parse(xhReq.responseText);
 };
 
+
+//Parsing the JSON with centroids of all countries
+var centroidJSON;
+function getCentroidsJSON (){
+    url = "data/centroids.json";
+    xhReq.open("GET", url, false);
+    xhReq.send(null);
+    centroidJSON = JSON.parse(xhReq.responseText);
+}
+getCentroidsJSON();
+console.log(centroidJSON);
+
 /*
 for(var i = 0; i < jsonObject.features.length; i++){
   //console.log(jsonObject.features[i].geometry.coordinates[0][0]);
@@ -76,6 +88,8 @@ function getYear(sliderValue){
   countrySource.refresh({force:true});
 };
 
+var highestCountryCoordinateLon;
+var highestCountryCoordinateLat;
 var countryhighestvalue;
 var highestValue = 0;
 var averageConsume;
@@ -122,6 +136,8 @@ var reportYear = "Year" + timeLine;
           if(value > highestValue){
             highestValue = value;
             countryhighestvalue =  reportOne[k].Country;
+              console.log(reportOne[k]);
+
           };
         };
 
@@ -191,7 +207,23 @@ setUpValues(tempFeature,resolution);
     if(value == highestValue){
         //color = '#ffa500';
         stroke =1000;
-    }
+
+
+        //14.07 Icon testing
+
+        //highestCountryCoordinateLon = tempFeature.O.geometry.B[0];
+       // highestCountryCoordinateLat = tempFeature.O.geometry.B[1];
+       // console.log(highestCountryCoordinateLon/100000,highestCountryCoordinateLat/100000);
+
+        var highestValueCountryName = tempFeature.O.name;
+        var long = centroidJSON[highestValueCountryName].LONG;
+        var lat = centroidJSON[highestValueCountryName].LAT;
+
+        highestValueIcon.getGeometry().setCoordinates(ol.proj.fromLonLat([long,lat]));
+
+
+
+     }
         style = new ol.style.Style({
           fill: new ol.style.Fill({
             color: color
@@ -200,6 +232,8 @@ setUpValues(tempFeature,resolution);
         });
     return style;
 };
+
+
 
 var countryLayer = new ol.layer.Vector({
   source: countrySource,
@@ -212,6 +246,7 @@ var terrainLabelLayer = new ol.layer.Tile({
         layer: 'terrain-labels'
     })
 });
+
 
 
 var center = ol.proj.transform([0, 0], 'EPSG:4326', 'EPSG:3857');
@@ -240,6 +275,60 @@ var overlay = new ol.Overlay({
 //map.addOverlay(overlay);
 
 overlay.setMap(map);
+
+
+
+
+
+
+
+
+//Icon testing 20.07
+var vectorSource;
+var vectorLayer;
+
+var highestValueIcon = new ol.Feature({
+    // geometry: new ol.geom.Point(ol.proj.fromLonLat(tempFeature.O.geometry.f)),
+    //geometry: new ol.geom.Point(ol.proj.fromLonLat([highestCountryCoordinateLon/100000,highestCountryCoordinateLat/100000]))
+    geometry: new ol.geom.Point(ol.proj.fromLonLat([0,0]))
+});
+
+highestValueIcon.setStyle(new ol.style.Style({
+    image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+        scale: 0.2,
+        crossOrigin: 'anonymous',
+        src: 'resources/img/if_advantage_quality_1034364.png'
+    }))
+}));
+
+
+vectorSource = new ol.source.Vector({
+    features: [highestValueIcon]
+});
+
+vectorSource.clear();
+
+vectorSource = new ol.source.Vector({
+    features: [highestValueIcon]
+});
+
+vectorLayer = new ol.layer.Vector({
+    source: vectorSource
+});
+
+map.removeLayer(vectorLayer);
+map.addLayer(vectorLayer);
+
+
+
+
+
+
+
+
+
+
+
 
 function displayTooltip(evt) {
     var pixel = evt.pixel;
@@ -275,7 +364,7 @@ map.on('click', function(evt) {
 map.on('pointermove', function(evt) {
     var pixel = evt.pixel;
     var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
-        console.log("feature",feature);
+        //console.log("feature",feature);
         if(feature.O[" Beer"] === undefined) {
             feature.set(" Beer", "N.A.");
             feature.set(" Wine", "N.A.");
@@ -311,7 +400,6 @@ map.on('pointermove', function(evt) {
     changeSize(size, rect);
 
 
-    console.log("geiz",$('.drink wine, #consume wine').text);
     $('.wine .name .consume').text(feature.O[" Wine"] + " L");
 
 
@@ -384,7 +472,7 @@ d3.csv("data/average.csv", function(d) {
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x))
       .select(".domain")
-        .tickFormat(d3.formatDefaultLocale(locale))
+       
 
   g.append("g")
       .call(d3.axisLeft(y))
@@ -405,12 +493,6 @@ d3.csv("data/average.csv", function(d) {
       .attr("stroke-width", 1.5)
       .attr("d", line);
 });
-
-   
-    
- 
-
- 
 
 
 
