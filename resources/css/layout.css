@@ -333,8 +333,12 @@ body {
   display: none;
 }
 .graph #tempSVG {
-    background-color: white
+    background-color: white;
+  
 }
+
+#exitText{
+  cursor: pointer; cursor: hand;}
 
 .d3-tip {
   line-height: 1;
