@@ -384,7 +384,7 @@ d3.csv("data/average.csv", function(d) {
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x))
       .select(".domain")
-        .tickFormat(d3.formatDefaultLocale(locale))
+       
 
   g.append("g")
       .call(d3.axisLeft(y))
