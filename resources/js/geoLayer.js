@@ -370,12 +370,19 @@ var line = d3.line()
     .x(function(d) { console.log(d.year); return x(d.year); })
     .y(function(d) { console.log(d.consume); return y(d.consume); });
 
-d3.csv("data/average.csv", function(d) {
-  d.year = +d.year;
-  d.consume = +d.consume;
-  return d;
-}, function(error, data) {
-  if (error) throw error;
+d3.json("data/converted_1979_1966.json", function(error,data) {
+    
+     data.forEach(function(d){
+         
+        if(d.Country == "Albania" && d.BeverageTypes == " Beer"){
+            for(int i = 1960; i<1969; i++){
+                d.year = d.Year    
+            }
+            
+        
+         console.log(d);
+        }
+     });
 
   x.domain(d3.extent(data, function(d) { console.log(d.year); return d.year; }));
   y.domain(d3.extent(data, function(d) { return d.consume; }));
@@ -397,13 +404,15 @@ d3.csv("data/average.csv", function(d) {
       .text("Consum in l ");
 
   g.append("path")
-      .datum(data)
+      .data(data)
       .attr("fill", "none")
       .attr("stroke", "steelblue")
       .attr("stroke-linejoin", "round")
       .attr("stroke-linecap", "round")
+      .filter
       .attr("stroke-width", 1.5)
       .attr("d", line);
+
 });
 
    
