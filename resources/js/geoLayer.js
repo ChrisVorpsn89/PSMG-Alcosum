@@ -352,14 +352,6 @@ function displayTooltip(evt) {
 
 map.on('pointermove', displayTooltip);
 
-map.on('click', function(evt) {
-    if(map.getView().getZoom()<=3){
-        map.getView().setCenter(evt.coordinate);
-        map.getView().setZoom(map.getView().getZoom()+2);}
-    else{
-        map.getView().setCenter(evt.coordinate);
-    }
-});
 
 map.on('pointermove', function(evt) {
     var pixel = evt.pixel;
@@ -430,8 +422,12 @@ if(feature!== undefined) {
     $('.country p').text(feature.O.name);
 
     //$(".flag").attr("src","https://lipis.github.io/flag-icon-css/flags/4x3/"+ feature.a.substring(0, 2).toLowerCase()  +".svg");
-    $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + inverseCountryCodes[feature.O.name.toString()].toLowerCase() + ".svg");
-
+    if(feature.O.name!==undefined) {
+        $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + inverseCountryCodes[feature.O.name.toString()].toLowerCase() + ".svg");
+    }
+    else{
+console.log(feature);
+    }
 }
 
 });
@@ -462,8 +458,10 @@ d3.json("data/converted_1979_1966.json", function(error,data) {
          
         if(d.Country == "Albania" && d.BeverageTypes == " Beer"){
 
-         console.log(d);
+         console.log("test",d);
         }
+
+        return d;
      });
 
   x.domain(d3.extent(data, function(d) { console.log(d.year); return d.year; }));
@@ -499,9 +497,20 @@ d3.json("data/converted_1979_1966.json", function(error,data) {
 
 
 
-                 
-         
+map.on('click', function(evt) {
+    var pixel = evt.pixel;
 
-  
+    var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
+        //console.log("feature",feature);
+        if(feature!== undefined) {
+
+        }
+        return feature;
+
+    });
+
+    console.log(feature.O.name);
+});
+
     
     
