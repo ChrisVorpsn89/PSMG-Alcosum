@@ -78,9 +78,9 @@ selectedBeverage.addEventListener("change", function(){
   findHighestValue();
   countrySource.refresh({force:true});
 });
-
+var specificCountryJson; 
 function getYear(sliderValue){
-  getJsonData(sliderValue);
+  getJsonData(sliderValue); 
   timeLine = String(sliderValue);
   findHighestValue();
   countrySource.refresh({force:true});
@@ -352,8 +352,10 @@ map.on('pointermove', displayTooltip);
 map.on('click', function(evt) {
     if(map.getView().getZoom()<=3){
         map.getView().setCenter(evt.coordinate);
-        map.getView().setZoom(map.getView().getZoom()+2);}
-    else{
+        map.getView().setZoom(map.getView().getZoom()+2);
+        data = [];    
+        manipulateJson(reportOne);
+}else{
         map.getView().setCenter(evt.coordinate);
     }
 });
@@ -433,63 +435,110 @@ if(feature!== undefined) {
 
 });
 
-//graphline
-/**
-var svg = d3.select("svg"),
-    margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = +svg.attr("width") - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var parseTime = d3.timeParse("%d-%b-%y");
+// parseJSON in the right format 
+var data = [];
 
-var x = d3.scaleTime()
-    .range([0, width]);
+function manipulateJson(reportOne){
+    specificCountryJson = reportOne.filter(function(el){
+        console.log( el.Country == "Germany" && el.BeverageTypes == " Beer");
+        return el.Country == "Germany" && el.BeverageTypes == " Beer";
+        });
+   
+    for (var i = 0; i< specificCountryJson.length; i++){
+        var obj = specificCountryJson[i];
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+            console.log(key + " -> " + obj[key]);
+            if(obj[key] == "null"){
+                obj[key] = 0.0;
+             console.log(key + " -> " + obj[key]);    
+            }               
 
-var y = d3.scaleLinear()
+            }
+        var temp = new Object();
+            temp["year"]= key.slice(4,8).toString();
+            temp["consume"]= parseFloat(obj[key]);
+        data.push(temp);  
+      
+            
+        }
+    }
+    data.splice(0,1);
+    data.splice(0,1);
+    console.log(data);
+    console.log(d3.max(data, function(d) { return d.consume;} ));    
+
+var margin = {top: 40, right: 20, bottom: 30, left: 40},
+    width = 640 - margin.left - margin.right,
+    height = 480 - margin.top - margin.bottom;
+
+var formatPercent = d3.format(".0%");
+
+var x = d3.scale.ordinal().domain(data.map(function(d) { return d.year; })).rangeRoundBands([0, width], .03);
+
+var y = d3.scale.linear().domain([0, d3.max(data, function(d) { return d.consume; })])
     .range([height, 0]);
+console.log("ACHTUNG");    
+console.log(parseInt(y(data.consume)));
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
 
-var line = d3.line()
-    .x(function(d) { console.log(d.year); return x(d.year); })
-    .y(function(d) { console.log(d.consume); return y(d.consume); });
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
 
-  x.domain(d3.extent(data, function(d) { return d.year; }));
-  y.domain(d3.extent(data, function(d) { return d.consume; }));
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<strong>Frequency:</strong> <span style='color:red'>" + d.consume + "</span>";
+  })
 
-  g.append("g")
+var svg = d3.select(".graph").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.call(tip);
+
+
+  svg.append("g")
+      .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x))
-      .select(".domain")
+      .call(xAxis);
 
-
-  g.append("g")
-      .call(d3.axisLeft(y))
-    .append("text")
-      .attr("fill", "#0000")
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+       .append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
-      .attr("dy", "0.71em")
-      .attr("text-anchor", "end")
-      .text("Consum in l ");
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Consume");
 
-  g.append("path")
+  svg.selectAll(".bar")
       .data(data)
-      .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-linejoin", "round")
-      .attr("stroke-linecap", "round")
-      .filter
-      .attr("stroke-width", 1.5)
-      .attr("d", line);**/
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.year); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.consume); })
+      .attr("height", function(d) { return height - y(d.consume); })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
 
-d3.json("data/converted_1979_1966.json", function(d) {
-  d.forEach(function(d){
-    selectedCountry = "Albania"
-    var year = "1970";
-    var selectedYear = "Year" + year;
-    selectedType = selectedBeverage.options[selectedBeverage.selectedIndex].value;
-    if(d.Country == selectedCountry && d.BeverageTypes == selectedType){
-    console.log(d[selectedYear]);
-  }
-  return d;})
-});
+
+
+function type(d) {
+  d.consume = +d.consume;
+
+  return d;
+}
+}
+//BarChart
+
+
