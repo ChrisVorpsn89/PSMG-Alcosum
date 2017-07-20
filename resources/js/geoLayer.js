@@ -512,11 +512,12 @@ map.on('click', function(evt) {
         //console.log("feature",feature);
         if(feature!== undefined) {
 
+
         }
         return feature;
 
     });
-
-    console.log(feature.O.name);
+    if(feature!== undefined) {
+    console.log(feature.O.name);}
 });
 
