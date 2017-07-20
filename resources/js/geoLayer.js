@@ -34,8 +34,6 @@ function getCentroidsJSON (){
     centroidJSON = JSON.parse(xhReq.responseText);
 }
 getCentroidsJSON();
-console.log(centroidJSON);
-
 /*
 for(var i = 0; i < jsonObject.features.length; i++){
   //console.log(jsonObject.features[i].geometry.coordinates[0][0]);
@@ -136,7 +134,6 @@ var reportYear = "Year" + timeLine;
           if(value > highestValue){
             highestValue = value;
             countryhighestvalue =  reportOne[k].Country;
-              console.log(reportOne[k]);
 
           };
         };
@@ -436,8 +433,8 @@ if(feature!== undefined) {
 
 });
 
-//graphline 
-
+//graphline
+/**
 var svg = d3.select("svg"),
     margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = +svg.attr("width") - margin.left - margin.right,
@@ -456,24 +453,14 @@ var line = d3.line()
     .x(function(d) { console.log(d.year); return x(d.year); })
     .y(function(d) { console.log(d.consume); return y(d.consume); });
 
-d3.json("data/converted_1979_1966.json", function(error,data) {
-    
-     data.forEach(function(d){
-         
-        if(d.Country == "Albania" && d.BeverageTypes == " Beer"){
-
-         console.log(d);
-        }
-     });
-
-  x.domain(d3.extent(data, function(d) { console.log(d.year); return d.year; }));
+  x.domain(d3.extent(data, function(d) { return d.year; }));
   y.domain(d3.extent(data, function(d) { return d.consume; }));
 
   g.append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x))
       .select(".domain")
-       
+
 
   g.append("g")
       .call(d3.axisLeft(y))
@@ -493,15 +480,16 @@ d3.json("data/converted_1979_1966.json", function(error,data) {
       .attr("stroke-linecap", "round")
       .filter
       .attr("stroke-width", 1.5)
-      .attr("d", line);
+      .attr("d", line);**/
 
+d3.json("data/converted_1979_1966.json", function(d) {
+  d.forEach(function(d){
+    selectedCountry = "Albania"
+    var year = "1970";
+    var selectedYear = "Year" + year;
+    selectedType = selectedBeverage.options[selectedBeverage.selectedIndex].value;
+    if(d.Country == selectedCountry && d.BeverageTypes == selectedType){
+    console.log(d[selectedYear]);
+  }
+  return d;})
 });
-
-
-
-                 
-         
-
-  
-    
-    
