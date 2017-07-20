@@ -1,7 +1,7 @@
 body {
   font-family: "Open sans", "Segoe UI", "Segoe WP", Helvetica, Arial, sans-serif;
   color: #444;
-  background: #333;
+  background: #444;
 }
 .drinks-container {
   margin-top: 11px;
@@ -11,7 +11,7 @@ body {
   overflow:hidden;
 }
 .drink {
-  height: 20%;
+  height: 14%;
   width: 100%;
   background: transparent;
   box-sizing: border-box;

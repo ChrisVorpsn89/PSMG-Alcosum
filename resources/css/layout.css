@@ -12,10 +12,10 @@
 background:#ccc;
 color:#000;
 position: absolute;
-top: -500px;
+top: -100%;
 left: 0;
 width: 100%;
-height: 500px;
+height: 93%;
 padding: 20px;
 transition: top 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94);
 overflow: hidden;
@@ -31,7 +31,7 @@ box-sizing: border-box;
   appearance:none !important;
   cursor:pointer;
   left:-100%;
-  top:-100%;
+  top:-100W%;
 }
 
 #toggle + label {
@@ -66,7 +66,7 @@ transition:all 500ms ease;
 }
 
 #toggle:checked ~ .head-container {
-  margin-top: 500px;
+  margin-top: 44%;
 }
 
 #toggle:checked + label {
