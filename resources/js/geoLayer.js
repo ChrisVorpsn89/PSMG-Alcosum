@@ -450,9 +450,9 @@ var line = d3.line()
     .y(function(d) { console.log(d.consume); return y(d.consume); });
 
 d3.json("data/converted_1979_1966.json", function(error,data) {
-    
+
      data.forEach(function(d){
-         
+
         if(d.Country == "Albania" && d.BeverageTypes == " Beer"){
 
          console.log("test",d);
@@ -510,14 +510,12 @@ map.on('click', function(evt) {
 
     var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
         //console.log("feature",feature);
-        if(feature!== undefined) {
 
-
+        if(feature !== undefined) {
+          return feature;
         }
-        return feature;
 
     });
     if(feature!== undefined) {
     console.log(feature.O.name);}
 });
-
