@@ -429,8 +429,12 @@ if(feature!== undefined) {
     $('.country p').text(feature.O.name);
 
     //$(".flag").attr("src","https://lipis.github.io/flag-icon-css/flags/4x3/"+ feature.a.substring(0, 2).toLowerCase()  +".svg");
-    $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + inverseCountryCodes[feature.O.name.toString()].toLowerCase() + ".svg");
-
+    if(feature.O.name!==undefined) {
+        $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + inverseCountryCodes[feature.O.name.toString()].toLowerCase() + ".svg");
+    }
+    else{
+console.log(feature);
+    }
 }
 
 });
@@ -539,6 +543,20 @@ function type(d) {
   return d;
 }
 }
-//BarChart
 
+
+map.on('click', function(evt) {
+    var pixel = evt.pixel;
+
+    var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
+        //console.log("feature",feature);
+
+        if(feature !== undefined) {
+          return feature;
+        }
+
+    });
+    if(feature!== undefined) {
+    console.log(feature.O.name);}
+});
 
