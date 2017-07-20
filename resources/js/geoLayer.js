@@ -485,8 +485,7 @@ var line = d3.line()
 d3.json("data/converted_1979_1966.json", function(d) {
   d.forEach(function(d){
     selectedCountry = "Albania"
-    var year = "1970";
-    var selectedYear = "Year" + year;
+    var selectedYear = "Year" + "1970";
     selectedType = selectedBeverage.options[selectedBeverage.selectedIndex].value;
     if(d.Country == selectedCountry && d.BeverageTypes == selectedType){
     console.log(d[selectedYear]);
