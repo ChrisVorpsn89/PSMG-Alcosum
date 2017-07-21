@@ -78,9 +78,9 @@ selectedBeverage.addEventListener("change", function(){
   findHighestValue();
   countrySource.refresh({force:true});
 });
-var specificCountryJson; 
+var specificCountryJson;
 function getYear(sliderValue){
-  getJsonData(sliderValue); 
+  getJsonData(sliderValue);
   timeLine = String(sliderValue);
   findHighestValue();
   countrySource.refresh({force:true});
@@ -252,19 +252,21 @@ var terrainLabelLayer = new ol.layer.Tile({
 
 var center = ol.proj.transform([0, 0], 'EPSG:4326', 'EPSG:3857');
 var view = new ol.View ({
-  center: ol.proj.transform([-25, 33.82], 'EPSG:4326', 'EPSG:3857'),
-  zoom: 3,
+  center: ol.proj.transform([0, 33.82], 'EPSG:4326', 'EPSG:3857'),
+  zoom: 2,
 });
 
 
+var tooltip = document.getElementById('tooltip');
+var overlay = new ol.Overlay({
+    element: tooltip,
+    offset: [10, 0],
+    positioning: 'bottom-left'
+});
 
+//map.addOverlay(overlay);
 
-
-
-
-
-
-
+overlay.setMap(map);
 
 //Icon testing 20.07
 var vectorSource;
@@ -303,19 +305,6 @@ vectorLayer = new ol.layer.Vector({
 //map.addLayer(vectorLayer);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 var map = new ol.Map({
  target: 'map',
     //Layers added to Array
@@ -335,9 +324,6 @@ var overlay = new ol.Overlay({
 //map.addOverlay(overlay);
 
 overlay.setMap(map);
-
-
-
 
 function displayTooltip(evt) {
     var pixel = evt.pixel;
@@ -361,6 +347,15 @@ function displayTooltip(evt) {
 
 map.on('pointermove', displayTooltip);
 
+map.on('click', function(evt) {
+    if(map.getView().getZoom()<=3){
+        map.getView().setCenter(evt.coordinate);
+        map.getView().setZoom(map.getView().getZoom()+2);
+
+}else{
+        map.getView().setCenter(evt.coordinate);
+    }
+});
 
 map.on('pointermove', function(evt) {
     var pixel = evt.pixel;
@@ -441,34 +436,15 @@ console.log(feature.name);
 
 });
 
-//Filter Layers
-var selectFilter = new ol.interaction.Select({
-    layers: function(layer) {
-        if (layer == vectorLayer){
-        return false}/* some logic on layer to decide if its features should be considered; return true if yes */;
-    },
-    filter: function(feature, layer) {
-        return /* some logic on a feature and layer to decide if it should be selectable; return true if yes */;
-    },
-});
 
-
-
-
-
-
-
-
-
-
-// parseJSON in the right format 
+// parseJSON in the right format
 var data = [];
 
 function manipulateJson(reportOne, feature){
     specificCountryJson = reportOne.filter(function(el){
         return  el.Country == feature.O.name && el.BeverageTypes == selectedType;
         });
-   
+
     for (var i = 0; i< specificCountryJson.length; i++){
         var obj = specificCountryJson[i];
         for (var key in obj) {
@@ -476,22 +452,22 @@ function manipulateJson(reportOne, feature){
             console.log(key + " -> " + obj[key]);
             if(obj[key] == "null"){
                 obj[key] = 0.0;
-             console.log(key + " -> " + obj[key]);    
-            }               
+             console.log(key + " -> " + obj[key]);
+            }
 
             }
         var temp = new Object();
             temp["year"]= key.slice(4,8).toString();
             temp["consume"]= parseFloat(obj[key]);
-        data.push(temp);  
-      
-            
+        data.push(temp);
+
+
         }
     }
     data.splice(0,1);
     data.splice(0,1);
     console.log(data);
-    console.log(d3.max(data, function(d) { return d.consume;} ));    
+    console.log(d3.max(data, function(d) { return d.consume;} ));
 
 var margin = {top: 40, right: 20, bottom: 30, left: 40},
     width = 680 - margin.left - margin.right,
@@ -518,47 +494,48 @@ var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<strong>Consume in l :</strong> <span style='color:red'>" + d.consume + "</span>";
+    return "<strong>Consume:</strong> <span style='color:red'>" + d.consume + " liters</span>";
   })
 
 var svg = d3.select(".graph").append("svg")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom) 
+    .attr("height", height + margin.top + margin.bottom)
     .attr("id","tempSVG")
     .attr("name","tempSVG")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    
+
 
 svg.call(tip);
-    
+
   svg.append("text")
-        .attr("x", (width / 2))             
+        .attr("x", (width / 2))
         .attr("y", 0 - (margin.top / 2))
-        .attr("text-anchor", "middle")  
-        .style("font-size", "16px")   
-        .text("Consume in Liter :" +selectedType + " " +feature.O.name);
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .text(feature.O.name + " Alcoholtype: " + selectedType);
 
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
+
 svg.append("text")
-        .attr("x", (width-30))             
+        .attr("x", (width-30))
         .attr("y", 0 - (margin.top / 2))
         .attr("id","exitText")
-        .attr("text-anchor", "middle")  
-        .style("font-size", "16px")   
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
         .text("Back to Map");
   document.getElementById("exitText").addEventListener('click', function(event){
       d3.selectAll(".graph > *").remove();
 //zoom reset
-      map.getView().setZoom(3);
+      map.getView().setZoom(2.4);
 
 
-  })
-  
-    
+  });
+
+
 
   svg.append("g")
       .attr("class", "y axis")
@@ -567,8 +544,6 @@ svg.append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
       .attr("dy", ".71em")
-    
-   
 
   svg.selectAll(".bar")
       .data(data)
@@ -580,8 +555,6 @@ svg.append("text")
       .attr("height", function(d) { return height - y(d.consume); })
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
-
-
 
 function type(d) {
   d.consume = +d.consume;
@@ -596,8 +569,8 @@ map.on('click', function(evt) {
 
     var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
         //console.log("feature",feature);
-    data = [];    
-    manipulateJson(reportOne, feature);    
+    data = [];
+    manipulateJson(reportOne, feature);
 
         if(feature !== undefined) {
           return feature;
