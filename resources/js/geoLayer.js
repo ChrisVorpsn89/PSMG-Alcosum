@@ -9,6 +9,7 @@ selectedBeverage = document.getElementById("selectedBeverage"),
 averageConsumeVal = document.getElementById("averageConsumeVal"),
 countryNumber = document.getElementById("countryNumber"),
 styleCache =  {},
+highestBeverageValue = 26,
 reportOne;
 
 function getJsonData(sliderValue){
@@ -75,6 +76,7 @@ var defaultStyle = new ol.style.Style({
 
 selectedBeverage.addEventListener("change", function(){
   selectedType = selectedBeverage.options[selectedBeverage.selectedIndex].value;
+  legendData();
   findHighestValue();
   countrySource.refresh({force:true});
 });
@@ -161,48 +163,74 @@ var reportYear = "Year" + timeLine;
   };
 };
 
+function legendData(){
+  selectedType = selectedBeverage.options[selectedBeverage.selectedIndex].value;
+  if(selectedType == " All types"){
+    highestBeverageValue = 26;
+  };
+  if(selectedType == " Beer"){
+    highestBeverageValue = 8;
+  };
+  if(selectedType == " Wine"){
+    highestBeverageValue = 16;
+  };
+  if(selectedType == " Spirits"){
+    highestBeverageValue = 10;
+  };
+  return highestBeverageValue;
+}
+
 function styleFunction(tempFeature, resolution){
 setUpValues(tempFeature,resolution);
 //Color Function
     var value = parseFloat(tempFeature.O[selectedType]);
     var scalelevel = 8;
-    var summand = highestValue/8;
+    var summand = highestBeverageValue/8;
     var color;
     var stroke = defaultStyle.stroke;
+    console.log(highestBeverageValue);
 
     // switch bedingung??
     if(!value){
         color = '#bbb';
     }
-    if (value < summand ){
-        color = '#FFFFF0';
-    }
+    //green
     if (value == 0 ){
         color = '#90EE90';
     }
-    if (value > summand &&  value < 2*summand){
+    //white
+    if (value <= summand ){
+        color = '#FFFFF0';
+    }
+    //hellrosa
+    if (value > summand &&  value <= 2*summand){
         color = '#fee0d2';
     }
-    if (value > 2*summand && value < 3*summand){
+    //rosa
+    if (value > 2*summand && value <= 3*summand){
         color = '#fcbba1';
     }
+    //dunkelrosa
     if (value > 3*summand && value < 4*summand){
         color = '#fc9272';
     }
+    //hellrot
     if (value > 4*summand && value < 5*summand){
         color = '#fb6a4a';
     }
+    //rot
      if (value > 5*summand && value < 6*summand){
         color = '#ef3b2c';
     }
+    //dunkelrot
      if (value > 6*summand && value < 7*summand){
         color = '#cb181d';
     }
-     if (value > 7*summand){
+     if (value >7*summand && value < 8*summand){
         color = '#99000d'
     }
     if(value == highestValue){
-        //color = '#ffa500';
+        color = '#99000d';
         stroke =1000;
 
 
@@ -287,8 +315,7 @@ highestValueIcon.setStyle(new ol.style.Style({
         crossOrigin: 'anonymous',
         src: 'resources/img/if_advantage_quality_1034364.png'
     }))
-}));
-
+}))
 
 vectorSource = new ol.source.Vector({
     features: [highestValueIcon]
@@ -470,8 +497,6 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
 
-
-
 var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
@@ -486,7 +511,6 @@ var svg = d3.select(".graph").append("svg")
     .attr("name","tempSVG")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
 
 svg.call(tip);
 
@@ -513,8 +537,6 @@ svg.append("text")
       d3.selectAll(".graph > *").remove();
 //zoom reset
       map.getView().setZoom(2.4);
-
-
   });
 
 
