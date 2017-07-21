@@ -217,7 +217,11 @@ setUpValues(tempFeature,resolution);
         var lat = centroidJSON[highestValueCountryName].LAT;
 
         highestValueIcon.getGeometry().setCoordinates(ol.proj.fromLonLat([long,lat]));
-
+        highestValueIcon.set("name", tempFeature.O.name);
+        highestValueIcon.set(" Beer", tempFeature.O[" Beer"]);
+        highestValueIcon.set(" Wine", tempFeature.O[" Wine"]);
+        highestValueIcon.set(" Spirits", tempFeature.O[" Spirits"]);
+        highestValueIcon.set(" All types", tempFeature.O[" All types"]);
 
 
      }
@@ -253,25 +257,7 @@ var view = new ol.View ({
 });
 
 
-var map = new ol.Map({
- target: 'map',
-    //Layers added to Array
-  layers: [countryLayer,terrainLabelLayer],
-  view: view
-});
 
-
-
-var tooltip = document.getElementById('tooltip');
-var overlay = new ol.Overlay({
-    element: tooltip,
-    offset: [10, 0],
-    positioning: 'bottom-left'
-});
-
-//map.addOverlay(overlay);
-
-overlay.setMap(map);
 
 
 
@@ -294,7 +280,7 @@ highestValueIcon.setStyle(new ol.style.Style({
     image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
         scale: 0.2,
         crossOrigin: 'anonymous',
-        src: 'resources/img/if_advantage_quality_1034364.png'
+        src: 'resources/img/if_advantage_quality_1034364.png',
     }))
 }));
 
@@ -313,8 +299,8 @@ vectorLayer = new ol.layer.Vector({
     source: vectorSource
 });
 
-map.removeLayer(vectorLayer);
-map.addLayer(vectorLayer);
+//map.removeLayer(vectorLayer);
+//map.addLayer(vectorLayer);
 
 
 
@@ -323,6 +309,32 @@ map.addLayer(vectorLayer);
 
 
 
+
+
+
+
+
+
+
+var map = new ol.Map({
+ target: 'map',
+    //Layers added to Array
+  layers: [countryLayer, terrainLabelLayer,vectorLayer],
+  view: view
+});
+
+
+
+var tooltip = document.getElementById('tooltip');
+var overlay = new ol.Overlay({
+    element: tooltip,
+    offset: [10, 0],
+    positioning: 'bottom-left'
+});
+
+//map.addOverlay(overlay);
+
+overlay.setMap(map);
 
 
 
@@ -423,11 +435,30 @@ if(feature!== undefined) {
         $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + inverseCountryCodes[feature.O.name.toString()].toLowerCase() + ".svg");
     }
     else{
-console.log(feature);
+console.log(feature.name);
     }
 }
 
 });
+
+//Filter Layers
+var selectFilter = new ol.interaction.Select({
+    layers: function(layer) {
+        if (layer == vectorLayer){
+        return false}/* some logic on layer to decide if its features should be considered; return true if yes */;
+    },
+    filter: function(feature, layer) {
+        return /* some logic on a feature and layer to decide if it should be selectable; return true if yes */;
+    },
+});
+
+
+
+
+
+
+
+
 
 
 // parseJSON in the right format 
