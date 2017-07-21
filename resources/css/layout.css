@@ -302,9 +302,6 @@ border-radius: 2px;
   .my-legend a {
     color: #777;
     }
-body {
-  font: 10px sans-serif;
-}
 
 .axis path,
 .axis line {
@@ -333,12 +330,19 @@ body {
   display: none;
 }
 .graph #tempSVG {
-    background-color: white;
-  
+  box-shadow: 5px 5px 5px #222;
+  border-radius:0.5em;
+  border: 1px solid #000;
+  margin-top: 3%;
+  background-color: white;
+  font-weight: bold;
 }
 
 #exitText{
-  cursor: pointer; cursor: hand;}
+  border-radius: 0.25em;
+  border: 1px solid #000;
+  cursor: pointer;
+}
 
 .d3-tip {
   line-height: 1;
@@ -367,4 +371,3 @@ body {
   margin: -1px 0 0 0;
   top: 100%;
   left: 0;
-    
