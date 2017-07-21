@@ -1,3 +1,13 @@
+body {
+  font-family: "Open sans", "Segoe UI", "Segoe WP", Helvetica, Arial, sans-serif;
+  color: #444;
+  background: #ba8b02; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#ba8b02, #181818); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#ba8b02, #181818); /* For Opera 11.1 to 12.0 */
+  background: linear-gradient(#8e9eab, #eef2f1); /* Standard syntax */
+  background: -moz-linear-gradient(#ba8b02, #181818); /* For Firefox 3.6 to 15 */
+}
+
 .head-container{
   font-size: 100%;
   margin-top: 0.5%;
@@ -103,9 +113,8 @@ transition:all 500ms ease;
 
 .map {
     margin-top: 10px;
-    height: 100%;
+    height: 120%;
     width: 85%;
-    background-color: #444;
     float:left;
     overflow:hidden;
 }
@@ -262,17 +271,20 @@ border-radius: 2px;
 }
 
 .my-legend{
-  margin-left: 10px;
+  margin-top: 1%;
+  margin-left: 1%;
+  color:#fff;
 }
 
 .my-legend .legend-title {
     text-align: left;
+    margin-left: 1%;
     margin-bottom: 5px;
     font-weight: bold;
     font-size: 90%;
     }
   .my-legend .legend-scale ul {
-    margin: 0;
+    margin-left: 1%;
     margin-bottom: 5px;
     padding: 0;
     float: left;
