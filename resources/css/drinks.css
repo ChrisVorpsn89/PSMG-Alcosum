@@ -40,8 +40,8 @@
   text-align: center;
   text-transform: uppercase;
   font-size: 12px;
+  font-family: 'gill sans';
   background: #fff;
-  color: #444;
   cursor: pointer;
 }
 .name p.current {
