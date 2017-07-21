@@ -4,7 +4,7 @@ body {
   background: #ba8b02; /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(#ba8b02, #181818); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(#ba8b02, #181818); /* For Opera 11.1 to 12.0 */
-  background: linear-gradient(#8e9eab, #eef2f1); /* Standard syntax */
+  background: linear-gradient(#70e1f5, #ffd194); /* Standard syntax */
   background: -moz-linear-gradient(#ba8b02, #181818); /* For Firefox 3.6 to 15 */
 }
 
@@ -113,7 +113,7 @@ transition:all 500ms ease;
 
 .map {
     margin-top: 10px;
-    height: 120%;
+    height: 100%;
     width: 85%;
     float:left;
     overflow:hidden;
@@ -193,7 +193,7 @@ transition:all 500ms ease;
 }
 
 .slider .slider-selection {
-   background: #555;
+   background: #888;
 }
 
 #averageConsumeLabel{
@@ -271,20 +271,17 @@ border-radius: 2px;
 }
 
 .my-legend{
-  margin-top: 1%;
-  margin-left: 1%;
-  color:#fff;
+  margin-left: 10px;
 }
 
 .my-legend .legend-title {
     text-align: left;
-    margin-left: 1%;
     margin-bottom: 5px;
     font-weight: bold;
     font-size: 90%;
     }
   .my-legend .legend-scale ul {
-    margin-left: 1%;
+    margin: 0;
     margin-bottom: 5px;
     padding: 0;
     float: left;
@@ -314,6 +311,9 @@ border-radius: 2px;
   .my-legend a {
     color: #777;
     }
+body {
+  font: 10px sans-serif;
+}
 
 .axis path,
 .axis line {
@@ -342,19 +342,12 @@ border-radius: 2px;
   display: none;
 }
 .graph #tempSVG {
-  box-shadow: 5px 5px 5px #222;
-  border-radius:0.5em;
-  border: 1px solid #000;
-  margin-top: 3%;
-  background-color: white;
-  font-weight: bold;
+    background-color: white;
+
 }
 
 #exitText{
-  border-radius: 0.25em;
-  border: 1px solid #000;
-  cursor: pointer;
-}
+  cursor: pointer; cursor: hand;}
 
 .d3-tip {
   line-height: 1;
