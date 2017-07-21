@@ -217,6 +217,11 @@ setUpValues(tempFeature,resolution);
         var lat = centroidJSON[highestValueCountryName].LAT;
 
         highestValueIcon.getGeometry().setCoordinates(ol.proj.fromLonLat([long,lat]));
+        highestValueIcon.set("name", tempFeature.O.name);
+        highestValueIcon.set(" Beer", tempFeature.O[" Beer"]);
+        highestValueIcon.set(" Wine", tempFeature.O[" Wine"]);
+        highestValueIcon.set(" Spirits", tempFeature.O[" Spirits"]);
+        highestValueIcon.set(" All types", tempFeature.O[" All types"]);
 
 
 
