@@ -9,20 +9,30 @@ selectedBeverage = document.getElementById("selectedBeverage"),
 averageConsumeVal = document.getElementById("averageConsumeVal"),
 countryNumber = document.getElementById("countryNumber"),
 styleCache =  {},
-highestBeverageValue,
-reportOne;
+reportOne,reportTwo,reportThree,currentReport;
+getJsonData();
+currentReport = reportOne;
 
-function getJsonData(sliderValue){
-  if(sliderValue > 1999){
-    url = "data/converted_2000_2016.json";
-    } else if(sliderValue > 1979){
-    url ="data/converted_1999_1980.json";
-  } else if(sliderValue > 1965){
-    url ="data/converted_1979_1966.json";
-  };
-  xhReq.open("GET", url, false);
+
+
+
+function getJsonData(){
+
+url1 = "data/converted_2000_2016.json";
+url2 ="data/converted_1999_1980.json";
+url3 ="data/converted_1979_1966.json";
+console.log("HUUUUURE");
+  xhReq.open("GET", url1, false);
   xhReq.send(null);
   reportOne = JSON.parse(xhReq.responseText);
+  xhReq.open("GET", url2, false);
+  xhReq.send(null);
+  reportTwo = JSON.parse(xhReq.responseText);
+  xhReq.open("GET", url3, false);
+  xhReq.send(null);
+  reportThree = JSON.parse(xhReq.responseText);
+
+
 };
 
 
@@ -35,27 +45,14 @@ function getCentroidsJSON (){
     centroidJSON = JSON.parse(xhReq.responseText);
 }
 getCentroidsJSON();
-/*
-for(var i = 0; i < jsonObject.features.length; i++){
-  //console.log(jsonObject.features[i].geometry.coordinates[0][0]);
-    if(jsonObject.features[i].geometry.coordinates[0][0].length == 2){
-  var city = new ol.Feature({
-      //feature name added
-      name: jsonObject.features[i].properties.name
-      //geometry: new ol.geom.Point(ol.proj.fromLonLat(jsonObject.features[i].geometry.coordinates[0][0]))
-  });
 
-  city.setStyle(new ol.style.Style({
-      image: new ol.style.Icon(/** @type {olx.style.IconOptions}  ({
-          color: '#8959A8',
-          scale: 1.7,
-          crossOrigin: 'anonymous',
-          src: 'https://openlayers.org/en/v4.1.1/examples/data/dot.png'
-      }))
-  }));
-    cityArray.push(city);}
-}
-*/
+var highestOverallValueAlltypes = 0;
+var highestOverallValueBeer = 0;
+var highestOverallValueSpirits = 0;
+var highestOverallValueWine = 0;
+
+
+
 
 var countrySource = new ol.source.Vector({
     projection : 'EPSG:3857',
@@ -82,9 +79,19 @@ selectedBeverage.addEventListener("change", function(){
 });
 var specificCountryJson;
 function getYear(sliderValue){
-  getJsonData(sliderValue);
+  if(sliderValue > 1999 ){
+      currentReport = reportOne;
+  } else if(sliderValue <= 1999 && sliderValue > 1979) {
+      currentReport = reportTwo;
+
+  } else if (sliderValue <= 1979){
+      currentReport = reportThree;
+  }
+
+
   timeLine = String(sliderValue);
   findHighestValue();
+
   countrySource.refresh({force:true});
 };
 
@@ -96,17 +103,17 @@ var averageConsume;
 var countCountry;
 var countConsume;
 
-function findHighestValue(){
+function findHighestValue(slidervalue, currentreport){
     countCountry = 0;
     countConsume = 0;
     highestValue = 0;
     count = 0;
     var reportYear = "Year" + timeLine;
     for( var j = 0; j < jsonObject.features.length;j++){
-      for(var k = 0; k < reportOne.length; k++){
-        if(reportOne[k].Country == jsonObject.features[j].properties.name){
-          if(reportOne[k].BeverageTypes == selectedType){
-            var value = parseFloat(reportOne[k][reportYear]);
+      for(var k = 0; k < currentReport.length; k++){
+        if(currentReport[k].Country == jsonObject.features[j].properties.name){
+          if(currentReport[k].BeverageTypes == selectedType){
+            var value = parseFloat(currentReport[k][reportYear]);
             if(value >= 0){
             countConsume += value;
             countCountry += 1;
@@ -114,7 +121,7 @@ function findHighestValue(){
 
               if(value > highestValue){
                 highestValue = value;
-                countryhighestvalue =  reportOne[k].Country;
+                countryhighestvalue =  currentReport[k].Country;
               };
             };
         };
@@ -129,35 +136,35 @@ function findHighestValue(){
 function setUpValues(tempFeature, resolution){
 var reportYear = "Year" + timeLine;
 
-  for(var k = 0; k < reportOne.length; k++){
-    if(reportOne[k].Country == tempFeature.O.name){
-      if(reportOne[k].BeverageTypes == selectedType){
-        var value = parseFloat(reportOne[k][reportYear]);
+  for(var k = 0; k < currentReport.length; k++){
+    if(currentReport[k].Country == tempFeature.O.name){
+      if(currentReport[k].BeverageTypes == selectedType){
+        var value = parseFloat(currentReport[k][reportYear]);
           if(value > highestValue){
             highestValue = value;
-            countryhighestvalue =  reportOne[k].Country;
+            countryhighestvalue =  currentReport[k].Country;
 
           };
         };
 
-      if(reportOne[k].BeverageTypes == " Beer"){
+      if(currentReport[k].BeverageTypes == " Beer"){
         //Beer added
-        tempFeature.set(" Beer", reportOne[k][reportYear]);
+        tempFeature.set(" Beer", currentReport[k][reportYear]);
         };
 
-        if(reportOne[k].BeverageTypes == " Wine"){
+        if(currentReport[k].BeverageTypes == " Wine"){
         //Wine added
-        tempFeature.set(" Wine", reportOne[k][reportYear]);
+        tempFeature.set(" Wine", currentReport[k][reportYear]);
         };
 
-        if(reportOne[k].BeverageTypes == " Spirits"){
+        if(currentReport[k].BeverageTypes == " Spirits"){
         //Spirits added
-        tempFeature.set(" Spirits", reportOne[k][reportYear]);
+        tempFeature.set(" Spirits", currentReport[k][reportYear]);
         };
 
-        if(reportOne[k].BeverageTypes == " All types"){
+        if(currentReport[k].BeverageTypes == " All types"){
         //Total added
-        tempFeature.set(" All types", reportOne[k][reportYear]);
+        tempFeature.set(" All types", currentReport[k][reportYear]);
         };
     };
   };
@@ -247,6 +254,11 @@ setUpValues(tempFeature,resolution);
         var lat = centroidJSON[highestValueCountryName].LAT;
 
         highestValueIcon.getGeometry().setCoordinates(ol.proj.fromLonLat([long,lat]));
+        highestValueIcon.set("name", tempFeature.O.name);
+        highestValueIcon.set(" Beer", tempFeature.O[" Beer"]);
+        highestValueIcon.set(" Wine", tempFeature.O[" Wine"]);
+        highestValueIcon.set(" Spirits", tempFeature.O[" Spirits"]);
+        highestValueIcon.set(" All types", tempFeature.O[" All types"]);
 
 
 
@@ -452,8 +464,8 @@ console.log(feature);
 // parseJSON in the right format
 var data = [];
 
-function manipulateJson(reportOne, feature){
-    specificCountryJson = reportOne.filter(function(el){
+function manipulateJson(report, feature){
+    specificCountryJson = report.filter(function(el){
         return  el.Country == feature.O.name && el.BeverageTypes == selectedType;
         });
 
@@ -469,20 +481,25 @@ function manipulateJson(reportOne, feature){
 
             }
         var temp = new Object();
-            temp["year"]= key.slice(4,8).toString();
+            if(key !== "Country" && key !== "BeverageTypes"){
+
+            temp["year"]= parseFloat(key.slice(4,8).toString());
             temp["consume"]= parseFloat(obj[key]);
-        data.push(temp);
+            data.push(temp);
+            }
+
+
 
 
         }
     }
-    data.splice(0,1);
-    data.splice(0,1);
+
     console.log(data);
     console.log(d3.max(data, function(d) { return d.consume;} ));
-
+}
+function drawBarChart(feature){
 var margin = {top: 40, right: 20, bottom: 30, left: 40},
-    width = 680 - margin.left - margin.right,
+    width = 800 - margin.left - margin.right,
     height = 480 - margin.top - margin.bottom;
 
 var formatPercent = d3.format(".0%");
@@ -494,6 +511,7 @@ var y = d3.scale.linear().domain([0, d3.max(data, function(d) { return d.consume
 
 var xAxis = d3.svg.axis()
     .scale(x)
+    .tickValues(x.domain().filter(function(d, i) { console.log("HURRE" + data.length);if(data.length > 20 ){ console.log(i%5); return !(i%5); } else { return i;} }))
     .orient("bottom");
 
 var yAxis = d3.svg.axis()
@@ -506,7 +524,7 @@ var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<strong>Consume:</strong> <span style='color:red'>" + d.consume + " liters</span>";
+    return "<strong>Consume:</strong> <span style='color:red'>" + d.consume + " l</span> <strong>Year:</strong> <span style='color:red'>" + d.year + "</span>";
   })
 
 var svg = d3.select(".graph").append("svg")
@@ -520,6 +538,14 @@ var svg = d3.select(".graph").append("svg")
 
 svg.call(tip);
 
+ svg.append("text")
+        .attr("x", (width/30))
+        .attr("y", 0 - (margin.top / 2))
+        .attr("id","left")
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .text("Liter per Person ");
+
   svg.append("text")
         .attr("x", (width / 2))
         .attr("y", 0 - (margin.top / 2))
@@ -530,7 +556,7 @@ svg.call(tip);
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+      .call(xAxis)
 
 svg.append("text")
         .attr("x", (width-30))
@@ -580,6 +606,15 @@ map.on('click', function(evt) {
         //console.log("feature",feature);
     data = [];
     manipulateJson(reportOne, feature);
+    manipulateJson(reportTwo,feature);
+    manipulateJson(reportThree,feature);
+
+
+    data.reverse();
+    drawBarChart(feature);
+
+
+    console.log(data);
 
         if(feature !== undefined) {
           return feature;
