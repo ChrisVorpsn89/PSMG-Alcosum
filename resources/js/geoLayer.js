@@ -22,6 +22,8 @@ function getJsonData(sliderValue){
   xhReq.open("GET", url, false);
   xhReq.send(null);
   reportOne = JSON.parse(xhReq.responseText);
+  getOverallHighestValue(reportOne,selectedType);
+
 };
 
 
@@ -34,27 +36,14 @@ function getCentroidsJSON (){
     centroidJSON = JSON.parse(xhReq.responseText);
 }
 getCentroidsJSON();
-/*
-for(var i = 0; i < jsonObject.features.length; i++){
-  //console.log(jsonObject.features[i].geometry.coordinates[0][0]);
-    if(jsonObject.features[i].geometry.coordinates[0][0].length == 2){
-  var city = new ol.Feature({
-      //feature name added
-      name: jsonObject.features[i].properties.name
-      //geometry: new ol.geom.Point(ol.proj.fromLonLat(jsonObject.features[i].geometry.coordinates[0][0]))
-  });
 
-  city.setStyle(new ol.style.Style({
-      image: new ol.style.Icon(/** @type {olx.style.IconOptions}  ({
-          color: '#8959A8',
-          scale: 1.7,
-          crossOrigin: 'anonymous',
-          src: 'https://openlayers.org/en/v4.1.1/examples/data/dot.png'
-      }))
-  }));
-    cityArray.push(city);}
-}
-*/
+var highestOverallValueAlltypes = 0;
+var highestOverallValueBeer = 0;
+var highestOverallValueSpirits = 0;
+var highestOverallValueWine = 0;
+
+
+        
 
 var countrySource = new ol.source.Vector({
     projection : 'EPSG:3857',
@@ -83,6 +72,7 @@ function getYear(sliderValue){
   getJsonData(sliderValue);
   timeLine = String(sliderValue);
   findHighestValue();
+
   countrySource.refresh({force:true});
 };
 
@@ -448,6 +438,8 @@ function manipulateJson(reportOne, feature){
     }
     data.splice(0,1);
     data.splice(0,1);
+    data.reverse();    
+
     console.log(data);
     console.log(d3.max(data, function(d) { return d.consume;} ));
 
@@ -489,6 +481,14 @@ var svg = d3.select(".graph").append("svg")
 
 
 svg.call(tip);
+  
+ svg.append("text")
+        .attr("x", (width/30))
+        .attr("y", 0 - (margin.top / 2))
+        .attr("id","left")
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .text("Liter per Person ");
 
   svg.append("text")
         .attr("x", (width / 2))
@@ -519,6 +519,8 @@ svg.append("text")
 
 
 
+
+    
   svg.append("g")
       .attr("class", "y axis")
       .call(yAxis)
