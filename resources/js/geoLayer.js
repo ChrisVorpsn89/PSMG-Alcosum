@@ -511,8 +511,13 @@ svg.append("text")
         .text("Back to Map");
   document.getElementById("exitText").addEventListener('click', function(event){
       d3.selectAll(".graph > *").remove();
+//zoom reset
+      map.getView().setZoom(2.4);
+
 
   });
+
+
 
   svg.append("g")
       .attr("class", "y axis")
@@ -556,4 +561,15 @@ map.on('click', function(evt) {
     });
     if(feature!== undefined) {
     console.log(feature.O.name);}
+});
+
+
+map.on('click', function(evt) {
+    if(map.getView().getZoom()<=3){
+        map.getView().setCenter(evt.coordinate);
+        map.getView().setZoom(map.getView().getZoom()+2);
+
+    }else{
+        map.getView().setCenter(evt.coordinate);
+    }
 });
