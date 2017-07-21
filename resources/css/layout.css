@@ -343,6 +343,8 @@ body {
 }
 .graph #tempSVG {
     background-color: white;
+    border-radius: 0.5em;
+    border: 1px solid #000;
 
 }
 

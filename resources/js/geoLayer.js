@@ -9,6 +9,7 @@ selectedBeverage = document.getElementById("selectedBeverage"),
 averageConsumeVal = document.getElementById("averageConsumeVal"),
 countryNumber = document.getElementById("countryNumber"),
 styleCache =  {},
+highestBeverageValue,
 reportOne;
 
 function getJsonData(sliderValue){
@@ -75,6 +76,7 @@ var defaultStyle = new ol.style.Style({
 
 selectedBeverage.addEventListener("change", function(){
   selectedType = selectedBeverage.options[selectedBeverage.selectedIndex].value;
+  legendData(selectedType);
   findHighestValue();
   countrySource.refresh({force:true});
 });
@@ -161,12 +163,40 @@ var reportYear = "Year" + timeLine;
   };
 };
 
+function legendData(type){
+  type = selectedType;
+  if(selectedType == " All types"){
+    highestBeverageValue = 26;
+  };
+  if(selectedType == " Beer"){
+    highestBeverageValue = 10;
+  };
+  if(selectedType == " Wine"){
+    highestBeverageValue = 20;
+  };
+  if(selectedType == " Spirits"){
+    highestBeverageValue = 14;
+  };
+
+  var summand = highestBeverageValue/8;
+  document.getElementById("legend-box-b").innerHTML = "0 - " + parseInt(summand);
+  document.getElementById("legend-box-c").innerHTML = parseInt(summand) + " - " + parseInt(2*summand);
+  document.getElementById("legend-box-d").innerHTML = parseInt(2*summand) + " - " + parseInt(3*summand);
+  document.getElementById("legend-box-e").innerHTML = parseInt(3*summand) + " - " + parseInt(4*summand);
+  document.getElementById("legend-box-f").innerHTML = parseInt(4*summand) + " - " + parseInt(5*summand);
+  document.getElementById("legend-box-g").innerHTML = parseInt(5*summand) + " - " + parseInt(6*summand);
+  document.getElementById("legend-box-h").innerHTML = parseInt(6*summand) + " - " + parseInt(7*summand);
+  document.getElementById("legend-box-i").innerHTML = parseInt(7*summand) + " - " + parseInt(8*summand);
+  return highestBeverageValue;
+}
+
 function styleFunction(tempFeature, resolution){
 setUpValues(tempFeature,resolution);
 //Color Function
     var value = parseFloat(tempFeature.O[selectedType]);
     var scalelevel = 8;
-    var summand = highestValue/8;
+    legendData();
+    var summand = highestBeverageValue/8;
     var color;
     var stroke = defaultStyle.stroke;
 
@@ -174,11 +204,11 @@ setUpValues(tempFeature,resolution);
     if(!value){
         color = '#bbb';
     }
-    if (value < summand ){
-        color = '#FFFFF0';
-    }
     if (value == 0 ){
         color = '#90EE90';
+    }
+    if (value < summand ){
+        color = '#FFFFF0';
     }
     if (value > summand &&  value < 2*summand){
         color = '#fee0d2';
@@ -514,10 +544,7 @@ svg.append("text")
 //zoom reset
       map.getView().setZoom(2.4);
 
-
   });
-
-
 
   svg.append("g")
       .attr("class", "y axis")
