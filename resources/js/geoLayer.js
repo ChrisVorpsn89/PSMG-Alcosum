@@ -349,15 +349,6 @@ function displayTooltip(evt) {
 
 map.on('pointermove', displayTooltip);
 
-map.on('click', function(evt) {
-    if(map.getView().getZoom()<=3){
-        map.getView().setCenter(evt.coordinate);
-        map.getView().setZoom(map.getView().getZoom()+2);
-        
-}else{
-        map.getView().setCenter(evt.coordinate);
-    }
-});
 
 map.on('pointermove', function(evt) {
     var pixel = evt.pixel;
@@ -530,7 +521,10 @@ svg.append("text")
         .text("Back to Map");
   document.getElementById("exitText").addEventListener('click', function(event){
       d3.selectAll(".graph > *").remove();
-    
+//zoom reset
+      map.getView().setZoom(3);
+
+
   })
   
     
@@ -583,3 +577,13 @@ map.on('click', function(evt) {
     console.log(feature.O.name);}
 });
 
+
+map.on('click', function(evt) {
+    if(map.getView().getZoom()<=3){
+        map.getView().setCenter(evt.coordinate);
+        map.getView().setZoom(map.getView().getZoom()+2);
+
+    }else{
+        map.getView().setCenter(evt.coordinate);
+    }
+});
