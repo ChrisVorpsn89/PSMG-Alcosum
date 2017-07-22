@@ -577,7 +577,7 @@ svg.append("text")
         .attr("y", 0 - (margin.top / 2))
         .attr("id","exitText")
         .attr("text-anchor", "middle")
-        .style("font-size", "16px")
+        .style("font-size", "100%")
         .text("Back to Map");
   document.getElementById("exitText").addEventListener('click', function(event){
       d3.selectAll(".graph > *").remove();

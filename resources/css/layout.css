@@ -1,22 +1,21 @@
 body {
   color: #fff;
-  background: #ba8b02; /* For browsers that do not support gradients */
+  background: #a43931; /* For browsers that do not support gradients */
   background: linear-gradient(#1d4350, #a43931); /* Standard syntax */
-  background: -moz-linear-gradient(#ba8b02, #181818); /* For Firefox 3.6 to 15 */
+  background: -moz-linear-gradient(#1d4350, #a43931); /* For Firefox 3.6 to 15 */
   width: 100%;
   height: 100%;
 }
 
 .container{
-  margin-top: -20px;
-  margin-left: 1%;
-  height: 670px;
+  margin-top: 1%;
+  height: 100%;
   width: 100%;
 }
 
 .head-container{
   font-size: 100%;
-  margin-top: 0.5%;
+  margin-top: 1%;
   height: 100%;
   /**background: linear-gradient(#ffb347, #ffcc33);**/
   border-radius: .25em;
@@ -25,7 +24,7 @@ body {
 }
 
 .message {
-background:#ccc;
+background: linear-gradient(#70e1f5, #ffd194);
 color:#000;
 position: absolute;
 top: -100%;
@@ -47,14 +46,14 @@ box-sizing: border-box;
   appearance:none !important;
   cursor:pointer;
   left:-100%;
-  top:-100W%;
+  top:-100%;
 }
 
 #toggle + label {
 margin-top: 1px;
 float:right;
 cursor:pointer;
-margin-right:1%;
+margin-right: 2.5%;
 width: 4%;
 background: linear-gradient(#abbaab, #ffffff);
 border-radius: 3px;
@@ -76,7 +75,7 @@ cursor: pointer;
 }
 
 #toggle:checked ~ .message {
-  top: 0;
+  top: 0%;
 }
 
 #toggle:checked ~ .head-container {
@@ -111,8 +110,8 @@ cursor: pointer;
 }
 
 .map {
-    height: 100%;
-    width: 85%;
+    height: 99%;
+    width: 86%;
     float:left;
     overflow:hidden;
 }
@@ -187,11 +186,11 @@ cursor: pointer;
 }
 
 .slider .slider-track-high{
-  background: #888;
+  background: #ffcc33;
 }
 
 .slider .slider-selection {
-   background: #888;
+   background: #ffcc33;
 }
 
 #averageConsumeLabel{
@@ -211,7 +210,7 @@ cursor: pointer;
 }
 
 #countryNumber{
-  width: 5%;
+  width: 8%;
   color: #000;
   font-weight: bold;
   border: 2px solid #ccc;
@@ -220,6 +219,7 @@ cursor: pointer;
 }
 
 #timeSliderVal{
+  width: 8%;
   color: #000;
   font-weight: bold;
   border: 2px solid #ccc;
@@ -251,8 +251,6 @@ font-weight: bold;
 border-radius: 2px;
 }
 
-
-
 .flagbox {
     height: 8%;
 }
@@ -271,14 +269,14 @@ border-radius: 2px;
 .my-legend{
   height: 100%;
   width: 3%;
-  margin-top: 2%;
+  margin-top: 1%;
   margin-left: 1%;
   float: left;
 }
 
-.my-legend .legend-title {
+.legend-title {
     text-align: left;
-    margin-bottom: 5px;
+    margin-bottom: 1em;
     font-weight: bold;
     font-size: 90%;
     }
@@ -300,22 +298,19 @@ border-radius: 2px;
     display: block;
     float: left;
     height: 16px;
-    width: 30px;
+    width: 100%;
     margin-right: 5px;
     margin-left: 0;
     border: 1px solid #999;
     }
   .my-legend .legend-source {
-    font-size: 70%;
+    font-size: 80%;
     color: #999;
     clear: both;
     }
   .my-legend a {
     color: #777;
     }
-body {
-  font: 10px sans-serif;
-}
 
 .axis path,
 .axis line {
@@ -344,6 +339,7 @@ body {
   display: none;
 }
 .graph #tempSVG {
+  margin-top: 3%;
     background-color: white;
     border-radius: 0.5em;
     border: 1px solid #000;
