@@ -14,7 +14,21 @@ getJsonData();
 currentReport = reportOne;
 
 
+/**
+highestBeverageValue,
+reportOne;
 
+function getJsonData(sliderValue){
+  if(sliderValue > 1999){
+    url = "data/converted_2000_2016.json";
+    } else if(sliderValue > 1979){
+    url ="data/converted_1999_1980.json";
+  } else if(sliderValue > 1965){
+    url ="data/converted_1979_1966.json";
+  };
+  xhReq.open("GET", url, false);
+
+**/
 
 function getJsonData(){
 

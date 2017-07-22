@@ -1,20 +1,26 @@
 body {
-  font-family: "Open sans", "Segoe UI", "Segoe WP", Helvetica, Arial, sans-serif;
-  color: #444;
+  color: #fff;
   background: #ba8b02; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(#ba8b02, #181818); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#ba8b02, #181818); /* For Opera 11.1 to 12.0 */
-  background: linear-gradient(#70e1f5, #ffd194); /* Standard syntax */
+  background: linear-gradient(#1d4350, #a43931); /* Standard syntax */
   background: -moz-linear-gradient(#ba8b02, #181818); /* For Firefox 3.6 to 15 */
+  width: 100%;
+  height: 100%;
+}
+
+.container{
+  margin-top: -20px;
+  margin-left: 1%;
+  height: 670px;
+  width: 100%;
 }
 
 .head-container{
   font-size: 100%;
   margin-top: 0.5%;
   height: 100%;
-  background-color: #eee;
+  /**background: linear-gradient(#ffb347, #ffcc33);**/
   border-radius: .25em;
-  border: 2px solid #ffa500;
+  font-family: sans-serif;
   transition: margin 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94);
 }
 
@@ -45,14 +51,13 @@ box-sizing: border-box;
 }
 
 #toggle + label {
+margin-top: 1px;
 float:right;
 cursor:pointer;
 margin-right:1%;
-margin-top:0.25%;
-padding:5%;
-background: #26ae90;
+width: 4%;
+background: linear-gradient(#abbaab, #ffffff);
 border-radius: 3px;
-padding: 1px 2px;
 color: #000;
 border: 1px solid #000;
 font-weight: bold;
@@ -60,15 +65,14 @@ font-size:100%;
 text-align:center;
 -webkit-font-smoothing: antialiased;
 cursor: pointer;
-transition:all 500ms ease;
 }
 
 #toggle + label:after {
-  content:"Information"
+  content:"Info"
 }
 
 #toggle + label:hover{
-  background: #ffd700;
+  background: #888;
 }
 
 #toggle:checked ~ .message {
@@ -100,19 +104,13 @@ transition:all 500ms ease;
 }
 
 #title{
-  color: #000;
   font-weight: bold;
-  font-size: 120%;
+  font-size: 100%;
   margin-left: 1%;
-}
-
-#myContainer p {
-    background-color: aliceblue;
-    margin: 2px;
+  width: 10%;
 }
 
 .map {
-    margin-top: 10px;
     height: 100%;
     width: 85%;
     float:left;
@@ -172,7 +170,7 @@ transition:all 500ms ease;
 }
 
 .slider{
-  width: 30%;
+  width: 25%;
 }
 
 .slider.slider-horizontal{
@@ -247,7 +245,7 @@ margin-left: 1%;
 
 .selectBox {
 width: 10%;
-height: 80%;
+height: 100%;
 color: #000;
 font-weight: bold;
 border-radius: 2px;
@@ -256,7 +254,7 @@ border-radius: 2px;
 
 
 .flagbox {
-    height: 15%;
+    height: 8%;
 }
 
 .flag {
@@ -271,7 +269,11 @@ border-radius: 2px;
 }
 
 .my-legend{
-  margin-left: 10px;
+  height: 100%;
+  width: 3%;
+  margin-top: 2%;
+  margin-left: 1%;
+  float: left;
 }
 
 .my-legend .legend-title {

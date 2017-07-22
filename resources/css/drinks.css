@@ -1,6 +1,6 @@
 .drinks-container {
-  margin-top: 11px;
-  height: 670px;
+  margin-top: 2%;
+  height: 100%;
   float: left;
   width:7%;
   overflow:hidden;
@@ -33,21 +33,26 @@
 
 
 .name p, .country p {
+  font-family: sans-serif;
+  color: #fff;
   font-weight: bold;
-  margin-bottom: 30%;
   display: inline;
-  padding: 3px 8px;
+  padding: 20% 1%;
   text-align: center;
   text-transform: uppercase;
-  font-size: 12px;
-  font-family: 'gill sans';
-  background: #fff;
+  font-size: 80%;
   cursor: pointer;
 }
+
+.country p{
+  padding-bottom: 20%;
+}
+
 .name p.current {
   background: #004687;
   color: #eee;
 }
+
 svg {
   position: absolute;
   left: 0;
@@ -132,7 +137,8 @@ svg {
 }
 @media screen and (max-width: 1100px) {
   .drinks-container {
-    width: 13%;
+    width: 10%;
+    height: 100%;
   }
   .drink:nth-of-type(3) {
     clear: both;
