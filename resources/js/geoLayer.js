@@ -89,6 +89,9 @@ selectedBeverage.addEventListener("change", function(){
   selectedType = selectedBeverage.options[selectedBeverage.selectedIndex].value;
   legendData(selectedType);
   findHighestValue();
+if(currentFeature!== null){
+    manageGraph(currentFeature);
+    }
   countrySource.refresh({force:true});
 });
 var specificCountryJson;
@@ -579,12 +582,19 @@ svg.append("text")
         .attr("text-anchor", "middle")
         .style("font-size", "100%")
         .text("Back to Map");
-  document.getElementById("exitText").addEventListener('click', function(event){
-      d3.selectAll(".graph > *").remove();
-//zoom reset
-      map.getView().setZoom(2.4);
 
-  });
+        resetGraph();
+//zoom reset
+
+function resetGraph(){
+      document.getElementById("exitText").addEventListener('click', function(event){
+      d3.selectAll(".graph > *").remove();
+      map.getView().setZoom(2.4);
+      
+       });
+}    
+                                                            
+
 
   svg.append("g")
       .attr("class", "y axis")
@@ -612,13 +622,12 @@ function type(d) {
 }
 }
 
+function manageGraph(feature){
+    d3.selectAll(".graph > *").remove();
 
-map.on('click', function(evt) {
-    var pixel = evt.pixel;
-
-    var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
-        //console.log("feature",feature);
+    
     data = [];
+        
     manipulateJson(reportOne, feature);
     manipulateJson(reportTwo,feature);
     manipulateJson(reportThree,feature);
@@ -626,6 +635,16 @@ map.on('click', function(evt) {
 
     data.reverse();
     drawBarChart(feature);
+    
+}
+
+var currentFeature;
+map.on('click', function(evt) {
+    var pixel = evt.pixel;
+
+    var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
+    currentFeature = feature;    
+    manageGraph(feature);    
 
 
     console.log(data);
@@ -638,6 +657,8 @@ map.on('click', function(evt) {
     if(feature!== undefined) {
     console.log(feature.O.name);}
 });
+
+
 
 
 map.on('click', function(evt) {
