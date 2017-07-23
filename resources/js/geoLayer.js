@@ -20,7 +20,6 @@ function getJsonData(){
 url1 = "data/converted_2000_2016.json";
 url2 ="data/converted_1999_1980.json";
 url3 ="data/converted_1979_1966.json";
-console.log("HUUUUURE");
   xhReq.open("GET", url1, false);
   xhReq.send(null);
   reportOne = JSON.parse(xhReq.responseText);
@@ -30,10 +29,7 @@ console.log("HUUUUURE");
   xhReq.open("GET", url3, false);
   xhReq.send(null);
   reportThree = JSON.parse(xhReq.responseText);
-
-
 };
-
 
 //Parsing the JSON with centroids of all countries
 var centroidJSON;
@@ -43,15 +39,8 @@ function getCentroidsJSON (){
     xhReq.send(null);
     centroidJSON = JSON.parse(xhReq.responseText);
 }
+
 getCentroidsJSON();
-
-var highestOverallValueAlltypes = 0;
-var highestOverallValueBeer = 0;
-var highestOverallValueSpirits = 0;
-var highestOverallValueWine = 0;
-
-
-
 
 var countrySource = new ol.source.Vector({
     projection : 'EPSG:3857',
@@ -74,7 +63,7 @@ selectedBeverage.addEventListener("change", function(){
   selectedType = selectedBeverage.options[selectedBeverage.selectedIndex].value;
   legendData(selectedType);
   findHighestValue();
-if(currentFeature!== null){
+if(currentFeature !== null && !!document.getElementById("tempSVG")){
     manageGraph(currentFeature);
     }
   countrySource.refresh({force:true});
@@ -219,25 +208,25 @@ setUpValues(tempFeature,resolution);
     if (value < summand ){
         color = '#FFFFF0';
     }
-    if (value > summand &&  value < 2*summand){
+    if (value >= summand &&  value < 2*summand){
         color = '#fee0d2';
     }
-    if (value > 2*summand && value < 3*summand){
+    if (value >= 2*summand && value < 3*summand){
         color = '#fcbba1';
     }
-    if (value > 3*summand && value < 4*summand){
+    if (value >= 3*summand && value < 4*summand){
         color = '#fc9272';
     }
-    if (value > 4*summand && value < 5*summand){
+    if (value >= 4*summand && value < 5*summand){
         color = '#fb6a4a';
     }
-     if (value > 5*summand && value < 6*summand){
+     if (value >= 5*summand && value < 6*summand){
         color = '#ef3b2c';
     }
-     if (value > 6*summand && value < 7*summand){
+     if (value >= 6*summand && value < 7*summand){
         color = '#cb181d';
     }
-     if (value > 7*summand){
+     if (value >= 7*summand){
         color = '#99000d'
     }
     if(value == highestValue){
@@ -456,7 +445,7 @@ if(feature!== undefined) {
         $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + inverseCountryCodes[feature.O.name.toString()].toLowerCase() + ".svg");
     }
     else{
-console.log(feature);
+//console.log(feature);
     }
 }
 
@@ -475,10 +464,10 @@ function manipulateJson(report, feature){
         var obj = specificCountryJson[i];
         for (var key in obj) {
             if (obj.hasOwnProperty(key)) {
-            console.log(key + " -> " + obj[key]);
+            //console.log(key + " -> " + obj[key]);
             if(obj[key] == "null"){
                 obj[key] = 0.0;
-             console.log(key + " -> " + obj[key]);
+             //console.log(key + " -> " + obj[key]);
             }
 
             }
@@ -498,7 +487,6 @@ function manipulateJson(report, feature){
 
     console.log(barChartdata);
     console.log(d3.max(barChartdata, function(d) { return d.consume;} ));
-}
 
 function drawOverAllLineChart(){
   var margin = {top: 20, right: 20, bottom: 30, left: 50},
@@ -624,12 +612,16 @@ var y = d3.scaleLinear().domain([0, d3.max(barChartdata, function(d) { return d.
 var xAxis = d3.axisBottom(x)
     .tickValues(x.domain().filter(function(d, i) { console.log("HURRE" + barChartdata.length);if(barChartdata.length > 20 ){ console.log(i%5); return !(i%5); } else { return i;} }))
 
+
 var yAxis = d3.axisLeft(y)
     
 
 
 
 /*var tip = d3.tip()
+=======
+var tip = d3.tip()
+>>>>>>> ce041d6deecd5684150b016fcdd5dfff39db475d
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
@@ -646,6 +638,7 @@ var svg = d3.select(".graph").append("svg")
 
 
 //svg.call(tip);
+
 
  svg.append("text")
         .attr("x", (width/30))
@@ -682,11 +675,9 @@ function resetGraph(){
       document.getElementById("exitText").addEventListener('click', function(event){
       d3.selectAll(".graph > *").remove();
       map.getView().setZoom(2.4);
-      
-       });
-}    
-                                                            
 
+       });
+}
 
   svg.append("g")
       .attr("class", "y axis")
@@ -711,11 +702,12 @@ function type(d) {
   d.consume = +d.consume;
 
   return d;
-}
-}
+  };
+};
 
 function manageGraph(feature){
     d3.selectAll(".graph > *").remove();
+<<<<<<< HEAD
 
     
     barChartdata = [];
@@ -726,14 +718,13 @@ function manageGraph(feature){
 
 
     barChartdata.reverse();
+
     drawBarChart(feature);
-    
 }
 
 var currentFeature;
 map.on('click', function(evt) {
     var pixel = evt.pixel;
-
     var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
     currentFeature = feature;    
     manageGraph(feature);    
@@ -741,13 +732,14 @@ map.on('click', function(evt) {
 
     console.log(barChartdata);
 
+
         if(feature !== undefined) {
           return feature;
-        }
-
+        };
     });
     if(feature!== undefined) {
-    console.log(feature.O.name);}
+    //console.log(feature.O.name);
+  };
 });
 
 
@@ -757,7 +749,6 @@ map.on('click', function(evt) {
     if(map.getView().getZoom()<=3){
         map.getView().setCenter(evt.coordinate);
         map.getView().setZoom(map.getView().getZoom()+2);
-
     }else{
         map.getView().setCenter(evt.coordinate);
     }
