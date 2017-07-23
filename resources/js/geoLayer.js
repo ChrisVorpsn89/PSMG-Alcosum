@@ -35,7 +35,6 @@ function getJsonData(){
 url1 = "data/converted_2000_2016.json";
 url2 ="data/converted_1999_1980.json";
 url3 ="data/converted_1979_1966.json";
-console.log("HUUUUURE");
   xhReq.open("GET", url1, false);
   xhReq.send(null);
   reportOne = JSON.parse(xhReq.responseText);
@@ -45,10 +44,7 @@ console.log("HUUUUURE");
   xhReq.open("GET", url3, false);
   xhReq.send(null);
   reportThree = JSON.parse(xhReq.responseText);
-
-
 };
-
 
 //Parsing the JSON with centroids of all countries
 var centroidJSON;
@@ -58,15 +54,8 @@ function getCentroidsJSON (){
     xhReq.send(null);
     centroidJSON = JSON.parse(xhReq.responseText);
 }
+
 getCentroidsJSON();
-
-var highestOverallValueAlltypes = 0;
-var highestOverallValueBeer = 0;
-var highestOverallValueSpirits = 0;
-var highestOverallValueWine = 0;
-
-
-
 
 var countrySource = new ol.source.Vector({
     projection : 'EPSG:3857',
@@ -89,7 +78,7 @@ selectedBeverage.addEventListener("change", function(){
   selectedType = selectedBeverage.options[selectedBeverage.selectedIndex].value;
   legendData(selectedType);
   findHighestValue();
-if(currentFeature!== null){
+if(currentFeature !== null && !!document.getElementById("tempSVG")){
     manageGraph(currentFeature);
     }
   countrySource.refresh({force:true});
@@ -471,7 +460,7 @@ if(feature!== undefined) {
         $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + inverseCountryCodes[feature.O.name.toString()].toLowerCase() + ".svg");
     }
     else{
-console.log(feature);
+//console.log(feature);
     }
 }
 
@@ -490,10 +479,10 @@ function manipulateJson(report, feature){
         var obj = specificCountryJson[i];
         for (var key in obj) {
             if (obj.hasOwnProperty(key)) {
-            console.log(key + " -> " + obj[key]);
+            //console.log(key + " -> " + obj[key]);
             if(obj[key] == "null"){
                 obj[key] = 0.0;
-             console.log(key + " -> " + obj[key]);
+             //console.log(key + " -> " + obj[key]);
             }
 
             }
@@ -511,11 +500,10 @@ function manipulateJson(report, feature){
         }
     }
 
-    console.log(data);
-    console.log(d3.max(data, function(d) { return d.consume;} ));
+    //console.log(data);
+    //console.log(d3.max(data, function(d) { return d.consume;} ));
 }
 function drawBarChart(feature){
-d3.selectAll(".graph > *").remove();
 var margin = {top: 40, right: 20, bottom: 30, left: 40},
     width = 800 - margin.left - margin.right,
     height = 480 - margin.top - margin.bottom;
@@ -529,13 +517,16 @@ var y = d3.scale.linear().domain([0, d3.max(data, function(d) { return d.consume
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .tickValues(x.domain().filter(function(d, i) { console.log("HURRE" + data.length);if(data.length > 20 ){ console.log(i%5); return !(i%5); } else { return i;} }))
+    .tickValues(x.domain().filter(function(d, i) { //console.log("HURRE" + data.length);
+    if(data.length > 20 ){ //console.log(i%5);
+      return !(i%5); }
+       else { return i;}
+     }))
     .orient("bottom");
 
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-
 
 
 var tip = d3.tip()
@@ -552,8 +543,6 @@ var svg = d3.select(".graph").append("svg")
     .attr("name","tempSVG")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
 svg.call(tip);
 
  svg.append("text")
@@ -591,11 +580,9 @@ function resetGraph(){
       document.getElementById("exitText").addEventListener('click', function(event){
       d3.selectAll(".graph > *").remove();
       map.getView().setZoom(2.4);
-      
-       });
-}    
-                                                            
 
+       });
+}
 
   svg.append("g")
       .attr("class", "y axis")
@@ -620,43 +607,35 @@ function type(d) {
   d.consume = +d.consume;
 
   return d;
-}
-}
+  };
+};
 
 function manageGraph(feature){
     d3.selectAll(".graph > *").remove();
-
-    
     data = [];
-        
     manipulateJson(reportOne, feature);
     manipulateJson(reportTwo,feature);
     manipulateJson(reportThree,feature);
-
-
     data.reverse();
+
     drawBarChart(feature);
-    
 }
 
 var currentFeature;
 map.on('click', function(evt) {
     var pixel = evt.pixel;
-
     var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
-    currentFeature = feature;    
-    manageGraph(feature);    
+    currentFeature = feature;
+    manageGraph(feature);
 
-
-    console.log(data);
-
+    //console.log(data);
         if(feature !== undefined) {
           return feature;
-        }
-
+        };
     });
     if(feature!== undefined) {
-    console.log(feature.O.name);}
+    //console.log(feature.O.name);
+  };
 });
 
 
