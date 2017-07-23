@@ -223,25 +223,25 @@ setUpValues(tempFeature,resolution);
     if (value < summand ){
         color = '#FFFFF0';
     }
-    if (value > summand &&  value < 2*summand){
+    if (value >= summand &&  value < 2*summand){
         color = '#fee0d2';
     }
-    if (value > 2*summand && value < 3*summand){
+    if (value >= 2*summand && value < 3*summand){
         color = '#fcbba1';
     }
-    if (value > 3*summand && value < 4*summand){
+    if (value >= 3*summand && value < 4*summand){
         color = '#fc9272';
     }
-    if (value > 4*summand && value < 5*summand){
+    if (value >= 4*summand && value < 5*summand){
         color = '#fb6a4a';
     }
-     if (value > 5*summand && value < 6*summand){
+     if (value >= 5*summand && value < 6*summand){
         color = '#ef3b2c';
     }
-     if (value > 6*summand && value < 7*summand){
+     if (value >= 6*summand && value < 7*summand){
         color = '#cb181d';
     }
-     if (value > 7*summand){
+     if (value >= 7*summand){
         color = '#99000d'
     }
     if(value == highestValue){
