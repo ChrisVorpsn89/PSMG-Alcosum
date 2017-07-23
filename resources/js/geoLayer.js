@@ -12,23 +12,8 @@ styleCache =  {},
 reportOne,reportTwo,reportThree,currentReport;
 getJsonData();
 currentReport = reportOne;
+drawOverAllLineChart();
 
-
-/**
-highestBeverageValue,
-reportOne;
-
-function getJsonData(sliderValue){
-  if(sliderValue > 1999){
-    url = "data/converted_2000_2016.json";
-    } else if(sliderValue > 1979){
-    url ="data/converted_1999_1980.json";
-  } else if(sliderValue > 1965){
-    url ="data/converted_1979_1966.json";
-  };
-  xhReq.open("GET", url, false);
-
-**/
 
 function getJsonData(){
 
@@ -468,7 +453,7 @@ if(feature!== undefined) {
 
 
 // parseJSON in the right format
-var data = [];
+var barChartdata = [];
 
 function manipulateJson(report, feature){
     specificCountryJson = report.filter(function(el){
@@ -491,7 +476,7 @@ function manipulateJson(report, feature){
 
             temp["year"]= parseFloat(key.slice(4,8).toString());
             temp["consume"]= parseFloat(obj[key]);
-            data.push(temp);
+            barChartdata.push(temp);
             }
 
 
@@ -500,42 +485,149 @@ function manipulateJson(report, feature){
         }
     }
 
-    //console.log(data);
-    //console.log(d3.max(data, function(d) { return d.consume;} ));
-}
+    console.log(barChartdata);
+    console.log(d3.max(barChartdata, function(d) { return d.consume;} ));
+
+function drawOverAllLineChart(){
+  var margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = 600 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// parse the date / time
+var parseTime = d3.timeParse("%Y");
+
+// set the ranges
+var x = d3.scaleTime().range([0, width]);
+var y = d3.scaleLinear().range([height, 0]);
+
+// define the 1st line
+var beerline = d3.line()
+    .x(function(d) {return x(d.year); })
+    .y(function(d) {  return y(d.beer); });
+
+var allline = d3.line()
+    .x(function(d) { return x(d.year); })
+    .y(function(d) { return y(d.all); });
+var wineline = d3.line()
+    .x(function(d) { return x(d.year); })
+    .y(function(d) { return y(d.wine); });
+var spiritline = d3.line()
+    .x(function(d) { return x(d.year); })
+    .y(function(d) { return y(d.spirits); });    
+
+// append the svg obgect to the body of the page
+// appends a 'group' element to 'svg'
+// moves the 'group' element to the top left margin
+var svg = d3.select(".message").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Get the data
+d3.csv("data/average.csv", function(error, data) {
+  if (error) throw error;
+
+  // format the data
+  data.forEach(function(d) {
+      console.log(d.year.toString());
+      d.year = parseTime(String(d.year));
+      console.log(d.year);
+      d.beer = +d.beer;
+      d.all = +d.all;
+      d.wine = +d.wine;
+      d.spirits =+d.spirits;
+  });
+
+  // Scale the range of the data
+  x.domain(d3.extent(data, function(d) { return d.year; }));
+  y.domain([0, d3.max(data, function(d) {
+      console.log(d.all);
+      console.log(d.beer);
+	  return Math.max(d.all,d.beer,d.wine,d.spirits); })]);
+svg.append("text")
+        .attr("x", (width/30))
+        .attr("y", 0 - (margin.top / 2))
+        .attr("id","left")
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .text("Liter per Person ");    
+  svg.append("path")
+      .data([data])
+      .attr("class", "line")
+      .style("stroke","blue")
+      .attr("d",beerline);
+
+  svg.append("path")
+      .data( [data])
+      .attr("class", "line")
+      .style("stroke", "red")
+      .attr("d", wineline);
+    svg.append("path")
+      .data( [data])
+      .attr("class", "line")
+      .style("stroke", "green")
+      .attr("d", spiritline);
+    svg.append("path")
+      .data( [data])
+      .attr("class", "line")
+      .style("stroke", "black")
+      .attr("d", allline);    
+
+  // Add the X Axis
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  // Add the Y Axis
+  svg.append("g")
+      .call(d3.axisLeft(y))
+        .append("text");
+
+});
+
+    }
+        
+    
+
+
+
+
 function drawBarChart(feature){
 var margin = {top: 40, right: 20, bottom: 30, left: 40},
     width = 800 - margin.left - margin.right,
     height = 480 - margin.top - margin.bottom;
 
 var formatPercent = d3.format(".0%");
+console.log(barChartdata);
+    
 
-var x = d3.scale.ordinal().domain(data.map(function(d) { return d.year; })).rangeRoundBands([0, width], .03);
+var x = d3.scaleBand().rangeRound([0, width]).padding(0.3);
+    x.domain(barChartdata.map(function(d) { return d.year }))
 
-var y = d3.scale.linear().domain([0, d3.max(data, function(d) { return d.consume; })])
+var y = d3.scaleLinear().domain([0, d3.max(barChartdata, function(d) { return d.consume; })])
     .range([height, 0]);
 
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .tickValues(x.domain().filter(function(d, i) { //console.log("HURRE" + data.length);
-    if(data.length > 20 ){ //console.log(i%5);
-      return !(i%5); }
-       else { return i;}
-     }))
-    .orient("bottom");
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
+var xAxis = d3.axisBottom(x)
+    .tickValues(x.domain().filter(function(d, i) { console.log("HURRE" + barChartdata.length);if(barChartdata.length > 20 ){ console.log(i%5); return !(i%5); } else { return i;} }))
 
 
+var yAxis = d3.axisLeft(y)
+    
+
+
+
+/*var tip = d3.tip()
+=======
 var tip = d3.tip()
+>>>>>>> ce041d6deecd5684150b016fcdd5dfff39db475d
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
     return "<strong>Consume:</strong> <span style='color:red'>" + d.consume + " l</span> <strong>Year:</strong> <span style='color:red'>" + d.year + "</span>";
   })
-
+*/
 var svg = d3.select(".graph").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -543,7 +635,10 @@ var svg = d3.select(".graph").append("svg")
     .attr("name","tempSVG")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-svg.call(tip);
+
+
+//svg.call(tip);
+
 
  svg.append("text")
         .attr("x", (width/30))
@@ -593,11 +688,11 @@ function resetGraph(){
       .attr("dy", ".71em")
 
   svg.selectAll(".bar")
-      .data(data)
+      .data(barChartdata)
     .enter().append("rect")
       .attr("class", "bar")
       .attr("x", function(d) { return x(d.year); })
-      .attr("width", x.rangeBand())
+      .attr("width", x.bandwidth())
       .attr("y", function(d) { return y(d.consume); })
       .attr("height", function(d) { return height - y(d.consume); })
       .on('mouseover', tip.show)
@@ -612,11 +707,16 @@ function type(d) {
 
 function manageGraph(feature){
     d3.selectAll(".graph > *").remove();
-    data = [];
+
+    
+    barChartdata = [];
+        
     manipulateJson(reportOne, feature);
     manipulateJson(reportTwo,feature);
     manipulateJson(reportThree,feature);
-    data.reverse();
+
+
+    barChartdata.reverse();
 
     drawBarChart(feature);
 }
@@ -625,10 +725,13 @@ var currentFeature;
 map.on('click', function(evt) {
     var pixel = evt.pixel;
     var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
-    currentFeature = feature;
-    manageGraph(feature);
+    currentFeature = feature;    
+    manageGraph(feature);    
 
-    //console.log(data);
+
+    console.log(barChartdata);
+
+
         if(feature !== undefined) {
           return feature;
         };

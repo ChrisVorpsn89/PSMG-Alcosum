@@ -344,6 +344,12 @@ border-radius: 2px;
     border: 1px solid #000;
 
 }
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
 
 #exitText{
   cursor: pointer; cursor: hand;}
