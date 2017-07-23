@@ -12,6 +12,8 @@ styleCache =  {},
 reportOne,reportTwo,reportThree,currentReport;
 getJsonData();
 currentReport = reportOne;
+
+
 drawOverAllLineChart();
 
 
@@ -69,6 +71,7 @@ if(currentFeature !== null && !!document.getElementById("tempSVG")){
   countrySource.refresh({force:true});
 });
 var specificCountryJson;
+
 function getYear(sliderValue){
   if(sliderValue > 1999 ){
       currentReport = reportOne;
@@ -487,7 +490,7 @@ function manipulateJson(report, feature){
 
     console.log(barChartdata);
     console.log(d3.max(barChartdata, function(d) { return d.consume;} ));
-
+}
 function drawOverAllLineChart(){
   var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 600 - margin.left - margin.right,
@@ -610,10 +613,10 @@ var y = d3.scaleLinear().domain([0, d3.max(barChartdata, function(d) { return d.
     .range([height, 0]);
 
 var xAxis = d3.axisBottom(x)
-    .tickValues(x.domain().filter(function(d, i) { console.log("HURRE" + barChartdata.length);if(barChartdata.length > 20 ){ console.log(i%5); return !(i%5); } else { return i;} }))
+    .tickValues(x.domain().filter(function(d, i) { console.log("HURRE" + barChartdata.length);if(barChartdata.length > 20 ){ console.log(i%5); return !(i%5); } else { return i;} }));
 
 
-var yAxis = d3.axisLeft(y)
+var yAxis = d3.axisLeft(y);
     
 
 
@@ -740,6 +743,7 @@ map.on('click', function(evt) {
     //console.log(feature.O.name);
   };
 });
+
 
 
 
