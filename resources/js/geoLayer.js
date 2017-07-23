@@ -512,6 +512,7 @@ function manipulateJson(report, feature){
     console.log(d3.max(data, function(d) { return d.consume;} ));
 }
 function drawBarChart(feature){
+d3.selectAll(".graph > *").remove();
 var margin = {top: 40, right: 20, bottom: 30, left: 40},
     width = 800 - margin.left - margin.right,
     height = 480 - margin.top - margin.bottom;
@@ -644,7 +645,6 @@ map.on('click', function(evt) {
     if(map.getView().getZoom()<=3){
         map.getView().setCenter(evt.coordinate);
         map.getView().setZoom(map.getView().getZoom()+2);
-
     }else{
         map.getView().setCenter(evt.coordinate);
     }
