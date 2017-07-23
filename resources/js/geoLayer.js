@@ -621,16 +621,14 @@ var yAxis = d3.axisLeft(y);
 
 
 
-/*var tip = d3.tip()
-=======
+
 var tip = d3.tip()
->>>>>>> ce041d6deecd5684150b016fcdd5dfff39db475d
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
     return "<strong>Consume:</strong> <span style='color:red'>" + d.consume + " l</span> <strong>Year:</strong> <span style='color:red'>" + d.year + "</span>";
   })
-*/
+
 var svg = d3.select(".graph").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -640,7 +638,7 @@ var svg = d3.select(".graph").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-//svg.call(tip);
+    svg.call(tip);
 
 
  svg.append("text")

@@ -349,11 +349,6 @@ border-radius: 2px;
   stroke: steelblue;
   stroke-width: 2px;
 }
-
-
-#exitText{
-  cursor: pointer; cursor: hand;}
-
 .d3-tip {
   line-height: 1;
   font-weight: bold;
@@ -381,3 +376,8 @@ border-radius: 2px;
   margin: -1px 0 0 0;
   top: 100%;
   left: 0;
+}
+
+#exitText{
+  cursor: pointer; cursor: hand;}
+
