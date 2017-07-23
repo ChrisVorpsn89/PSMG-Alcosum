@@ -707,7 +707,6 @@ function type(d) {
 
 function manageGraph(feature){
     d3.selectAll(".graph > *").remove();
-<<<<<<< HEAD
 
     
     barChartdata = [];
