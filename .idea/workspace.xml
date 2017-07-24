@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33d21125-273a-4578-99bc-06f21cbb2e62" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,11 +23,11 @@
       <file leaf-file-name="geoLayer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/js/geoLayer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7684">
-              <caret line="452" column="25" lean-forward="false" selection-start-line="452" selection-start-column="0" selection-end-line="453" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="209" column="5" lean-forward="true" selection-start-line="209" selection-start-column="5" selection-end-line="209" selection-end-column="5" />
               <folding>
-                <marker date="1500893909747" expanded="true" signature="18488:18497" ph="..." />
-                <marker date="1500893909747" expanded="true" signature="18562:18571" ph="..." />
+                <marker date="1500901955217" expanded="true" signature="5814:6151" ph="{...}" />
+                <marker date="1500901955217" expanded="true" signature="22736:23187" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -48,71 +48,11 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+            <state relative-caret-position="-2217">
+              <caret line="15" column="57" lean-forward="true" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
               <folding>
-                <marker date="1500901649616" expanded="true" signature="8231:8709" ph="..." />
+                <marker date="1500901955255" expanded="true" signature="8272:8750" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../node-js-sample/server/Server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="33" column="39" lean-forward="true" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Procfile" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Procfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../node-js-sample/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="countryCodeConversion.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/countryCodeConversion.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4250">
-              <caret line="250" column="24" lean-forward="false" selection-start-line="250" selection-start-column="24" selection-end-line="250" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="centroids.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/centroids.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57613">
-              <caret line="3389" column="28" lean-forward="false" selection-start-line="3389" selection-start-column="28" selection-end-line="3389" selection-end-column="28" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -175,11 +115,11 @@
         <option value="$PROJECT_DIR$/resources/css/drinks.css" />
         <option value="$PROJECT_DIR$/data/centroids.json" />
         <option value="$PROJECT_DIR$/resources/js/countryCodeConversion.js" />
-        <option value="$PROJECT_DIR$/resources/js/geoLayer.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/../node-js-sample/package.json" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/resources/js/geoLayer.js" />
       </list>
     </option>
   </component>
@@ -486,12 +426,12 @@
       <workItem from="1500545848734" duration="11277000" />
       <workItem from="1500624627297" duration="7377000" />
       <workItem from="1500891281098" duration="6075000" />
-      <workItem from="1500899044138" duration="2589000" />
+      <workItem from="1500899044138" duration="3211000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76746000" />
+    <option name="totallyTimeSpent" value="77368000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1917" height="1038" extended-state="0" />
@@ -538,7 +478,7 @@
         <state relative-caret-position="459">
           <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="50" />
           <folding>
-            <marker date="1500901649616" expanded="true" signature="8231:8709" ph="..." />
+            <marker date="1500901955255" expanded="true" signature="8272:8750" ph="..." />
           </folding>
         </state>
       </provider>
@@ -572,7 +512,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500901649616" expanded="true" signature="8231:8709" ph="..." />
+            <marker date="1500901955255" expanded="true" signature="8272:8750" ph="..." />
           </folding>
         </state>
       </provider>
@@ -721,33 +661,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/css/drinks.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1500891267295" expanded="true" signature="18:35" ph="{...}" />
-            <marker date="1500891267295" expanded="true" signature="2208:2214" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/centroids.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57613">
-          <caret line="3389" column="28" lean-forward="false" selection-start-line="3389" selection-start-column="28" selection-end-line="3389" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/countryCodeConversion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4250">
-          <caret line="250" column="24" lean-forward="false" selection-start-line="250" selection-start-column="24" selection-end-line="250" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../node-js-sample/Procfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -759,14 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -786,10 +691,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../node-js-sample/package.json">
+    <entry file="file://$PROJECT_DIR$/../node-js-sample/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        <state relative-caret-position="-775">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../node-js-sample/server/Server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="33" column="39" lean-forward="true" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -802,30 +715,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/geoLayer.js">
+    <entry file="file://$PROJECT_DIR$/../node-js-sample/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7684">
-          <caret line="452" column="25" lean-forward="false" selection-start-line="452" selection-start-column="0" selection-end-line="453" selection-end-column="0" />
+        <state relative-caret-position="68">
+          <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/countryCodeConversion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="662">
+          <caret line="250" column="24" lean-forward="false" selection-start-line="250" selection-start-column="24" selection-end-line="250" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/centroids.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="3389" column="28" lean-forward="false" selection-start-line="3389" selection-start-column="28" selection-end-line="3389" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/css/drinks.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500893909747" expanded="true" signature="18488:18497" ph="..." />
-            <marker date="1500893909747" expanded="true" signature="18562:18571" ph="..." />
+            <marker date="1500891267295" expanded="true" signature="18:35" ph="{...}" />
+            <marker date="1500891267295" expanded="true" signature="2208:2214" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../node-js-sample/server/Server.js">
+    <entry file="file://$PROJECT_DIR$/resources/js/geoLayer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="33" column="39" lean-forward="true" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../node-js-sample/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-775">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="170">
+          <caret line="209" column="5" lean-forward="true" selection-start-line="209" selection-start-column="5" selection-end-line="209" selection-end-column="5" />
+          <folding>
+            <marker date="1500901955217" expanded="true" signature="5814:6151" ph="{...}" />
+            <marker date="1500901955217" expanded="true" signature="22736:23187" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -841,10 +781,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+        <state relative-caret-position="-2217">
+          <caret line="15" column="57" lean-forward="true" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
           <folding>
-            <marker date="1500901649616" expanded="true" signature="8231:8709" ph="..." />
+            <marker date="1500901955255" expanded="true" signature="8272:8750" ph="..." />
           </folding>
         </state>
       </provider>
