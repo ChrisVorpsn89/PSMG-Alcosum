@@ -578,13 +578,7 @@ svg.append("text")
       .data( [data])
       .attr("class", "line")
       .style("stroke", "black")
-<<<<<<< HEAD
-      .attr("d", allline);    
-    
-   
-=======
       .attr("d", allline);
->>>>>>> 2456aa0ae2df2e2529f198c4ebfbdcb4cd6265c4
 
   // Add the X Axis
   svg.append("g")
