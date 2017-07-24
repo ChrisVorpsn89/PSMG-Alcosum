@@ -51,7 +51,6 @@ box-sizing: border-box;
 #lineChart{
   margin: 0;
   margin-top: 1%;
-  float: middle;
 }
 
 #toggle {

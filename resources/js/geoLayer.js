@@ -499,7 +499,7 @@ function manipulateJson(report, feature){
 }
 function drawOverAllLineChart(){
   var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
+    width = innerWidth-100  - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
 // parse the date / time
@@ -528,7 +528,7 @@ var spiritline = d3.line()
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
 var svg = d3.select(".message").append("svg")
-    .attr("width", width + margin.left + margin.right)
+    .attr("width",innerWidth)
     .attr("height", height + margin.top + margin.bottom)
     .attr("id", "lineChart")
     .append("g")
@@ -565,7 +565,6 @@ svg.append("text")
         .text("Liter per Person ");
 
         
-    
  
   svg.append("path")
       .data([data])
@@ -593,7 +592,12 @@ svg.append("text")
       .style("stroke", "black")
       .attr("id","allpath")
       .attr("d", allline);
-    
+      svg.append("text")
+        .attr("x", (width / 2))
+        .attr("y", 0 - (margin.top / 2))
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .text(" Average Consume World");
     
      var legend = svg.selectAll('g')
       .data(["All Types","Wine","Beer","Spirits"])
@@ -603,7 +607,7 @@ svg.append("text")
 
  
     legend.append('rect')
-      .attr('x', 100)
+      .attr('x', width+8)
       .attr('y',function(d,i){ return i*20;})
       .attr('width', 10)
       .attr('height', 10)
@@ -626,7 +630,7 @@ svg.append("text")
 
     legend.append('text')
       .attr("text-anchor","left")
-      .attr('x',150)
+      .attr('x',width+60)
       .attr('y', function(d, i) {
         return (i * 20) + 9;
       })
@@ -634,55 +638,8 @@ svg.append("text")
             return d;
       });
 
-/*   
-    svg.append("text")
-            .attr("x", (width/100*25)  )// space legend
-            .attr("y", (0))
-            .attr("class", "legend")    // style the legend
-            .style("fill", "black")
-            .text("All Types")
-            .on("mouseover",handleMouseOverPath("#allpath"))
-            .on("mouseout",handleMouseOverOut("#allpath"));
-     svg.append("text")
-            .attr("x", (width/100*35))  // space legend
-            .attr("y", 0)
-            .attr("class", "legend")    // style the legend
-            .style("fill", "blue")
-            .on("mouseover",handleMouseOverPath("#beerpath"))
-            .on("mouseout",handleMouseOverOut("#beerpath"))
-            .text("Beer"); 
-     svg.append("text")
-            .attr("x", (width/100*45))  // space legend
-            .attr("y",0)
-            .attr("class", "legend")    // style the legend
-            .style("fill", "green")
-            .on("mouseover",handleMouseOverPath("#spiritpath"))
-            .on("mouseout",handleMouseOverOut("#spiritpath"))
-            .text("Spirits"); 
-     svg.append("text")
-            .attr("x", (width/100*55))  // space legend
-            .attr("y", 0)
-            .attr("class", "legend")    // style the legend
-            .style("fill", "red")
-            .on("mouseover",handleMouseOverPath("#winepath"))
-            .on("mouseout",handleMouseOverOut("#winepath"))
-            .text("Wine"); 
-     
-    
-function handleMouseOverPath(text){
-    console.log(text);
-    d3.select(text)
-               .style("stroke-width",10);
-}    
-    
-
-      
-function handleMouseOverOut(text){
-     d3.select(text)
-               .style("stroke-width",1.5);
-}    
        
-*/  // Add the X Axis
+ // Add the X Axis
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
