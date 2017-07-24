@@ -567,6 +567,7 @@ svg.append("text")
       .attr("class", "line")
       .style("stroke", "red")
       .attr("d", wineline);
+    
     svg.append("path")
       .data( [data])
       .attr("class", "line")
@@ -577,6 +578,8 @@ svg.append("text")
       .attr("class", "line")
       .style("stroke", "black")
       .attr("d", allline);    
+    
+   
 
   // Add the X Axis
   svg.append("g")
@@ -587,6 +590,14 @@ svg.append("text")
   svg.append("g")
       .call(d3.axisLeft(y))
         .append("text");
+    
+    svg.selectAll(".dot")
+    .data(data)
+  .enter().append("circle") // Uses the enter().append() method
+    .attr("class", "dot") // Assign a class for styling
+    .attr("cx", function(d, i) { return x(i) })
+    .attr("cy", function(d) { return y(10) })
+    .attr("r", 5);
 
 });
 
@@ -687,6 +698,8 @@ function resetGraph(){
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
       .attr("dy", ".71em")
+  
+
 
   svg.selectAll(".bar")
       .data(barChartdata)
