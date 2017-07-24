@@ -206,11 +206,11 @@ setUpValues(tempFeature,resolution);
     if(!value){
         color = '#bbb';
     }
-    if (value == 0 ){
-        color = '#90EE90';
-    }
     if (value < summand ){
         color = '#FFFFF0';
+    }
+    if (value == 0){
+        color = '#90EE90';
     }
     if (value >= summand &&  value < 2*summand){
         color = '#fee0d2';
