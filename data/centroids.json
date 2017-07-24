@@ -223,7 +223,7 @@
       "MOD_DATE": "2007-02-28",
       "ISO3136": "AZ"
    },
-   "Bahamas": {
+   "The Bahamas": {
       "LAT": 24,
       "LONG": -76,
       "DMS_LAT": 240000,
@@ -3387,7 +3387,7 @@
       "MOD_DATE": "2007-02-28",
       "ISO3136": "GB"
    },
-   "United States": {
+   "United States of America": {
       "LAT": 39.828175,
       "LONG": -98.5795,
       "DMS_LAT": 394941,
