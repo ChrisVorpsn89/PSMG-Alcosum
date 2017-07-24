@@ -354,6 +354,16 @@ border-radius: 2px;
 .x.axis path {
   display: none;
 }
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus circle {
+  fill: none;
+  stroke: steelblue;
+}
 .graph #tempSVG {
   margin-top: 3%;
     background-color: white;

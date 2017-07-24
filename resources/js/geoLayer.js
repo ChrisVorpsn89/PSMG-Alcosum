@@ -503,7 +503,9 @@ function drawOverAllLineChart(){
     height = 400 - margin.top - margin.bottom;
 
 // parse the date / time
-var parseTime = d3.timeParse("%Y");
+var parseTime = d3.timeParse("%Y"),
+bisectDate = d3.bisector(function(d) { return d.year; }).left
+    
 
 // set the ranges
 var x = d3.scaleTime().range([0, width]);
@@ -571,30 +573,31 @@ svg.append("text")
   svg.append("path")
       .data([data])
       .attr("class", "line")
-      .style("stroke","blue")
+      .style("stroke","#d95f02")
       .attr("id","beerpath")
       .attr("d",beerline);
 
   svg.append("path")
       .data( [data])
       .attr("class", "line")
-      .style("stroke", "red")
+      .style("stroke", "#7570b3")
       .attr("id","winepath")
       .attr("d", wineline);
 
     svg.append("path")
       .data( [data])
       .attr("class", "line")
-      .style("stroke", "green")
+      .style("stroke", "#e7298a")
       .attr("id","spiritpath")
       .attr("d", spiritline);
     svg.append("path")
       .data( [data])
       .attr("class", "line")
-      .style("stroke", "black")
+      .style("stroke", "#1b9e77")
       .attr("id","allpath")
       .attr("d", allline);
-      svg.append("text")
+    
+    svg.append("text")
         .attr("x", (width / 2))
         .attr("y", 0 - (margin.top / 2))
         .attr("text-anchor", "middle")
@@ -614,20 +617,21 @@ svg.append("text")
       .attr('y',function(d,i){ return i*20;})
       .attr('width', 10)
       .attr('height', 10)
-      .style('fill', function(d) {
-           if(d == "Wine"){
-            return "red";
+     .style("fill",function(d) {
+        if(d == "Wine"){
+            console.log(d);
+            return "#7570b3";
 
         }
         if(d=="All Types"){
 
-        return "black";
+        return "#1b9e77";
         }
         if(d=="Beer"){
-            return "blue";
+            return "#d95f02";
         }
         if(d=="Spirits"){
-            return "green";
+            return "#e7298a";
         }
       });
 
@@ -650,14 +654,153 @@ svg.append("text")
   svg.append("g")
       .call(d3.axisLeft(y))
         .append("text");
+    
+    // gridlines in x axis function
+function make_x_gridlines() {		
+    return d3.axisBottom(x)
+    
+}
 
-    svg.selectAll(".dot")
-    .data(data)
-  .enter().append("circle") // Uses the enter().append() method
-    .attr("class", "dot") // Assign a class for styling
-    .attr("cx", function(d, i) { return x(i) })
-    .attr("cy", function(d) { return y(10) })
-    .attr("r", 5);
+// gridlines in y axis function
+function make_y_gridlines() {		
+    return d3.axisLeft(y)
+        .ticks(5)
+}
+ // add the X gridlines
+  svg.append("g")			
+      .attr("class", "grid")
+      .attr("transform", "translate(0," + height + ")")
+      .call(make_x_gridlines()
+          .tickSize(-height)
+          .tickFormat("")
+      )
+
+  // add the Y gridlines
+  svg.append("g")			
+      .attr("class", "grid")
+      .call(make_y_gridlines()
+          .tickSize(-width)
+          .tickFormat("")
+      )    
+    
+// append a g for all the mouse over nonsense
+var mouseG = svg.append("g")
+  .attr("class", "mouse-over-effects");
+
+// this is the vertical line
+mouseG.append("path")
+  .attr("class", "mouse-line")
+  .style("stroke", "black")
+  .style("stroke-width", "1px")
+  .style("opacity", "0");
+
+// keep a reference to all our lines
+var lines = document.getElementsByClassName('line');
+
+// here's a g for each circle and text on the line
+var mousePerLine = mouseG.selectAll('.mouse-per-line')
+  .data(["Beer","Wine","Spirits","All Types"])
+  .enter()
+  .append("g")
+  .attr("class", "mouse-per-line");
+
+// the circle
+mousePerLine.append("circle")
+  .attr("r", 7)
+  .style("fill",function(d) {
+        if(d == "Wine"){
+            console.log(d);
+            return "#7570b3";
+
+        }
+        if(d=="All Types"){
+
+        return "#1b9e77";
+        }
+        if(d=="Beer"){
+            return "#d95f02";
+        }
+        if(d=="Spirits"){
+            return "#e7298a";
+        }
+  }) 
+  .style("stroke-width", "1px")
+  .style("opacity", "0");
+
+// the text
+mousePerLine.append("text")
+  .attr("transform", "translate(10,3)")
+.style("fill","black")
+;
+
+// rect to capture mouse movements
+mouseG.append('svg:rect')
+  .attr('width', width)
+  .attr('height', height)
+  .attr('fill', 'none')
+  .attr('pointer-events', 'all')
+  .on('mouseout', function() { // on mouse out hide line, circles and text
+    d3.select(".mouse-line")
+      .style("opacity", "0");
+    d3.selectAll(".mouse-per-line circle")
+      .style("opacity", "0");
+    d3.selectAll(".mouse-per-line text")
+      .style("opacity", "0");
+  })
+  .on('mouseover', function() { // on mouse in show line, circles and text
+    d3.select(".mouse-line")
+      .style("opacity", "1");
+    d3.selectAll(".mouse-per-line circle")
+      .style("opacity", "1");
+    d3.selectAll(".mouse-per-line text")
+      .style("opacity", "1");
+  })
+  .on('mousemove', function() { // mouse moving over canvas
+    var mouse = d3.mouse(this);
+
+    // move the vertical line
+    d3.select(".mouse-line")
+      .attr("d", function() {
+        var d = "M" + mouse[0] + "," + height;
+        d += " " + mouse[0] + "," + 0;
+        return d;
+      });
+
+    // position the circle and text
+    d3.selectAll(".mouse-per-line")
+      .attr("transform", function(d, i) {
+        console.log(width/mouse[0]);
+        console.log("HURREE")
+        var xDate = x.invert(mouse[0]);
+            
+
+        // since we are use curve fitting we can't relay on finding the points like I had done in my last answer
+        // this conducts a search using some SVG path functions
+        // to find the correct position on the line
+        // from http://bl.ocks.org/duopixel/3824661
+        var beginning = 0,
+            end = lines[i].getTotalLength(),
+            target = null;
+
+        while (true){
+          target = Math.floor((beginning + end) / 2);
+          pos = lines[i].getPointAtLength(target);
+          if ((target === end || target === beginning) && pos.x !== mouse[0]) {
+              break;
+          }
+          if (pos.x > mouse[0])      end = target;
+          else if (pos.x < mouse[0]) beginning = target;
+          else break; //position found
+        }
+
+        // update the text with y value
+        d3.select(this).select('text')
+          .text(y.invert(pos.y).toFixed(2));
+
+        // return position
+        return "translate(" + mouse[0] + "," + pos.y +")";
+      });
+  });
 
       });
 
