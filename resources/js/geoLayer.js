@@ -574,7 +574,7 @@ svg.append("text")
       .attr("class", "line")
       .style("stroke", "red")
       .attr("d", wineline);
-    
+
     svg.append("path")
       .data( [data])
       .attr("class", "line")
@@ -595,7 +595,7 @@ svg.append("text")
   svg.append("g")
       .call(d3.axisLeft(y))
         .append("text");
-    
+
     svg.selectAll(".dot")
     .data(data)
   .enter().append("circle") // Uses the enter().append() method
@@ -682,7 +682,7 @@ svg.append("text")
         .attr("y", 0 - (margin.top / 2))
         .attr("id","exitText")
         .attr("text-anchor", "middle")
-        .style("font-size", "100%")
+        .style("font-size", "110%")
         .text("Back to Map");
 
         resetGraph();
@@ -703,7 +703,7 @@ function resetGraph(){
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
       .attr("dy", ".71em")
-  
+
 
 
   svg.selectAll(".bar")
