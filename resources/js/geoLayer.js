@@ -516,7 +516,7 @@ var wineline = d3.line()
     .y(function(d) { return y(d.wine); });
 var spiritline = d3.line()
     .x(function(d) { return x(d.year); })
-    .y(function(d) { return y(d.spirits); });    
+    .y(function(d) { return y(d.spirits); });
 
 // append the svg obgect to the body of the page
 // appends a 'group' element to 'svg'
@@ -524,6 +524,7 @@ var spiritline = d3.line()
 var svg = d3.select(".message").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    .attr("id", "lineChart")
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
@@ -555,7 +556,7 @@ svg.append("text")
         .attr("id","left")
         .attr("text-anchor", "middle")
         .style("font-size", "16px")
-        .text("Liter per Person ");    
+        .text("Liter per Person ");
   svg.append("path")
       .data([data])
       .attr("class", "line")
@@ -577,9 +578,13 @@ svg.append("text")
       .data( [data])
       .attr("class", "line")
       .style("stroke", "black")
+<<<<<<< HEAD
       .attr("d", allline);    
     
    
+=======
+      .attr("d", allline);
+>>>>>>> 2456aa0ae2df2e2529f198c4ebfbdcb4cd6265c4
 
   // Add the X Axis
   svg.append("g")
@@ -599,11 +604,11 @@ svg.append("text")
     .attr("cy", function(d) { return y(10) })
     .attr("r", 5);
 
-});
+      });
 
-    }
-        
-    
+};
+
+
 
 
 
@@ -615,7 +620,7 @@ var margin = {top: 40, right: 20, bottom: 30, left: 40},
 
 var formatPercent = d3.format(".0%");
 console.log(barChartdata);
-    
+
 
 var x = d3.scaleBand().rangeRound([0, width]).padding(0.3);
     x.domain(barChartdata.map(function(d) { return d.year }))
@@ -628,7 +633,7 @@ var xAxis = d3.axisBottom(x)
 
 
 var yAxis = d3.axisLeft(y);
-    
+
 
 
 
@@ -722,9 +727,9 @@ function type(d) {
 function manageGraph(feature){
     d3.selectAll(".graph > *").remove();
 
-    
+
     barChartdata = [];
-        
+
     manipulateJson(reportOne, feature);
     manipulateJson(reportTwo,feature);
     manipulateJson(reportThree,feature);
@@ -739,8 +744,8 @@ var currentFeature;
 map.on('click', function(evt) {
     var pixel = evt.pixel;
     var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
-    currentFeature = feature;    
-    manageGraph(feature);    
+    currentFeature = feature;
+    manageGraph(feature);
 
 
     console.log(barChartdata);
