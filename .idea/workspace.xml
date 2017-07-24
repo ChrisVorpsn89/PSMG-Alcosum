@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33d21125-273a-4578-99bc-06f21cbb2e62" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,13 +33,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
               <caret line="7" column="32" lean-forward="false" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
               <folding>
                 <element signature="e#0#50#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+              <folding>
+                <marker date="1500901649616" expanded="true" signature="8231:8709" ph="..." />
               </folding>
             </state>
           </provider>
@@ -159,7 +171,6 @@
         <option value="$PROJECT_DIR$/data/geojsoncountriesandcodes" />
         <option value="$PROJECT_DIR$/resources/js/geoTest.js" />
         <option value="$PROJECT_DIR$/resources/js/changeSize.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/resources/css/layout.css" />
         <option value="$PROJECT_DIR$/resources/css/drinks.css" />
         <option value="$PROJECT_DIR$/data/centroids.json" />
@@ -168,6 +179,7 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/../node-js-sample/package.json" />
         <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -474,12 +486,12 @@
       <workItem from="1500545848734" duration="11277000" />
       <workItem from="1500624627297" duration="7377000" />
       <workItem from="1500891281098" duration="6075000" />
-      <workItem from="1500899044138" duration="2306000" />
+      <workItem from="1500899044138" duration="2589000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76463000" />
+    <option name="totallyTimeSpent" value="76746000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1917" height="1038" extended-state="0" />
@@ -526,7 +538,7 @@
         <state relative-caret-position="459">
           <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="50" />
           <folding>
-            <marker date="1500893974561" expanded="true" signature="8230:8708" ph="..." />
+            <marker date="1500901649616" expanded="true" signature="8231:8709" ph="..." />
           </folding>
         </state>
       </provider>
@@ -560,7 +572,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1500893974561" expanded="true" signature="8230:8708" ph="..." />
+            <marker date="1500901649616" expanded="true" signature="8231:8709" ph="..." />
           </folding>
         </state>
       </provider>
@@ -701,16 +713,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3094">
-          <caret line="187" column="0" lean-forward="false" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
-          <folding>
-            <marker date="1500893974561" expanded="true" signature="8230:8708" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/css/layout.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -833,6 +835,16 @@
           <caret line="7" column="32" lean-forward="false" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
           <folding>
             <element signature="e#0#50#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+          <folding>
+            <marker date="1500901649616" expanded="true" signature="8231:8709" ph="..." />
           </folding>
         </state>
       </provider>
