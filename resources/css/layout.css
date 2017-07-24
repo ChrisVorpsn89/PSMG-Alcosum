@@ -51,7 +51,7 @@ box-sizing: border-box;
 #lineChart{
   margin: 0;
   margin-top: 1%;
-  float: left;
+  float: middle;
 }
 
 #toggle {
@@ -114,7 +114,7 @@ cursor: pointer;
 
 #title{
   font-weight: bold;
-  font-size: 100%;
+  font-size: 120%;
   margin-left: 1%;
   width: 10%;
 }
@@ -321,6 +321,13 @@ border-radius: 2px;
   .my-legend a {
     color: #777;
     }
+
+
+.legend {
+    font-size: 16px;
+    font-weight: bold;
+    text-anchor: middle;
+}
 
 .axis path,
 .axis line {

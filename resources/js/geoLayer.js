@@ -206,11 +206,11 @@ setUpValues(tempFeature,resolution);
     if(!value){
         color = '#bbb';
     }
-    if (value == 0 ){
-        color = '#90EE90';
-    }
     if (value < summand ){
         color = '#FFFFF0';
+    }
+    if (value == 0){
+        color = '#90EE90';
     }
     if (value >= summand &&  value < 2*summand){
         color = '#fee0d2';
@@ -499,7 +499,7 @@ function manipulateJson(report, feature){
 }
 function drawOverAllLineChart(){
   var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 600 - margin.left - margin.right,
+    width = 960 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
 // parse the date / time
@@ -531,7 +531,7 @@ var svg = d3.select(".message").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .attr("id", "lineChart")
-  .append("g")
+    .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
@@ -563,30 +563,126 @@ svg.append("text")
         .attr("text-anchor", "middle")
         .style("font-size", "16px")
         .text("Liter per Person ");
+
+
+
+
   svg.append("path")
       .data([data])
       .attr("class", "line")
       .style("stroke","blue")
+      .attr("id","beerpath")
       .attr("d",beerline);
 
   svg.append("path")
       .data( [data])
       .attr("class", "line")
       .style("stroke", "red")
+      .attr("id","winepath")
       .attr("d", wineline);
-    
+
     svg.append("path")
       .data( [data])
       .attr("class", "line")
       .style("stroke", "green")
+      .attr("id","spiritpath")
       .attr("d", spiritline);
     svg.append("path")
       .data( [data])
       .attr("class", "line")
       .style("stroke", "black")
+      .attr("id","allpath")
       .attr("d", allline);
 
-  // Add the X Axis
+
+     var legend = svg.selectAll('g')
+      .data(["All Types","Wine","Beer","Spirits"])
+      .enter()
+      .append('g')
+      .attr('class', 'legend');
+
+
+    legend.append('rect')
+      .attr('x', 100)
+      .attr('y',function(d,i){ return i*20;})
+      .attr('width', 10)
+      .attr('height', 10)
+      .style('fill', function(d) {
+           if(d == "Wine"){
+            return "red";
+
+        }
+        if(d=="All Types"){
+
+        return "black";
+        }
+        if(d=="Beer"){
+            return "blue";
+        }
+        if(d=="Spirits"){
+            return "green";
+        }
+      });
+
+    legend.append('text')
+      .attr("text-anchor","left")
+      .attr('x',150)
+      .attr('y', function(d, i) {
+        return (i * 20) + 9;
+      })
+      .text(function(d) {
+            return d;
+      });
+
+/*
+    svg.append("text")
+            .attr("x", (width/100*25)  )// space legend
+            .attr("y", (0))
+            .attr("class", "legend")    // style the legend
+            .style("fill", "black")
+            .text("All Types")
+            .on("mouseover",handleMouseOverPath("#allpath"))
+            .on("mouseout",handleMouseOverOut("#allpath"));
+     svg.append("text")
+            .attr("x", (width/100*35))  // space legend
+            .attr("y", 0)
+            .attr("class", "legend")    // style the legend
+            .style("fill", "blue")
+            .on("mouseover",handleMouseOverPath("#beerpath"))
+            .on("mouseout",handleMouseOverOut("#beerpath"))
+            .text("Beer");
+     svg.append("text")
+            .attr("x", (width/100*45))  // space legend
+            .attr("y",0)
+            .attr("class", "legend")    // style the legend
+            .style("fill", "green")
+            .on("mouseover",handleMouseOverPath("#spiritpath"))
+            .on("mouseout",handleMouseOverOut("#spiritpath"))
+            .text("Spirits");
+     svg.append("text")
+            .attr("x", (width/100*55))  // space legend
+            .attr("y", 0)
+            .attr("class", "legend")    // style the legend
+            .style("fill", "red")
+            .on("mouseover",handleMouseOverPath("#winepath"))
+            .on("mouseout",handleMouseOverOut("#winepath"))
+            .text("Wine");
+
+
+function handleMouseOverPath(text){
+    console.log(text);
+    d3.select(text)
+               .style("stroke-width",10);
+}
+
+
+
+function handleMouseOverOut(text){
+     d3.select(text)
+               .style("stroke-width",1.5);
+}
+
+*/  // Add the X Axis
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
@@ -595,7 +691,7 @@ svg.append("text")
   svg.append("g")
       .call(d3.axisLeft(y))
         .append("text");
-    
+
     svg.selectAll(".dot")
     .data(data)
   .enter().append("circle") // Uses the enter().append() method
@@ -605,6 +701,7 @@ svg.append("text")
     .attr("r", 5);
 
       });
+
 
 };
 
@@ -682,7 +779,7 @@ svg.append("text")
         .attr("y", 0 - (margin.top / 2))
         .attr("id","exitText")
         .attr("text-anchor", "middle")
-        .style("font-size", "100%")
+        .style("font-size", "110%")
         .text("Back to Map");
 
         resetGraph();
@@ -703,7 +800,7 @@ function resetGraph(){
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
       .attr("dy", ".71em")
-  
+
 
 
   svg.selectAll(".bar")
