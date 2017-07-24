@@ -245,7 +245,6 @@ setUpValues(tempFeature,resolution);
        // console.log(highestCountryCoordinateLon/100000,highestCountryCoordinateLat/100000);
 
         var highestValueCountryName = tempFeature.O.name;
-        console.log("Spirits Hure",highestValueCountryName);
         var long = centroidJSON[highestValueCountryName].LONG;
         var lat = centroidJSON[highestValueCountryName].LAT;
 
@@ -447,8 +446,13 @@ if(feature!== undefined) {
 
     //$(".flag").attr("src","https://lipis.github.io/flag-icon-css/flags/4x3/"+ feature.a.substring(0, 2).toLowerCase()  +".svg");
     if(feature.O.name!==undefined) {
+        if(feature.O.name.toString() === "French Southern and Antarctic Lands"){
+            $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + "fr" + ".svg");
+        }
+        else {
+        console.log("Spirits Hure",inverseCountryCodes[feature.O.name.toString()].toLowerCase());
         $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + inverseCountryCodes[feature.O.name.toString()].toLowerCase() + ".svg");
-    }
+    }}
     else{
 //console.log(feature);
     }
