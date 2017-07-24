@@ -206,11 +206,11 @@ setUpValues(tempFeature,resolution);
     if(!value){
         color = '#bbb';
     }
-    if (value == 0 ){
-        color = '#90EE90';
-    }
     if (value < summand ){
         color = '#FFFFF0';
+    }
+    if (value == 0){
+        color = '#90EE90';
     }
     if (value >= summand &&  value < 2*summand){
         color = '#fee0d2';
@@ -564,8 +564,10 @@ svg.append("text")
         .style("font-size", "16px")
         .text("Liter per Person ");
 
-        
- 
+
+
+
+
   svg.append("path")
       .data([data])
       .attr("class", "line")
@@ -579,7 +581,7 @@ svg.append("text")
       .style("stroke", "red")
       .attr("id","winepath")
       .attr("d", wineline);
-       
+
     svg.append("path")
       .data( [data])
       .attr("class", "line")
@@ -599,13 +601,14 @@ svg.append("text")
         .style("font-size", "16px")
         .text(" Average Consume World");
     
+
      var legend = svg.selectAll('g')
       .data(["All Types","Wine","Beer","Spirits"])
       .enter()
       .append('g')
       .attr('class', 'legend');
 
- 
+
     legend.append('rect')
       .attr('x', width+8)
       .attr('y',function(d,i){ return i*20;})
@@ -614,10 +617,10 @@ svg.append("text")
       .style('fill', function(d) {
            if(d == "Wine"){
             return "red";
-    
+
         }
         if(d=="All Types"){
-            
+
         return "black";
         }
         if(d=="Beer"){
@@ -638,8 +641,7 @@ svg.append("text")
             return d;
       });
 
-       
- // Add the X Axis
+
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
@@ -648,19 +650,19 @@ svg.append("text")
   svg.append("g")
       .call(d3.axisLeft(y))
         .append("text");
-  
-  
- 
 
+    svg.selectAll(".dot")
+    .data(data)
+  .enter().append("circle") // Uses the enter().append() method
+    .attr("class", "dot") // Assign a class for styling
+    .attr("cx", function(d, i) { return x(i) })
+    .attr("cy", function(d) { return y(10) })
+    .attr("r", 5);
 
       });
 
 
 };
-
-
-
-
 
 
 function drawBarChart(feature){
@@ -732,7 +734,7 @@ svg.append("text")
         .attr("y", 0 - (margin.top / 2))
         .attr("id","exitText")
         .attr("text-anchor", "middle")
-        .style("font-size", "100%")
+        .style("font-size", "110%")
         .text("Back to Map");
 
         resetGraph();
@@ -753,7 +755,7 @@ function resetGraph(){
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
       .attr("dy", ".71em")
-  
+
 
 
   svg.selectAll(".bar")
