@@ -1,0 +1,25 @@
+{
+  "name": "alco-sum",
+  "version": "0.2.0",
+  "description": "PSMG2",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "engines": {
+    "node": "4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChrisVorpsn89/PSMG-Alcosum"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
+}

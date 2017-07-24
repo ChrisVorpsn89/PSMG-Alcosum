@@ -33,6 +33,7 @@ url3 ="data/converted_1979_1966.json";
   reportThree = JSON.parse(xhReq.responseText);
 };
 
+
 //Parsing the JSON with centroids of all countries
 var centroidJSON;
 function getCentroidsJSON (){
@@ -247,13 +248,13 @@ setUpValues(tempFeature,resolution);
         var long = centroidJSON[highestValueCountryName].LONG;
         var lat = centroidJSON[highestValueCountryName].LAT;
 
+
         highestValueIcon.getGeometry().setCoordinates(ol.proj.fromLonLat([long,lat]));
         highestValueIcon.set("name", tempFeature.O.name);
         highestValueIcon.set(" Beer", tempFeature.O[" Beer"]);
         highestValueIcon.set(" Wine", tempFeature.O[" Wine"]);
         highestValueIcon.set(" Spirits", tempFeature.O[" Spirits"]);
         highestValueIcon.set(" All types", tempFeature.O[" All types"]);
-
 
 
      }
@@ -445,8 +446,13 @@ if(feature!== undefined) {
 
     //$(".flag").attr("src","https://lipis.github.io/flag-icon-css/flags/4x3/"+ feature.a.substring(0, 2).toLowerCase()  +".svg");
     if(feature.O.name!==undefined) {
+        if(feature.O.name.toString() === "French Southern and Antarctic Lands"){
+            $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + "fr" + ".svg");
+        }
+        else {
+        console.log("Spirits Hure",inverseCountryCodes[feature.O.name.toString()].toLowerCase());
         $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + inverseCountryCodes[feature.O.name.toString()].toLowerCase() + ".svg");
-    }
+    }}
     else{
 //console.log(feature);
     }
@@ -488,8 +494,8 @@ function manipulateJson(report, feature){
         }
     }
 
-    console.log(barChartdata);
-    console.log(d3.max(barChartdata, function(d) { return d.consume;} ));
+    //console.log(barChartdata);
+    //console.log(d3.max(barChartdata, function(d) { return d.consume;} ));
 }
 function drawOverAllLineChart(){
   var margin = {top: 20, right: 20, bottom: 30, left: 50},
@@ -535,9 +541,9 @@ d3.csv("data/average.csv", function(error, data) {
 
   // format the data
   data.forEach(function(d) {
-      console.log(d.year.toString());
+      //console.log(d.year.toString());
       d.year = parseTime(String(d.year));
-      console.log(d.year);
+      //console.log(d.year);
       d.beer = +d.beer;
       d.all = +d.all;
       d.wine = +d.wine;
@@ -547,8 +553,8 @@ d3.csv("data/average.csv", function(error, data) {
   // Scale the range of the data
   x.domain(d3.extent(data, function(d) { return d.year; }));
   y.domain([0, d3.max(data, function(d) {
-      console.log(d.all);
-      console.log(d.beer);
+      //console.log(d.all);
+      //console.log(d.beer);
 	  return Math.max(d.all,d.beer,d.wine,d.spirits); })]);
 svg.append("text")
         .attr("x", (width/30))
@@ -706,7 +712,7 @@ var margin = {top: 40, right: 20, bottom: 30, left: 40},
     height = 480 - margin.top - margin.bottom;
 
 var formatPercent = d3.format(".0%");
-console.log(barChartdata);
+//console.log(barChartdata);
 
 
 var x = d3.scaleBand().rangeRound([0, width]).padding(0.3);
@@ -835,7 +841,7 @@ map.on('click', function(evt) {
     manageGraph(feature);
 
 
-    console.log(barChartdata);
+    //console.log(barChartdata);
 
 
         if(feature !== undefined) {
