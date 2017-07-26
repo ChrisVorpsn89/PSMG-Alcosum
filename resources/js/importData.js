@@ -1,112 +1,153 @@
-var timeLine = "2010";
-var reportYear = "Year";
-
 var xhReq = new XMLHttpRequest();
 xhReq.open("GET", "data/countries.geo.json", false);
 xhReq.send(null);
 var jsonObject = JSON.parse(xhReq.responseText);
+var url;
+var reportOne,reportTwo,reportThree,currentReport;
+var selectedBeverage = document.getElementById("selectedBeverage"),
+averageConsumeVal = document.getElementById("averageConsumeVal"),
+countryNumber = document.getElementById("countryNumber"),
+timeLine = "",
+selectedType = " All types";
+currentReport = reportOne;
 
-xhReq.open("GET", "data/converted_2000_2016.json", false);
-xhReq.send(null);
-var reportOne = JSON.parse(xhReq.responseText);
+function getJsonData(){
+url1 = "data/converted_2000_2016.json";
+url2 ="data/converted_1999_1980.json";
+url3 ="data/converted_1979_1966.json";
+  xhReq.open("GET", url1, false);
+  xhReq.send(null);
+  reportOne = JSON.parse(xhReq.responseText);
+  xhReq.open("GET", url2, false);
+  xhReq.send(null);
+  reportTwo = JSON.parse(xhReq.responseText);
+  xhReq.open("GET", url3, false);
+  xhReq.send(null);
+  reportThree = JSON.parse(xhReq.responseText);
+};
 
-function completeData(timeLine){
-  reportYear = "Year" + timeLine;
-  for(var j = 0; j < jsonObject.features.length; j++){
-    console.log(jsonObject.features[j].properties.name);
-    for(var k = 0; k < reportOne.length; k++){
-      if(reportOne[k].Country == jsonObject.features[j].properties.name){
-        if(reportOne[k].BeverageTypes == " Beer"){
-          console.log(reportOne[k].BeverageTypes);
-          console.log(reportOne[k][reportYear]);
+//Parsing the JSON with centroids of all countries
+var centroidJSON;
+function getCentroidsJSON (){
+    url = "data/centroids.json";
+    xhReq.open("GET", url, false);
+    xhReq.send(null);
+    centroidJSON = JSON.parse(xhReq.responseText);
+};
+
+function manipulateJson(report, feature){
+    specificCountryJson = report.filter(function(el){
+        return  el.Country == feature.O.name && el.BeverageTypes == selectedType;
+        });
+
+    for (var i = 0; i< specificCountryJson.length; i++){
+        var obj = specificCountryJson[i];
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+            if(obj[key] == "null"){
+                obj[key] = 0.0;
+              }
+            }
+        var temp = new Object();
+            if(key !== "Country" && key !== "BeverageTypes"){
+            temp["year"]= parseFloat(key.slice(4,8).toString());
+            temp["consume"]= parseFloat(obj[key]);
+            barChartdata.push(temp);
           };
+        };
+    };
+};
 
-        if(reportOne[k].BeverageTypes == " Wine"){
-          console.log(reportOne[k].BeverageTypes);
-          console.log(reportOne[k][reportYear]);
-          };
+function findHighestValue(slidervalue, currentreport){
+    countCountry = 0;
+    countConsume = 0;
+    highestValue = 0;
+    count = 0;
+    var reportYear = "Year" + timeLine;
+    for( var j = 0; j < jsonObject.features.length;j++){
+      for(var k = 0; k < currentReport.length; k++){
+        if(currentReport[k].Country == jsonObject.features[j].properties.name){
+          if(currentReport[k].BeverageTypes == selectedType){
+            var value = parseFloat(currentReport[k][reportYear]);
+            if(value >= 0){
+            countConsume += value;
+            countCountry += 1;
+            };
 
-          if(reportOne[k].BeverageTypes == " Spirits"){
-            console.log(reportOne[k].BeverageTypes);
-            console.log(reportOne[k][reportYear]);
-          };
-
-          if(reportOne[k].BeverageTypes == " All types"){
-            console.log(reportOne[k].BeverageTypes);
-            console.log(reportOne[k][reportYear]);
-          };
+              if(value > highestValue){
+                highestValue = value;
+                countryhighestvalue =  currentReport[k].Country;
+              };
+            };
+        };
       };
+    };
+
+    averageConsume = countConsume/countCountry;
+    countryNumber.innerHTML = countCountry.toString();
+    averageConsumeVal.innerHTML = averageConsume.toFixed(2);
+}
+
+function setUpValues(tempFeature, resolution){
+var reportYear = "Year" + timeLine;
+  for(var k = 0; k < currentReport.length; k++){
+    if(currentReport[k].Country == tempFeature.O.name){
+      if(currentReport[k].BeverageTypes == selectedType){
+        var value = parseFloat(currentReport[k][reportYear]);
+          if(value > highestValue){
+            highestValue = value;
+            countryhighestvalue =  currentReport[k].Country;
+          };
+        };
+
+      if(currentReport[k].BeverageTypes == " Beer"){
+        //Beer added
+        tempFeature.set(" Beer", currentReport[k][reportYear]);
+        };
+
+        if(currentReport[k].BeverageTypes == " Wine"){
+        //Wine added
+        tempFeature.set(" Wine", currentReport[k][reportYear]);
+        };
+
+        if(currentReport[k].BeverageTypes == " Spirits"){
+        //Spirits added
+        tempFeature.set(" Spirits", currentReport[k][reportYear]);
+        };
+
+        if(currentReport[k].BeverageTypes == " All types"){
+        //Total added
+        tempFeature.set(" All types", currentReport[k][reportYear]);
+        };
     };
   };
 };
 
-function beerData(timeLine){
-  reportYear = "Year" + timeLine;
-  for(var j = 0; j < jsonObject.features.length; j++){
-    console.log(jsonObject.features[j].properties.name);
-    for(var k = 0; k < reportOne.length; k++){
-      if(reportOne[k].Country == jsonObject.features[j].properties.name){
-        if(reportOne[k].BeverageTypes == " Beer"){
-          console.log(reportOne[k].BeverageTypes);
-          console.log(reportOne[k][reportYear]);
+function legendData(type){
+  type = selectedType;
+  if(selectedType == " All types"){
+    highestBeverageValue = 26;
+  };
+  if(selectedType == " Beer"){
+    highestBeverageValue = 10;
+  };
+  if(selectedType == " Wine"){
+    highestBeverageValue = 20;
+  };
+  if(selectedType == " Spirits"){
+    highestBeverageValue = 14;
+  };
+  var summand = highestBeverageValue/8;
+  document.getElementById("legend-box-b").innerHTML = "0 - " + parseInt(summand);
+  document.getElementById("legend-box-c").innerHTML = parseInt(summand) + " - " + parseInt(2*summand);
+  document.getElementById("legend-box-d").innerHTML = parseInt(2*summand) + " - " + parseInt(3*summand);
+  document.getElementById("legend-box-e").innerHTML = parseInt(3*summand) + " - " + parseInt(4*summand);
+  document.getElementById("legend-box-f").innerHTML = parseInt(4*summand) + " - " + parseInt(5*summand);
+  document.getElementById("legend-box-g").innerHTML = parseInt(5*summand) + " - " + parseInt(6*summand);
+  document.getElementById("legend-box-h").innerHTML = parseInt(6*summand) + " - " + parseInt(7*summand);
+  document.getElementById("legend-box-i").innerHTML = parseInt(7*summand) + " - " + parseInt(8*summand);
+  return highestBeverageValue;
+}
 
-          };
-        };
-      };
-    };
-};
-
-function wineData(year){
-  reportYear = "Year" + timeLine;
-  for(var j = 0; j < jsonObject.features.length; j++){
-    console.log(jsonObject.features[j].properties.name);
-    for(var k = 0; k < reportOne.length; k++){
-      if(reportOne[k].Country == jsonObject.features[j].properties.name){
-        if(reportOne[k].BeverageTypes == " Wine"){
-          console.log(reportOne[k].BeverageTypes);
-          console.log(reportOne[k][reportYear]);
-
-          };
-        };
-      };
-    };
-};
-
-function spiritsData(timeLine){
-  reportYear = "Year" + timeLine;
-  for(var j = 0; j < jsonObject.features.length; j++){
-    console.log(jsonObject.features[j].properties.name);
-    for(var k = 0; k < reportOne.length; k++){
-      if(reportOne[k].Country == jsonObject.features[j].properties.name){
-        if(reportOne[k].BeverageTypes == " Spirits"){
-          console.log(reportOne[k].BeverageTypes);
-          console.log(reportOne[k][reportYear]);
-
-          };
-        };
-      };
-    };
-};
-
-function allTypesData(year){
-  reportYear = "Year" + timeLine;
-  for(var j = 0; j < jsonObject.features.length; j++){
-    console.log(jsonObject.features[j].properties.name);
-    for(var k = 0; k < reportOne.length; k++){
-      if(reportOne[k].Country == jsonObject.features[j].properties.name){
-        if(reportOne[k].BeverageTypes == " All Types"){
-          console.log(reportOne[k].BeverageTypes);
-          console.log(reportOne[k][reportYear]);
-          
-          };
-        };
-      };
-    };
-};
-
-/**
-completeData(timeLine);
-beerData(timeLine);
-wineData(timeLine);
-spiritsData(timeLine);
-**/
+getCentroidsJSON();
+getJsonData();
