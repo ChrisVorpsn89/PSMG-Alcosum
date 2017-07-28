@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="33d21125-273a-4578-99bc-06f21cbb2e62" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/country_centroids_all.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/geojsoncountriesandcodes" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/img/if_Award_prize_ribbon_medal_winner_1886486.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/img/if_Award_prize_ribbon_medal_winner_1886486.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/img/if_Award_winner_star_ribbon_medal_prize_1886484.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/img/if_Award_winner_star_ribbon_medal_prize_1886484.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/img/if_advantage_quality_1034364.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/img/if_star_1054969.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/img/if_star_1054969.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/.geoLayer.js.swp" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/countryCodeConversion.js" afterPath="$PROJECT_DIR$/resources/js/countryCodeConversion.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/geoLayer.js" afterPath="$PROJECT_DIR$/resources/js/geoLayer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/graph.js" afterPath="$PROJECT_DIR$/resources/js/graph.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/importData.js" afterPath="$PROJECT_DIR$/resources/js/importData.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/listener.js" afterPath="$PROJECT_DIR$/resources/js/listener.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lib/d3-tip-master/d3-tip.js" afterPath="$PROJECT_DIR$/resources/lib/d3-tip-master/d3-tip.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lib/d3.legend.js" afterPath="$PROJECT_DIR$/resources/lib/d3.legend.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lib/d3/d3.js" afterPath="$PROJECT_DIR$/resources/lib/d3/d3.js" />
-    </list>
+    <list default="true" id="33d21125-273a-4578-99bc-06f21cbb2e62" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -42,7 +21,7 @@
       <file leaf-file-name="geoLayer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/js/geoLayer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2601">
+            <state relative-caret-position="-2134">
               <caret line="163" column="50" lean-forward="false" selection-start-line="163" selection-start-column="50" selection-end-line="163" selection-end-column="50" />
               <folding />
             </state>
@@ -469,12 +448,12 @@
       <workItem from="1501071344754" duration="207000" />
       <workItem from="1501090437936" duration="1210000" />
       <workItem from="1501154237890" duration="304000" />
-      <workItem from="1501230172047" duration="5960000" />
+      <workItem from="1501230172047" duration="6278000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85601000" />
+    <option name="totallyTimeSpent" value="85919000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1917" height="1030" extended-state="0" />
@@ -801,7 +780,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/geoLayer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2601">
+        <state relative-caret-position="-2134">
           <caret line="163" column="50" lean-forward="false" selection-start-line="163" selection-start-column="50" selection-end-line="163" selection-end-column="50" />
           <folding />
         </state>
