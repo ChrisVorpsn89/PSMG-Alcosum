@@ -6,15 +6,12 @@ function drawOverAllLineChart(){
     width = innerWidth-100  - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
-// parse the date / time
 var parseTime = d3.timeParse("%Y"),
 bisectDate = d3.bisector(function(d) { return d.year; }).left
 
-// set the ranges
 var x = d3.scaleTime().range([0, width]);
 var y = d3.scaleLinear().range([height, 0]);
 
-// define the 1st line
 var beerline = d3.line()
     .x(function(d) {return x(d.year); })
     .y(function(d) {  return y(d.beer); });
@@ -28,9 +25,6 @@ var spiritline = d3.line()
     .x(function(d) { return x(d.year); })
     .y(function(d) { return y(d.spirits); });
 
-// append the svg obgect to the body of the page
-// appends a 'group' element to 'svg'
-// moves the 'group' element to the top left margin
 var svg = d3.select(".message").append("svg")
     .attr("width",innerWidth)
     .attr("height", height + margin.top + margin.bottom)
@@ -39,11 +33,9 @@ var svg = d3.select(".message").append("svg")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-// Get the data
 d3.csv("data/average.csv", function(error, data) {
   if (error) throw error;
 
-  // format the data
   data.forEach(function(d) {
       d.year = parseTime(String(d.year));
       d.beer = +d.beer;
@@ -52,7 +44,6 @@ d3.csv("data/average.csv", function(error, data) {
       d.spirits =+d.spirits;
   });
 
-  // Scale the range of the data
   x.domain(d3.extent(data, function(d) { return d.year; }));
   y.domain([0, d3.max(data, function(d) {
 	  return Math.max(d.all,d.beer,d.wine,d.spirits); })]);
@@ -138,23 +129,19 @@ svg.append("text")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
 
-  // Add the Y Axis
   svg.append("g")
       .call(d3.axisLeft(y))
         .append("text");
 
-    // gridlines in x axis function
 function make_x_gridlines() {
     return d3.axisBottom(x);
 }
 
-// gridlines in y axis function
 function make_y_gridlines() {
     return d3.axisLeft(y)
         .ticks(5);
 };
 
- // add the X gridlines
   svg.append("g")
       .attr("class", "grid")
       .attr("transform", "translate(0," + height + ")")
@@ -163,7 +150,6 @@ function make_y_gridlines() {
           .tickFormat("")
       );
 
-  // add the Y gridlines
   svg.append("g")
       .attr("class", "grid")
       .call(make_y_gridlines()
@@ -171,25 +157,21 @@ function make_y_gridlines() {
           .tickFormat("")
       );
 
-// append a g for all the mouse over nonsense
 var mouseG = svg.append("g")
   .attr("class", "mouse-over-effects");
 
-// this is the vertical line
 mouseG.append("path")
   .attr("class", "mouse-line")
   .style("stroke", "black")
   .style("stroke-width", "1px")
   .style("opacity", "0");
 
-// here's a g for each circle and text on the line
 var mousePerLine = mouseG.selectAll('.mouse-per-line')
   .data(["Beer","Wine","Spirits","All Types"])
   .enter()
   .append("g")
   .attr("class", "mouse-per-line");
 
-// the circle
 mousePerLine.append("circle")
   .attr("r", 7)
   .style("fill",function(d) {
@@ -209,19 +191,17 @@ mousePerLine.append("circle")
   .style("stroke-width", "1px")
   .style("opacity", "0");
 
-// the text
 mousePerLine.append("text")
   .attr("transform", "translate(10,3)")
 .style("fill","black");
 
-// rect to capture mouse movements
 mouseG.append('svg:rect')
   .attr('width', width)
   .attr('height', height)
   .attr('fill', 'none')
   .attr('pointer-events', 'all')
   .on('mouseout', function() {
-    // on mouse out hide line, circles and text
+
     d3.select(".mouse-line")
       .style("opacity", "0");
     d3.selectAll(".mouse-per-line circle")
@@ -230,7 +210,7 @@ mouseG.append('svg:rect')
       .style("opacity", "0");
   })
   .on('mouseover', function() {
-    // on mouse in show line, circles and text
+
     d3.select(".mouse-line")
       .style("opacity", "1");
     d3.selectAll(".mouse-per-line circle")
@@ -239,10 +219,9 @@ mouseG.append('svg:rect')
       .style("opacity", "1");
   })
   .on('mousemove', function() {
-    // mouse moving over canvas
+
     var mouse = d3.mouse(this);
 
-    // move the vertical line
     d3.select(".mouse-line")
       .attr("d", function() {
         var d = "M" + mouse[0] + "," + height;
@@ -250,7 +229,6 @@ mouseG.append('svg:rect')
         return d;
       });
 
-    // position the circle and text
     d3.selectAll(".mouse-per-line")
       .attr("transform", function(d, i) {
         var xDate = x.invert(mouse[0]);
@@ -266,14 +244,11 @@ mouseG.append('svg:rect')
           }
           if (pos.x > mouse[0])      end = target;
           else if (pos.x < mouse[0]) beginning = target;
-          else break; //position found
+          else break;
         }
 
-        // update the text with y value
         d3.select(this).select('text')
           .text(y.invert(pos.y).toFixed(2));
-
-        // return position
         return "translate(" + mouse[0] + "," + pos.y +")";
             });
         });
@@ -342,7 +317,6 @@ svg.append("text")
         .text("Back to Map");
         resetGraph();
 
-//zoom reset
 function resetGraph(){
       document.getElementById("exitText").addEventListener('click', function(event){
       d3.selectAll(".graph > *").remove();
