@@ -7,7 +7,7 @@ function drawOverAllLineChart(){
     height = 400 - margin.top - margin.bottom;
 
 var parseTime = d3.timeParse("%Y"),
-bisectDate = d3.bisector(function(d) { return d.year; }).left
+bisectDate = d3.bisector(function(d) { return d.year; }).left;
 
 var x = d3.scaleTime().range([0, width]);
 var y = d3.scaleLinear().range([height, 0]);
@@ -140,9 +140,8 @@ function make_x_gridlines() {
 function make_y_gridlines() {
     return d3.axisLeft(y)
         .ticks(5);
-};
-
-  svg.append("g")
+}
+    svg.append("g")
       .attr("class", "grid")
       .attr("transform", "translate(0," + height + ")")
       .call(make_x_gridlines()
@@ -177,16 +176,16 @@ mousePerLine.append("circle")
   .style("fill",function(d) {
         if(d == "Wine"){
           return "#7570b3";
-          };
-        if(d=="All Types"){
+        }
+      if(d=="All Types"){
           return "#1b9e77";
-          };
-        if(d=="Beer"){
+        }
+      if(d=="Beer"){
           return "#d95f02";
-          };
-        if(d=="Spirits"){
+        }
+      if(d=="Spirits"){
           return "#e7298a";
-          };
+        }
   })
   .style("stroke-width", "1px")
   .style("opacity", "0");
@@ -253,8 +252,7 @@ mouseG.append('svg:rect')
             });
         });
     });
-};
-
+}
 function drawBarChart(feature){
 var margin = {top: 40, right: 20, bottom: 30, left: 40},
     width = 800 - margin.left - margin.right,
@@ -263,7 +261,7 @@ var margin = {top: 40, right: 20, bottom: 30, left: 40},
 var formatPercent = d3.format(".0%");
 
 var x = d3.scaleBand().rangeRound([0, width]).padding(0.3);
-    x.domain(barChartdata.map(function(d) { return d.year }))
+    x.domain(barChartdata.map(function(d) { return d.year }));
 
 var y = d3.scaleLinear().domain([0, d3.max(barChartdata, function(d) { return d.consume; })])
     .range([height, 0]);
@@ -277,7 +275,7 @@ var tip = d3.tip()
   .offset([-10, 0])
   .html(function(d) {
     return "<strong>Consume:</strong> <span style='color:red'>" + d.consume + " l</span> <strong>Year:</strong> <span style='color:red'>" + d.year + "</span>";
-  })
+  });
 
 var svg = d3.select(".graph").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -306,7 +304,7 @@ var svg = d3.select(".graph").append("svg")
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
+      .call(xAxis);
 
 svg.append("text")
         .attr("x", (width-30))
@@ -323,15 +321,14 @@ function resetGraph(){
       map.getView().setZoom(2.4);
 
        });
-};
-
-  svg.append("g")
+}
+    svg.append("g")
       .attr("class", "y axis")
       .call(yAxis)
        .append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
-      .attr("dy", ".71em")
+      .attr("dy", ".71em");
 
   svg.selectAll(".bar")
       .data(barChartdata)
@@ -342,14 +339,13 @@ function resetGraph(){
       .attr("y", function(d) { return y(d.consume); })
       .attr("height", function(d) { return height - y(d.consume); })
       .on('mouseover', tip.show)
-      .on('mouseout', tip.hide)
+      .on('mouseout', tip.hide);
 
 function type(d) {
   d.consume = +d.consume;
   return d;
-  };
-};
-
+}
+}
 function manageGraph(feature){
     d3.selectAll(".graph > *").remove();
     barChartdata = [];
@@ -361,6 +357,5 @@ function manageGraph(feature){
     barChartdata.reverse();
 
     drawBarChart(feature);
-};
-
+}
 drawOverAllLineChart();

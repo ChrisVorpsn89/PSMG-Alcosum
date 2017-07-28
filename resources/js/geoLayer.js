@@ -40,34 +40,34 @@ setUpValues(tempFeature,resolution);
     // Color Country Conditions
     if(!value){
         color = '#bbb';
-    };
+    }
     if (value < summand ){
         color = '#FFFFF0';
-    };
+    }
     if (value == 0){
         color = '#90EE90';
-    };
+    }
     if (value >= summand &&  value < 2*summand){
         color = '#fee0d2';
-    };
+    }
     if (value >= 2*summand && value < 3*summand){
         color = '#fcbba1';
-    };
+    }
     if (value >= 3*summand && value < 4*summand){
         color = '#fc9272';
-    };
+    }
     if (value >= 4*summand && value < 5*summand){
         color = '#fb6a4a';
-    };
-     if (value >= 5*summand && value < 6*summand){
+    }
+    if (value >= 5*summand && value < 6*summand){
         color = '#ef3b2c';
-    };
-     if (value >= 6*summand && value < 7*summand){
+     }
+    if (value >= 6*summand && value < 7*summand){
         color = '#cb181d';
-    };
-     if (value >= 7*summand){
+     }
+    if (value >= 7*summand){
         color = '#99000d'
-    };
+     }
     if(value == highestValue){
         stroke =1000;
 
@@ -83,16 +83,15 @@ setUpValues(tempFeature,resolution);
         highestValueIcon.set(" Wine", tempFeature.O[" Wine"]);
         highestValueIcon.set(" Spirits", tempFeature.O[" Spirits"]);
         highestValueIcon.set(" All types", tempFeature.O[" All types"]);
-     };
-        style = new ol.style.Style({
+    }
+    style = new ol.style.Style({
           fill: new ol.style.Fill({
             color: color
           }),
           stroke: stroke
         });
     return style;
-};
-
+}
 var countryLayer = new ol.layer.Vector({
   source: countrySource,
     style: styleFunction
@@ -139,6 +138,7 @@ var highestValueIcon = new ol.Feature({
 });
 
 //Setting the Icon for the highest value and scaling it
+//ICON from https://www.iconfinder.com/search/?q=award&license=2&price=free , no attribution required
 highestValueIcon.setStyle(new ol.style.Style({
     image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
         scale: 0.2,
@@ -161,6 +161,7 @@ vectorLayer = new ol.layer.Vector({
 map.removeLayer(vectorLayer);
 map.addLayer(vectorLayer);
 
+//Tooltip code with help from OpenLayers examples.
 //Displaying the Tooltip if the given country does exist and have a name
 //This prevents errors whilst hovering over e.g. the ocean
 function displayTooltip(evt) {
@@ -176,9 +177,8 @@ function displayTooltip(evt) {
         //Setting coordinate and HTML text of the tooltip at the hover position
         overlay.setPosition(evt.coordinate);
         tooltip.innerHTML = "<h4>"+feature.O.name+"</h4>"
-    };
-};
-
+    }
+}
 //Displaying the Tooltip if necessary while user is hovering
 map.on('pointermove', displayTooltip);
 //Onclick function center the map and zoom
@@ -191,7 +191,7 @@ map.on('click', function(evt) {
 }else{
         //Centering the view for the user
         map.getView().setCenter(evt.coordinate);
-    };
+    }
 });
 
 //Function to animate the Icons, the Flag and the consume
@@ -312,10 +312,10 @@ map.on('click', function(evt) {
     manageGraph(feature);
         if(feature !== undefined) {
           return feature;
-        };
+        }
     });
     if(feature!== undefined) {
-  };
+    }
 });
 
 map.on('click', function(evt) {

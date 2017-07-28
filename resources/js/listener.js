@@ -26,4 +26,4 @@ function getYear(sliderValue){
   timeLine = String(sliderValue);
   findHighestValue();
   countrySource.refresh({force:true});
-};
+}

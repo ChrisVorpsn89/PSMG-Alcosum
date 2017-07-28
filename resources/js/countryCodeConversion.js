@@ -250,7 +250,7 @@ var countryCodes = {
     'ZM' : 'Zambia',
     'ZW' : 'Zimbabwe',
     "SS" : "South Sudan"
-}
+};
 var inverseCountryCodes = {};
 for(i in countryCodes) {
     inverseCountryCodes[countryCodes[i]] = i;

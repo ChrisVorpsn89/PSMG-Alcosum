@@ -24,17 +24,16 @@ url3 ="data/converted_1979_1966.json";
   xhReq.open("GET", url3, false);
   xhReq.send(null);
   reportThree = JSON.parse(xhReq.responseText);
-};
-
+}
 //Parsing the JSON with centroids of all countries necessary to place icons correctly
+//JSON by http://gothos.info/2009/02/centroids-for-countries/
 var centroidJSON;
 function getCentroidsJSON (){
     url = "data/centroids.json";
     xhReq.open("GET", url, false);
     xhReq.send(null);
     centroidJSON = JSON.parse(xhReq.responseText);
-};
-
+}
 function manipulateJson(report, feature){
     specificCountryJson = report.filter(function(el){
         return  el.Country == feature.O.name && el.BeverageTypes == selectedType;
@@ -48,16 +47,15 @@ function manipulateJson(report, feature){
                 obj[key] = 0.0;
               }
             }
-        var temp = new Object();
+        var temp = {};
             if(key !== "Country" && key !== "BeverageTypes"){
             temp["year"]= parseFloat(key.slice(4,8).toString());
             temp["consume"]= parseFloat(obj[key]);
             barChartdata.push(temp);
-          };
-        };
-    };
-};
-
+            }
+        }
+    }
+}
 function findHighestValue(slidervalue, currentreport){
     countCountry = 0;
     countConsume = 0;
@@ -72,17 +70,15 @@ function findHighestValue(slidervalue, currentreport){
             if(value >= 0){
             countConsume += value;
             countCountry += 1;
-            };
-
+            }
               if(value > highestValue){
                 highestValue = value;
                 countryhighestvalue =  currentReport[k].Country;
-              };
-            };
-        };
-      };
-    };
-
+              }
+          }
+        }
+      }
+    }
     averageConsume = countConsume/countCountry;
     countryNumber.innerHTML = countCountry.toString();
     averageConsumeVal.innerHTML = averageConsume.toFixed(2);
@@ -97,47 +93,42 @@ var reportYear = "Year" + timeLine;
           if(value > highestValue){
             highestValue = value;
             countryhighestvalue =  currentReport[k].Country;
-          };
-        };
-
-      if(currentReport[k].BeverageTypes == " Beer"){
+          }
+      }
+        if(currentReport[k].BeverageTypes == " Beer"){
         //Beer added
         tempFeature.set(" Beer", currentReport[k][reportYear]);
-        };
-
+      }
         if(currentReport[k].BeverageTypes == " Wine"){
         //Wine added
         tempFeature.set(" Wine", currentReport[k][reportYear]);
-        };
-
+        }
         if(currentReport[k].BeverageTypes == " Spirits"){
         //Spirits added
         tempFeature.set(" Spirits", currentReport[k][reportYear]);
-        };
-
+        }
         if(currentReport[k].BeverageTypes == " All types"){
         //Total added
         tempFeature.set(" All types", currentReport[k][reportYear]);
-        };
-    };
-  };
-};
-
+        }
+    }
+  }
+}
 function legendData(type){
   type = selectedType;
   if(selectedType == " All types"){
     highestBeverageValue = 26;
-  };
-  if(selectedType == " Beer"){
+  }
+    if(selectedType == " Beer"){
     highestBeverageValue = 10;
-  };
-  if(selectedType == " Wine"){
+  }
+    if(selectedType == " Wine"){
     highestBeverageValue = 20;
-  };
-  if(selectedType == " Spirits"){
+  }
+    if(selectedType == " Spirits"){
     highestBeverageValue = 14;
-  };
-  var summand = highestBeverageValue/8;
+  }
+    var summand = highestBeverageValue/8;
   document.getElementById("legend-box-b").innerHTML = "0 - " + parseInt(summand);
   document.getElementById("legend-box-c").innerHTML = parseInt(summand) + " - " + parseInt(2*summand);
   document.getElementById("legend-box-d").innerHTML = parseInt(2*summand) + " - " + parseInt(3*summand);
