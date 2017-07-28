@@ -1,5 +1,5 @@
 html{
-  height: 118%;
+  height: 115%;
   width: 100%;
   font-family: sans-serif;
 }
@@ -23,8 +23,7 @@ a{
 
 .information{
   width: 86%;
-  border-top: .5px solid #444;
-  margin-top: 3%;
+  margin-top: 2%;
   margin-left: 7%;
   font-size: 80%;
   color: #ccc;
