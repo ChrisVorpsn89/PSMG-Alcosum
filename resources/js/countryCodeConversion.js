@@ -1,6 +1,7 @@
 /**
  * Created by Dr.Legendaddy on 13.07.2017.
  */
+// Module after https://gist.github.com/maephisto/9228207 but changed to "reverse convert" names to codes
 var countryCodes = {
     'AF' : 'Afghanistan',
     'AX' : 'Aland Islands',

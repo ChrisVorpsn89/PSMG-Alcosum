@@ -26,7 +26,7 @@ url3 ="data/converted_1979_1966.json";
   reportThree = JSON.parse(xhReq.responseText);
 };
 
-//Parsing the JSON with centroids of all countries
+//Parsing the JSON with centroids of all countries necessary to place icons correctly
 var centroidJSON;
 function getCentroidsJSON (){
     url = "data/centroids.json";
