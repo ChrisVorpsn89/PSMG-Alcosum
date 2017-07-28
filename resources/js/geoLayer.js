@@ -178,17 +178,18 @@ map.on('pointermove', function(evt) {
     var pixel = evt.pixel;
     var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
         //console.log("feature",feature);
-        if(feature.O[" Beer"] === undefined) {
+        if(feature.O[" Beer"] === undefined || feature.O[" Beer"] === "null" || feature.O[" Beer"] === "") {
             feature.set(" Beer", "N.A.");
             feature.set(" Wine", "N.A.");
             feature.set(" Spirits", "N.A.");
             feature.set(" All types", "N.A.");
-        };
+
+        }
         return feature;
 
     });
 
-if(feature!== undefined) {
+if(feature!== undefined && feature!== null) {
     var rect = $('.beer .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
     var size = (feature.O[" Beer"]) / 6;
     if (feature.O[" Beer"] == "N.A.") {
@@ -199,6 +200,10 @@ if(feature!== undefined) {
     changeSize(size, rect);
     $('.beer .name .consume').text(feature.O[" Beer"] + " L");
 
+    if (feature.O[" Beer"] == "N.A.") {
+        $('.beer .name .consume').text(feature.O[" Beer"]);
+    }
+
     var rect = $('.wine .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
     var size = (feature.O[" Wine"]) / 6;
     if (feature.O[" Wine"] == "N.A.") {
@@ -208,6 +213,9 @@ if(feature!== undefined) {
     $(this).siblings().removeClass('current');
     changeSize(size, rect);
     $('.wine .name .consume').text(feature.O[" Wine"] + " L");
+    if (feature.O[" Wine"] == "N.A.") {
+        $('.wine .name .consume').text(feature.O[" Wine"]);
+    }
 
     var rect = $('.whisky .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
     var size = (feature.O[" Spirits"]) / 6;
@@ -218,6 +226,9 @@ if(feature!== undefined) {
     $(this).siblings().removeClass('current');
     changeSize(size, rect);
     $('.whisky .name .consume').text(feature.O[" Spirits"] + " L");
+    if (feature.O[" Spirits"] == "N.A.") {
+        $('.whisky .name .consume').text(feature.O[" Spirits"]);
+    }
 
     var rect = $('.alcopop .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
     var size = (feature.O[" All types"]) / 20;
@@ -227,8 +238,11 @@ if(feature!== undefined) {
     $(this).addClass('current');
     $(this).siblings().removeClass('current');
     changeSize(size, rect);
-
     $('.alcopop .name .consume').text(feature.O[" All types"] + " L");
+    if (feature.O[" All types"] == "N.A.") {
+        $('.alcopop .name .consume').text(feature.O[" All types"]);
+    }
+
 
     $('.country p').text(feature.O.name);
 
