@@ -234,7 +234,7 @@ if(feature!== undefined && feature!== null) {
     //Division of the size value to give the user a quick comparable OVERVIEW - not exact level - of the amount
     var size = (feature.O[" Beer"]) / DRINKS_DIVISION_FACTOR;
     //Catches bugs that occur when the size cant be set because the feature is not a number
-    if (feature.O[" Beer"] == "N.A.") {
+    if (feature.O[" Beer"] === "N.A.") {
         size = DEFAULT_SIZE;
     }
     //Updating the animation and changing size
@@ -244,7 +244,7 @@ if(feature!== undefined && feature!== null) {
     //setting the text and the EXACT amount of the consume
     $('.beer .name .consume').text(feature.O[" Beer"] + " L");
 //Setting N.A. whenever the amount of consumed alcohol is not given
-    if (feature.O[" Beer"] == "N.A.") {
+    if (feature.O[" Beer"] === "N.A.") {
         $('.beer .name .consume').text(feature.O[" Beer"]);
     }
 
@@ -253,7 +253,7 @@ if(feature!== undefined && feature!== null) {
     //Division of the size value to give the user a quick comparable OVERVIEW - not exact level - of the amount
     var size = (feature.O[" Wine"]) / DRINKS_DIVISION_FACTOR;
     //Catches bugs that occur when the size cant be set because the feature is not a number
-    if (feature.O[" Wine"] == "N.A.") {
+    if (feature.O[" Wine"] === "N.A.") {
         size = DEFAULT_SIZE;
     }
     //Updating the animation and changing size
@@ -262,7 +262,7 @@ if(feature!== undefined && feature!== null) {
     changeSize(size, rect);
     //setting the text and the EXACT amount of the consume
     $('.wine .name .consume').text(feature.O[" Wine"] + " L");
-    if (feature.O[" Wine"] == "N.A.") {
+    if (feature.O[" Wine"] === "N.A.") {
         $('.wine .name .consume').text(feature.O[" Wine"]);
     }
     //setting the quantity of the SVG drink's fill level after selecting the right one via JQuery
@@ -270,7 +270,7 @@ if(feature!== undefined && feature!== null) {
     //Division of the size value to give the user a quick comparable OVERVIEW - not exact level - of the amount
     var size = (feature.O[" Spirits"]) / DRINKS_DIVISION_FACTOR;
     //Catches bugs that occur when the size cant be set because the feature is not a number
-    if (feature.O[" Spirits"] == "N.A.") {
+    if (feature.O[" Spirits"] === "N.A.") {
         size = DEFAULT_SIZE;
     }
     //Updating the animation and changing size
@@ -279,7 +279,7 @@ if(feature!== undefined && feature!== null) {
     changeSize(size, rect);
     //setting the text and the EXACT amount of the consume
     $('.whisky .name .consume').text(feature.O[" Spirits"] + " L");
-    if (feature.O[" Spirits"] == "N.A.") {
+    if (feature.O[" Spirits"] === "N.A.") {
         $('.whisky .name .consume').text(feature.O[" Spirits"]);
     }
     //setting the quantity of the SVG drink's fill level after selecting the right one via JQuery
@@ -287,7 +287,7 @@ if(feature!== undefined && feature!== null) {
     //Division of the size value to give the user a quick comparable OVERVIEW - not exact level - of the amount
     var size = (feature.O[" All types"]) / TOTAL_CONSUME_DIVISION_FACTOR;
     //Catches bugs that occur when the size cant be set because the feature is not a number
-    if (feature.O[" All types"] == "N.A.") {
+    if (feature.O[" All types"] === "N.A.") {
         size = DEFAULT_SIZE;
     }
     //Updating the animation and changing size
@@ -296,7 +296,7 @@ if(feature!== undefined && feature!== null) {
     changeSize(size, rect);
     //setting the text and the EXACT amount of the consume
     $('.alcopop .name .consume').text(feature.O[" All types"] + " L");
-    if (feature.O[" All types"] == "N.A.") {
+    if (feature.O[" All types"] === "N.A.") {
         $('.alcopop .name .consume').text(feature.O[" All types"]);
     }
 
