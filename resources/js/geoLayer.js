@@ -9,6 +9,19 @@ var vectorSource;
 var vectorLayer;
 var tooltip = document.getElementById('tooltip');
 
+const DEFAULT_ZOOM_LEVEL = 2,
+    MAX_ZOOM = 3,
+    TOTAL_CONSUME_DIVISION_FACTOR = 20,
+    DRINKS_DIVISION_FACTOR = 6,
+    DEFAULT_SIZE = 0,
+    ICON_SCALE_LEVEL = 0.2,
+    OFFSET_X = 10,
+    OFFSET_Y = 0,
+    TRANSFORM_X = 0,
+    TRANSFORM_Y = 33.82,
+    CENTER_X= 0,
+    CENTER_Y =0;
+
 //
 var countrySource = new ol.source.Vector({
     projection : 'EPSG:3857',
@@ -78,7 +91,7 @@ setUpValues(tempFeature,resolution);
         var long = centroidJSON[highestValueCountryName].LONG;
         var lat = centroidJSON[highestValueCountryName].LAT;
         highestValueIcon.getGeometry().setCoordinates(ol.proj.fromLonLat([long,lat]));
-        //Bug fix to show correct values and name while hovering over icon
+        //Fix to show correct values and name while hovering over icon
         highestValueIcon.set("name", tempFeature.O.name);
         highestValueIcon.set(" Beer", tempFeature.O[" Beer"]);
         highestValueIcon.set(" Wine", tempFeature.O[" Wine"]);
@@ -106,11 +119,11 @@ var terrainLabelLayer = new ol.layer.Tile({
 });
 
 
-// Setting the initial center and zoom level
-var center = ol.proj.transform([0, 0], 'EPSG:4326', 'EPSG:3857');
+// Setting the initial center and zoom level of the map
+var center = ol.proj.transform([CENTER_X, CENTER_Y], 'EPSG:4326', 'EPSG:3857');
 var view = new ol.View ({
-  center: ol.proj.transform([0, 33.82], 'EPSG:4326', 'EPSG:3857'),
-  zoom: 2,
+  center: ol.proj.transform([TRANSFORM_X, TRANSFORM_Y], 'EPSG:4326', 'EPSG:3857'),
+  zoom: DEFAULT_ZOOM_LEVEL
 });
 
 //Creating the map and adding its layers
@@ -125,7 +138,7 @@ var map = new ol.Map({
 var overlay = new ol.Overlay({
     //Initial positioning and offset of the Tooltip
     element: tooltip,
-    offset: [10, 0],
+    offset: [OFFSET_X, OFFSET_Y],
     positioning: 'bottom-left'
 });
 
@@ -142,7 +155,7 @@ var highestValueIcon = new ol.Feature({
 //ICON from https://www.iconfinder.com/search/?q=award&license=2&price=free , no attribution required
 highestValueIcon.setStyle(new ol.style.Style({
     image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-        scale: 0.2,
+        scale: ICON_SCALE_LEVEL,
         crossOrigin: 'anonymous',
         src: 'resources/img/if_advantage_quality_1034364.png'
     }))
@@ -184,10 +197,10 @@ function displayTooltip(evt) {
 map.on('pointermove', displayTooltip);
 //Onclick function center the map and zoom
 map.on('click', function(evt) {
-    if(map.getView().getZoom()<=3){
+    if(map.getView().getZoom()<=MAX_ZOOM){
         //only zooming by two steps
         map.getView().setCenter(evt.coordinate);
-        map.getView().setZoom(map.getView().getZoom()+2);
+        map.getView().setZoom(map.getView().getZoom()+DEFAULT_ZOOM_LEVEL);
 
 }else{
         //Centering the view for the user
@@ -213,17 +226,17 @@ map.on('pointermove', function(evt) {
     });
 
     //Initial bug catch to prevent animation problems that are caused when the feature is undefined or null
+    //Duplicate Code could have possibly been eliminated but for reasons of Bug prevention was kept
 if(feature!== undefined && feature!== null) {
     //The following code has been inspired by Peter Allen https://codepen.io/evilpingwin/pen/LNVWYa
     //but has been heavily changed to represent the consume of any given alcohol type
-
     //setting the quantity of the SVG drink's fill level after selecting the right one via JQuery
     var rect = $('.beer .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
     //Division of the size value to give the user a quick comparable OVERVIEW - not exact level - of the amount
-    var size = (feature.O[" Beer"]) / 6;
+    var size = (feature.O[" Beer"]) / DRINKS_DIVISION_FACTOR;
     //Catches bugs that occur when the size cant be set because the feature is not a number
-    if (feature.O[" Beer"] == "N.A.") {
-        size = 0;
+    if (feature.O[" Beer"] === "N.A.") {
+        size = DEFAULT_SIZE;
     }
     //Updating the animation and changing size
     $(this).addClass('current');
@@ -232,17 +245,17 @@ if(feature!== undefined && feature!== null) {
     //setting the text and the EXACT amount of the consume
     $('.beer .name .consume').text(feature.O[" Beer"] + " L");
 //Setting N.A. whenever the amount of consumed alcohol is not given
-    if (feature.O[" Beer"] == "N.A.") {
+    if (feature.O[" Beer"] === "N.A.") {
         $('.beer .name .consume').text(feature.O[" Beer"]);
     }
 
     //setting the quantity of the SVG drink's fill level after selecting the right one via JQuery
     var rect = $('.wine .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
     //Division of the size value to give the user a quick comparable OVERVIEW - not exact level - of the amount
-    var size = (feature.O[" Wine"]) / 6;
+    var size = (feature.O[" Wine"]) / DRINKS_DIVISION_FACTOR;
     //Catches bugs that occur when the size cant be set because the feature is not a number
-    if (feature.O[" Wine"] == "N.A.") {
-        size = 0;
+    if (feature.O[" Wine"] === "N.A.") {
+        size = DEFAULT_SIZE;
     }
     //Updating the animation and changing size
     $(this).addClass('current');
@@ -250,16 +263,16 @@ if(feature!== undefined && feature!== null) {
     changeSize(size, rect);
     //setting the text and the EXACT amount of the consume
     $('.wine .name .consume').text(feature.O[" Wine"] + " L");
-    if (feature.O[" Wine"] == "N.A.") {
+    if (feature.O[" Wine"] === "N.A.") {
         $('.wine .name .consume').text(feature.O[" Wine"]);
     }
     //setting the quantity of the SVG drink's fill level after selecting the right one via JQuery
     var rect = $('.whisky .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
     //Division of the size value to give the user a quick comparable OVERVIEW - not exact level - of the amount
-    var size = (feature.O[" Spirits"]) / 6;
+    var size = (feature.O[" Spirits"]) / DRINKS_DIVISION_FACTOR;
     //Catches bugs that occur when the size cant be set because the feature is not a number
-    if (feature.O[" Spirits"] == "N.A.") {
-        size = 0;
+    if (feature.O[" Spirits"] === "N.A.") {
+        size = DEFAULT_SIZE;
     }
     //Updating the animation and changing size
     $(this).addClass('current');
@@ -267,16 +280,16 @@ if(feature!== undefined && feature!== null) {
     changeSize(size, rect);
     //setting the text and the EXACT amount of the consume
     $('.whisky .name .consume').text(feature.O[" Spirits"] + " L");
-    if (feature.O[" Spirits"] == "N.A.") {
+    if (feature.O[" Spirits"] === "N.A.") {
         $('.whisky .name .consume').text(feature.O[" Spirits"]);
     }
     //setting the quantity of the SVG drink's fill level after selecting the right one via JQuery
     var rect = $('.alcopop .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
     //Division of the size value to give the user a quick comparable OVERVIEW - not exact level - of the amount
-    var size = (feature.O[" All types"]) / 20;
+    var size = (feature.O[" All types"]) / TOTAL_CONSUME_DIVISION_FACTOR;
     //Catches bugs that occur when the size cant be set because the feature is not a number
-    if (feature.O[" All types"] == "N.A.") {
-        size = 0;
+    if (feature.O[" All types"] === "N.A.") {
+        size = DEFAULT_SIZE;
     }
     //Updating the animation and changing size
     $(this).addClass('current');
@@ -284,7 +297,7 @@ if(feature!== undefined && feature!== null) {
     changeSize(size, rect);
     //setting the text and the EXACT amount of the consume
     $('.alcopop .name .consume').text(feature.O[" All types"] + " L");
-    if (feature.O[" All types"] == "N.A.") {
+    if (feature.O[" All types"] === "N.A.") {
         $('.alcopop .name .consume').text(feature.O[" All types"]);
     }
 
@@ -298,7 +311,7 @@ if(feature!== undefined && feature!== null) {
             $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + "fr" + ".svg");
         }
         else {
-            //Getting the right flag from the github repository
+            //Getting the correct flag from the github repository
         $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + inverseCountryCodes[feature.O.name.toString()].toLowerCase() + ".svg");
         }
       }
@@ -320,9 +333,9 @@ map.on('click', function(evt) {
 });
 
 map.on('click', function(evt) {
-    if(map.getView().getZoom()<=3){
+    if(map.getView().getZoom()<=MAX_ZOOM){
         map.getView().setCenter(evt.coordinate);
-        map.getView().setZoom(map.getView().getZoom()+2);
+        map.getView().setZoom(map.getView().getZoom()+DEFAULT_ZOOM_LEVEL);
     }else{
         map.getView().setCenter(evt.coordinate);
     }
