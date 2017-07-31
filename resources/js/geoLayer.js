@@ -225,8 +225,7 @@ map.on('pointermove', function(evt) {
     });
 
     //Initial bug catch to prevent animation problems that are caused when the feature is undefined or null
-    //Duplicate Code could have possibly been prevented but for reasons of Bug prevention was not
-    //eliminated.
+    //Duplicate Code could have possibly been eliminated but for reasons of Bug prevention was kept
 if(feature!== undefined && feature!== null) {
     //The following code has been inspired by Peter Allen https://codepen.io/evilpingwin/pen/LNVWYa
     //but has been heavily changed to represent the consume of any given alcohol type
