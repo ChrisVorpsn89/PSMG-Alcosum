@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="33d21125-273a-4578-99bc-06f21cbb2e62" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/geoLayer.js" afterPath="$PROJECT_DIR$/resources/js/geoLayer.js" />
-    </list>
+    <list default="true" id="33d21125-273a-4578-99bc-06f21cbb2e62" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -393,15 +391,15 @@
       <workItem from="1501154237890" duration="304000" />
       <workItem from="1501230172047" duration="6518000" />
       <workItem from="1501237087343" duration="265000" />
-      <workItem from="1501490450394" duration="2410000" />
+      <workItem from="1501490450394" duration="2546000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88834000" />
+    <option name="totallyTimeSpent" value="88970000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1917" height="1030" extended-state="0" />
+    <frame x="0" y="0" width="1917" height="1030" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
