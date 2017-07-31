@@ -9,6 +9,12 @@ var vectorSource;
 var vectorLayer;
 var tooltip = document.getElementById('tooltip');
 
+const DEFAULT_ZOOM_LEVEL = 2,
+    MAX_ZOOM = 3,
+    TOTAL_CONSUME_DIVISION_FACTOR = 20,
+    DRINKS_DIVISION_FACTOR = 6,
+    DEFAULT_SIZE = 0,
+    ICON_SCALE_LEVEL = 0.2;
 //
 var countrySource = new ol.source.Vector({
     projection : 'EPSG:3857',
@@ -77,7 +83,7 @@ setUpValues(tempFeature,resolution);
         var long = centroidJSON[highestValueCountryName].LONG;
         var lat = centroidJSON[highestValueCountryName].LAT;
         highestValueIcon.getGeometry().setCoordinates(ol.proj.fromLonLat([long,lat]));
-        //Bug fix to show correct values and name while hovering over icon
+        //Fix to show correct values and name while hovering over icon
         highestValueIcon.set("name", tempFeature.O.name);
         highestValueIcon.set(" Beer", tempFeature.O[" Beer"]);
         highestValueIcon.set(" Wine", tempFeature.O[" Wine"]);
@@ -105,11 +111,11 @@ var terrainLabelLayer = new ol.layer.Tile({
 });
 
 
-// Setting the initial center and zoom level
+// Setting the initial center and zoom level of the map
 var center = ol.proj.transform([0, 0], 'EPSG:4326', 'EPSG:3857');
 var view = new ol.View ({
   center: ol.proj.transform([0, 33.82], 'EPSG:4326', 'EPSG:3857'),
-  zoom: 2,
+  zoom: DEFAULT_ZOOM_LEVEL
 });
 
 //Creating the map and adding its layers
@@ -141,7 +147,7 @@ var highestValueIcon = new ol.Feature({
 //ICON from https://www.iconfinder.com/search/?q=award&license=2&price=free , no attribution required
 highestValueIcon.setStyle(new ol.style.Style({
     image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-        scale: 0.2,
+        scale: ICON_SCALE_LEVEL,
         crossOrigin: 'anonymous',
         src: 'resources/img/if_advantage_quality_1034364.png'
     }))
@@ -183,10 +189,10 @@ function displayTooltip(evt) {
 map.on('pointermove', displayTooltip);
 //Onclick function center the map and zoom
 map.on('click', function(evt) {
-    if(map.getView().getZoom()<=3){
+    if(map.getView().getZoom()<=MAX_ZOOM){
         //only zooming by two steps
         map.getView().setCenter(evt.coordinate);
-        map.getView().setZoom(map.getView().getZoom()+2);
+        map.getView().setZoom(map.getView().getZoom()+DEFAULT_ZOOM_LEVEL);
 
 }else{
         //Centering the view for the user
@@ -219,10 +225,10 @@ if(feature!== undefined && feature!== null) {
     //setting the quantity of the SVG drink's fill level after selecting the right one via JQuery
     var rect = $('.beer .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
     //Division of the size value to give the user a quick comparable OVERVIEW - not exact level - of the amount
-    var size = (feature.O[" Beer"]) / 6;
+    var size = (feature.O[" Beer"]) / DRINKS_DIVISION_FACTOR;
     //Catches bugs that occur when the size cant be set because the feature is not a number
     if (feature.O[" Beer"] == "N.A.") {
-        size = 0;
+        size = DEFAULT_SIZE;
     }
     //Updating the animation and changing size
     $(this).addClass('current');
@@ -238,10 +244,10 @@ if(feature!== undefined && feature!== null) {
     //setting the quantity of the SVG drink's fill level after selecting the right one via JQuery
     var rect = $('.wine .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
     //Division of the size value to give the user a quick comparable OVERVIEW - not exact level - of the amount
-    var size = (feature.O[" Wine"]) / 6;
+    var size = (feature.O[" Wine"]) / DRINKS_DIVISION_FACTOR;
     //Catches bugs that occur when the size cant be set because the feature is not a number
     if (feature.O[" Wine"] == "N.A.") {
-        size = 0;
+        size = DEFAULT_SIZE;
     }
     //Updating the animation and changing size
     $(this).addClass('current');
@@ -255,10 +261,10 @@ if(feature!== undefined && feature!== null) {
     //setting the quantity of the SVG drink's fill level after selecting the right one via JQuery
     var rect = $('.whisky .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
     //Division of the size value to give the user a quick comparable OVERVIEW - not exact level - of the amount
-    var size = (feature.O[" Spirits"]) / 6;
+    var size = (feature.O[" Spirits"]) / DRINKS_DIVISION_FACTOR;
     //Catches bugs that occur when the size cant be set because the feature is not a number
     if (feature.O[" Spirits"] == "N.A.") {
-        size = 0;
+        size = DEFAULT_SIZE;
     }
     //Updating the animation and changing size
     $(this).addClass('current');
@@ -272,10 +278,10 @@ if(feature!== undefined && feature!== null) {
     //setting the quantity of the SVG drink's fill level after selecting the right one via JQuery
     var rect = $('.alcopop .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
     //Division of the size value to give the user a quick comparable OVERVIEW - not exact level - of the amount
-    var size = (feature.O[" All types"]) / 20;
+    var size = (feature.O[" All types"]) / TOTAL_CONSUME_DIVISION_FACTOR;
     //Catches bugs that occur when the size cant be set because the feature is not a number
     if (feature.O[" All types"] == "N.A.") {
-        size = 0;
+        size = DEFAULT_SIZE;
     }
     //Updating the animation and changing size
     $(this).addClass('current');
@@ -297,7 +303,7 @@ if(feature!== undefined && feature!== null) {
             $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + "fr" + ".svg");
         }
         else {
-            //Getting the right flag from the github repository
+            //Getting the correct flag from the github repository
         $(".flag").attr("src", "https://lipis.github.io/flag-icon-css/flags/4x3/" + inverseCountryCodes[feature.O.name.toString()].toLowerCase() + ".svg");
         }
       }
@@ -319,9 +325,9 @@ map.on('click', function(evt) {
 });
 
 map.on('click', function(evt) {
-    if(map.getView().getZoom()<=3){
+    if(map.getView().getZoom()<=MAX_ZOOM){
         map.getView().setCenter(evt.coordinate);
-        map.getView().setZoom(map.getView().getZoom()+2);
+        map.getView().setZoom(map.getView().getZoom()+DEFAULT_ZOOM_LEVEL);
     }else{
         map.getView().setCenter(evt.coordinate);
     }
