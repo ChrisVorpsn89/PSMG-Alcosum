@@ -1,6 +1,10 @@
 var barChartdata = [];
 var lines = document.getElementsByClassName('line');
 
+
+
+/* This Code draws the LineChart for the Infobutton. The LineChart displays the Average Overall Consume for all four
+Alcohol Types. It consists of four lines with different Colors and a legend. The Code for the Mouse-Over is inspired by  "https://bl.ocks.org/larsenmtl/e3b8b7c2ca4787f77d78f58d41c3da91" */
 function drawOverAllLineChart(){
   var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = innerWidth-100  - margin.left - margin.right,
@@ -34,7 +38,9 @@ var svg = d3.select(".message").append("svg")
           "translate(" + margin.left + "," + margin.top + ")");
 
 d3.csv("data/average.csv", function(error, data) {
-  if (error) throw error;
+  if (error){ 
+      throw error
+  };
 
   data.forEach(function(d) {
       d.year = parseTime(String(d.year));
@@ -253,6 +259,9 @@ mouseG.append('svg:rect')
         });
     });
 }
+
+/*This function draws the Bar-Charts for specific Countrys. It uses the manipulateJSON-function to display all the available Data.
+The barChart also has a tooltip-function. The code is inspired by http://bl.ocks.org/Caged/6476579*/
 function drawBarChart(feature){
 var margin = {top: 40, right: 20, bottom: 30, left: 40},
     width = 800 - margin.left - margin.right,
@@ -314,7 +323,7 @@ svg.append("text")
         .style("font-size", "110%")
         .text("Back to Map");
         resetGraph();
-
+/*The resetGraph-function takes care, that the Graph will be deleted and that everything that is not needed anymore disappears.*/
 function resetGraph(){
       document.getElementById("exitText").addEventListener('click', function(event){
       d3.selectAll(".graph > *").remove();
@@ -346,6 +355,7 @@ function type(d) {
   return d;
 }
 }
+/*The manageGraph-function is necessary to update the graphs data with the help of the manipulateJsonfunction*/
 function manageGraph(feature){
     d3.selectAll(".graph > *").remove();
     barChartdata = [];
