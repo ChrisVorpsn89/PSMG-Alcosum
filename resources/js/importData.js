@@ -4,6 +4,8 @@ xhReq.send(null);
 var jsonObject = JSON.parse(xhReq.responseText);
 var url;
 var reportOne,reportTwo,reportThree,currentReport;
+var highestAllTypesValue = 26, highestBeerValue = 10, highestWineValue = 20, highestSpiritsValue = 14;
+var scalelevel = 8;
 var selectedBeverage = document.getElementById("selectedBeverage"),
 averageConsumeVal = document.getElementById("averageConsumeVal"),
 countryNumber = document.getElementById("countryNumber"),
@@ -11,6 +13,7 @@ timeLine = "",
 selectedType = " All types";
 currentReport = reportOne;
 
+//Generates the different JSON data which is meant to be used for the correct period of years.
 function getJsonData(){
 url1 = "data/converted_2000_2016.json";
 url2 ="data/converted_1999_1980.json";
@@ -25,6 +28,7 @@ url3 ="data/converted_1979_1966.json";
   xhReq.send(null);
   reportThree = JSON.parse(xhReq.responseText);
 }
+
 //Parsing the JSON with centroids of all countries necessary to place icons correctly
 //JSON by http://gothos.info/2009/02/centroids-for-countries/
 var centroidJSON;
@@ -34,6 +38,7 @@ function getCentroidsJSON (){
     xhReq.send(null);
     centroidJSON = JSON.parse(xhReq.responseText);
 }
+
 function manipulateJson(report, feature){
     specificCountryJson = report.filter(function(el){
         return  el.Country == feature.O.name && el.BeverageTypes == selectedType;
@@ -56,6 +61,8 @@ function manipulateJson(report, feature){
         }
     }
 }
+
+//Relevant to indicate the numbers of participated countries, the average consume and highest value of the year.
 function findHighestValue(slidervalue, currentreport){
     countCountry = 0;
     countConsume = 0;
@@ -114,21 +121,23 @@ var reportYear = "Year" + timeLine;
     }
   }
 }
+
+//Formating the legend with the correct values for the selected alcohol type.
 function legendData(type){
   type = selectedType;
   if(selectedType == " All types"){
-    highestBeverageValue = 26;
+    highestBeverageValue = highestAllTypesValue;
   }
     if(selectedType == " Beer"){
-    highestBeverageValue = 10;
+    highestBeverageValue = highestBeerValue;
   }
     if(selectedType == " Wine"){
-    highestBeverageValue = 20;
+    highestBeverageValue = highestWineValue;
   }
     if(selectedType == " Spirits"){
-    highestBeverageValue = 14;
+    highestBeverageValue = highestSpiritsValue;
   }
-    var summand = highestBeverageValue/8;
+  var summand = highestBeverageValue/scalelevel;
   document.getElementById("legend-box-b").innerHTML = "0 - " + parseInt(summand);
   document.getElementById("legend-box-c").innerHTML = parseInt(summand) + " - " + parseInt(2*summand);
   document.getElementById("legend-box-d").innerHTML = parseInt(2*summand) + " - " + parseInt(3*summand);

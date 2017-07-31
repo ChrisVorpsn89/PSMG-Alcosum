@@ -33,8 +33,9 @@ setUpValues(tempFeature,resolution);
     var value = parseFloat(tempFeature.O[selectedType]);
     var scalelevel = 8;
     legendData();
-    var summand = highestBeverageValue/8;
+    var summand = highestBeverageValue/scalelevel;
     var color;
+    var peakValueStroke = 1000;
     var stroke = defaultStyle.stroke;
 
     // Color Country Conditions
@@ -69,7 +70,7 @@ setUpValues(tempFeature,resolution);
         color = '#99000d'
      }
     if(value == highestValue){
-        stroke =1000;
+        stroke = peakValueStroke;
 
         //Setting the value of the variable to the country's name that has the highest value to access it below
         var highestValueCountryName = tempFeature.O.name;
