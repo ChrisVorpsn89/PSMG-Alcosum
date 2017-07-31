@@ -14,7 +14,14 @@ const DEFAULT_ZOOM_LEVEL = 2,
     TOTAL_CONSUME_DIVISION_FACTOR = 20,
     DRINKS_DIVISION_FACTOR = 6,
     DEFAULT_SIZE = 0,
-    ICON_SCALE_LEVEL = 0.2;
+    ICON_SCALE_LEVEL = 0.2,
+    OFFSET_X = 10,
+    OFFSET_Y = 0,
+    TRANSFORM_X = 0,
+    TRANSFORM_Y = 33.82,
+    CENTER_X= 0,
+    CENTER_Y =0;
+
 //
 var countrySource = new ol.source.Vector({
     projection : 'EPSG:3857',
@@ -112,9 +119,9 @@ var terrainLabelLayer = new ol.layer.Tile({
 
 
 // Setting the initial center and zoom level of the map
-var center = ol.proj.transform([0, 0], 'EPSG:4326', 'EPSG:3857');
+var center = ol.proj.transform([CENTER_X, CENTER_Y], 'EPSG:4326', 'EPSG:3857');
 var view = new ol.View ({
-  center: ol.proj.transform([0, 33.82], 'EPSG:4326', 'EPSG:3857'),
+  center: ol.proj.transform([TRANSFORM_X, TRANSFORM_Y], 'EPSG:4326', 'EPSG:3857'),
   zoom: DEFAULT_ZOOM_LEVEL
 });
 
@@ -130,7 +137,7 @@ var map = new ol.Map({
 var overlay = new ol.Overlay({
     //Initial positioning and offset of the Tooltip
     element: tooltip,
-    offset: [10, 0],
+    offset: [OFFSET_X, OFFSET_Y],
     positioning: 'bottom-left'
 });
 
@@ -218,10 +225,11 @@ map.on('pointermove', function(evt) {
     });
 
     //Initial bug catch to prevent animation problems that are caused when the feature is undefined or null
+    //Duplicate Code could have possibly been prevented but for reasons of Bug prevention was not
+    //eliminated.
 if(feature!== undefined && feature!== null) {
     //The following code has been inspired by Peter Allen https://codepen.io/evilpingwin/pen/LNVWYa
     //but has been heavily changed to represent the consume of any given alcohol type
-
     //setting the quantity of the SVG drink's fill level after selecting the right one via JQuery
     var rect = $('.beer .name p').parent().siblings('svg').find('rect:not(rect:nth-child(5))');
     //Division of the size value to give the user a quick comparable OVERVIEW - not exact level - of the amount
